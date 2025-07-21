@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DireWolf Designs</title>
+  <style>
+    :root {
+        --light-cipollino: #d7dad1;
+        --grey-clouds: #b7b7b2;
+        --grey-tote: #817f7d;
+        --fifty-grey: #4f504f;
+        --blackadder: #2b2e2c;
+        --chaos-black: #0b100e;
+      }
+      
+      /* Reset & base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--light-cipollino);
+        color: var(--blackadder);
+        line-height: 1.6;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: var(--blackadder);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        z-index: 99;
+      }
+      
+      nav .navbar {
+        height: 100%;
+        max-width: 1250px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+        padding: 0 50px;
+      }
+      
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .navbar .logo a {
+        font-size: 30px;
+        color: var(--light-cipollino);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .navbar .logo img {
+        height: 80px;
+        width: auto;
+        display: block;
+      }
+      
+      .navbar .nav-links {
+        line-height: 70px;
+        height: 100%;
+        margin-left: auto;
+      }
+      
+      .navbar .links {
+        display: flex;
+      }
+      
+      .navbar .links li {
+        list-style: none;
+        padding: 0 14px;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      
+      .navbar .links li a {
+        color: var(--light-cipollino);
+        font-weight: 500;
+        font-size: 15px;
+        text-decoration: none;
+      }
+      
+      .navbar .links li .arrow {
+        color: var(--light-cipollino);
+        transition: 0.3s;
+        font-size: 16px;
+        margin-left: 4px;
+      }
+      
+      .navbar .links li:hover .arrow {
+        transform: rotate(180deg);
+      }
+      
+      .navbar .links li .sub-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: var(--fifty-grey);
+        line-height: 40px;
+        display: none;
+        border-radius: 0 0 4px 4px;
+        z-index: 2;
+        min-width: 150px;
+      }
+      
+      .navbar .links li:hover .sub-menu {
+        display: block;
+      }
+      
+      .navbar .links li .sub-menu li {
+        padding: 0 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .navbar .links li .sub-menu li a {
+        color: var(--light-cipollino);
+      }
+      
+      .navbar .search-box {
+        position: relative;
+        height: 40px;
+        width: 40px;
+      }
+      
+      .navbar .search-box i {
+        color: var(--light-cipollino);
+        font-size: 22px;
+        line-height: 40px;
+        text-align: center;
+        display: block;
+        cursor: pointer;
+      }
+      
+      .search-box .input-box {
+        position: absolute;
+        right: calc(100% - 40px);
+        top: 80px;
+        height: 60px;
+        width: 300px;
+        background: var(--fifty-grey);
+        border-radius: 6px;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s ease;
+      }
+      
+      .navbar.showInput .search-box .input-box {
+        opacity: 1;
+        pointer-events: auto;
+        top: 65px;
+      }
+      
+      .search-box .input-box::before {
+        content: '';
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        background: var(--fifty-grey);
+        right: 10px;
+        top: -6px;
+        transform: rotate(45deg);
+      }
+      
+      .search-box .input-box input {
+        height: 35px;
+        width: 280px;
+        padding: 0 15px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        position: absolute;
+      }
+      
+      /* Sidebar for mobile */
+      .navbar .bx-menu {
+        display: none;
+        color: var(--light-cipollino);
+        font-size: 25px;
+        cursor: pointer;
+      }
+      
+      .navbar .nav-links .sidebar-logo {
+        display: none;
+      }
+      
+      /* HERO SECTION */
+      .hero {
+        text-align: center;
+        padding: 4rem 2rem;
+        background-color: var(--grey-clouds);
+        color: var(--chaos-black);
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--chaos-black);
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+        color: var(--grey-tote);
+        margin-bottom: 2rem;
+      }
+      
+      .cta-btn {
+        background-color: var(--fifty-grey);
+        color: var(--light-cipollino);
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+      }
+      
+      .cta-btn:hover {
+        background-color: var(--chaos-black);
+      }
+      
+      /* FEATURES SECTION */
+      .features {
+        background-color: var(--light-cipollino);
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+      
+      .features h2 {
+        font-size: 2rem;
+        color: var(--chaos-black);
+        margin-bottom: 2rem;
+      }
+      
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+      
+      .card {
+        background-color: var(--grey-clouds);
+        padding: 2rem;
+        border-radius: 8px;
+        color: var(--chaos-black);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* FOOTER */
+      footer {
+        background-color: var(--chaos-black);
+        color: var(--light-cipollino);
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      /* RESPONSIVE NAVBAR */
+      @media (max-width: 920px) {
+        nav .navbar {
+          max-width: 100%;
+          padding: 0 25px;
+        }
+      
+        nav .navbar .logo img {
+          height: 60px;
+        }
+      
+        nav .navbar .logo a {
+          font-size: 22px;
+        }
+      
+        nav .navbar .links li {
+          padding: 0 10px;
+          white-space: nowrap;
+        }
+      
+        nav .navbar .links li a {
+          font-size: 15px;
+        }
+      }
+      
+      @media (max-width: 800px) {
+        .navbar .bx-menu {
+          display: block;
+        }
+      
+        nav .navbar .nav-links {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          max-width: 270px;
+          width: 100%;
+          background: var(--blackadder);
+          line-height: 40px;
+          padding: 20px;
+          transition: 0.5s;
+          z-index: 1000;
+          display: block;
+        }
+      
+        .navbar .nav-links .sidebar-logo {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      
+        .sidebar-logo-inner {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      
+        .sidebar-logo-inner img {
+          height: 60px;
+          object-fit: contain;
+        }
+      
+        .sidebar-logo .logo-name {
+          font-size: 20px;
+          color: var(--light-cipollino);
+          font-weight: 600;
+        }
+      
+        .sidebar-logo i {
+          font-size: 25px;
+          color: var(--light-cipollino);
+        }
+      
+        nav .navbar .links {
+          display: block;
+          margin-top: 20px;
+        }
+      
+        nav .navbar .links li {
+          display: block;
+        }
+      
+        nav .navbar .links li .sub-menu {
+          position: relative;
+          top: 0;
+          display: none;
+          box-shadow: none;
+        }
+      
+        .navbar .nav-links.show1 .htmlCss-sub-menu {
+          display: block;
+        }
+      }
+      
+      @media (max-width: 370px) {
+        nav .navbar .nav-links {
+          max-width: 100%;
+        }
+      }
+      
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="navbar">
+          <i class='bx bx-menu'></i>
+          <div class="logo">
+            <img src="logo1.png" alt="">
+            <a href="#">ProEquipment Center</a></div>
+          <div class="nav-links">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-inner">
+                  <img src="logo1.png" alt="Logo">
+                  <!-- <span class="logo-name">ProEquipment Center</span> -->
+                </div>
+                <i class='bx bx-x'></i>
+              </div>
+              
+            <ul class="links">
+              <li><a href="#">HOME</a></li>
+              <li>
+                <a href="#">PRODUCTS</a>
+                <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+                <ul class="htmlCss-sub-menu sub-menu">
+                  <li><a href="#">P1</a></li>
+                  <li><a href="#">P2</a></li>
+                  <li><a href="#">P3</a></li>
+            
+                </ul>
+              </li>
+    
+              <li><a href="#">CONTACT US</a></li>
+            </ul>
+          </div>
+          <div class="search-box">
+            <i class='bx bx-search'></i>
+            <div class="input-box">
+              <input type="text" placeholder="Search...">
+            </div>
+          </div>
+        </div>
+      </nav>
+    <div class="hero">
+      <h1>Raw. Rugged. Refined.</h1>
+      <p>Handcrafted designs inspired by nature’s fierce edge and timeless tones.</p>
+      <a href="#" class="cta-btn">Explore Collection</a>
+    </div>
+  </header>
+
+  <section class="features">
+    <h2>What Makes Us Unique</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Natural Materials</h3>
+        <p>Each product uses sustainably sourced wood and metals with rustic finishes.</p>
+      </div>
+      <div class="card">
+        <h3>Custom Craft</h3>
+        <p>Every item is hand-forged with unique patterns, never mass-produced.</p>
+      </div>
+      <div class="card">
+        <h3>Bold Identity</h3>
+        <p>A collection made for those who walk their own path — raw and fearless.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DireWolf Designs — Fierce. Functional. Forever.</p>
+  </footer>
+
+  <script>
+    // search-box open close js code
+let navbar = document.querySelector(".navbar");
+let searchBox = document.querySelector(".search-box .bx-search");
+// let searchBoxCancel = document.querySelector(".search-box .bx-x");
+searchBox.addEventListener("click", ()=>{
+  navbar.classList.toggle("showInput");
+  if(navbar.classList.contains("showInput")){
+    searchBox.classList.replace("bx-search" ,"bx-x");
+  }else {
+    searchBox.classList.replace("bx-x" ,"bx-search");
+  }
+});
+// sidebar open close js code
+let navLinks = document.querySelector(".nav-links");
+let menuOpenBtn = document.querySelector(".navbar .bx-menu");
+let menuCloseBtn = document.querySelector(".nav-links .bx-x");
+menuOpenBtn.onclick = function() {
+navLinks.style.left = "0";
+}
+menuCloseBtn.onclick = function() {
+navLinks.style.left = "-100%";
+}
+// sidebar submenu open close js code
+let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+htmlcssArrow.onclick = function() {
+ navLinks.classList.toggle("show1");
+}
+let moreArrow = document.querySelector(".more-arrow");
+moreArrow.onclick = function() {
+ navLinks.classList.toggle("show2");
+}
+let jsArrow = document.querySelector(".js-arrow");
+jsArrow.onclick = function() {
+ navLinks.classList.toggle("show3");
+}
+  </script>
+</body>
+</html>
