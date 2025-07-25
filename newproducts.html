@@ -5,8 +5,7 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - ProEquipment Center</title>
-  <link rel="icon" type="image/x-icon" href="logo.ico">
+  <title>Products - AutoParts Pro Equipment</title>
   <style>
     :root {
       --light-cipollino: #d7dad1;
@@ -15,6 +14,8 @@
       --fifty-grey: #4f504f;
       --blackadder: #2b2e2c;
       --chaos-black: #0b100e;
+      --accent-red: #d32f2f;
+      --accent-blue: #1976d2;
     }
 
     * {
@@ -45,7 +46,7 @@
       padding: 3rem 2rem;
       background-color: var(--grey-clouds);
       color: var(--chaos-black);
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
       background-size: cover;
       background-position: center;
     }
@@ -78,6 +79,10 @@
       align-items: center;
       margin-bottom: 2rem;
       flex-wrap: wrap;
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .products-title {
@@ -115,6 +120,7 @@
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
     }
 
     .product-card:hover {
@@ -125,6 +131,7 @@
     .product-image {
       height: 200px;
       overflow: hidden;
+      position: relative;
     }
 
     .product-image img {
@@ -176,21 +183,22 @@
       font-size: 1.2rem;
     }
 
-    .add-to-cart {
-      background-color: var(--fifty-grey);
-      color: var(--light-cipollino);
+    .view-btn {
+      background-color: var(--accent-blue);
+      color: white;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-weight: 500;
     }
 
-    .add-to-cart:hover {
-      background-color: var(--blackadder);
+    .view-btn:hover {
+      background-color: #1565c0;
     }
 
     .pagination {
@@ -198,15 +206,17 @@
       justify-content: center;
       margin-top: 3rem;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .pagination-button {
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border: 1px solid var(--grey-tote);
       background-color: white;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.3s ease;
+      font-weight: 500;
     }
 
     .pagination-button:hover {
@@ -219,39 +229,157 @@
       border-color: var(--fifty-grey);
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .products-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-      
-      .products-filter {
-        width: 100%;
-        flex-wrap: wrap;
-      }
-      
-      .filter-select {
-        flex-grow: 1;
+    /* Product Detail Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .product-modal {
+      background: white;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .product-modal {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--fifty-grey);
+      z-index: 10;
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      .modal-content {
+        flex-direction: row;
       }
     }
 
-    @media (max-width: 480px) {
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .product-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-      
-      .add-to-cart {
-        width: 100%;
-        justify-content: center;
-      }
+    .modal-image {
+      flex: 1;
+      min-height: 300px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .modal-details {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .modal-category {
+      color: var(--accent-blue);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .modal-name {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--chaos-black);
+    }
+
+    .modal-price {
+      font-weight: 700;
+      color: var(--fifty-grey);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-description {
+      color: var(--grey-tote);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .modal-specs {
+      margin-bottom: 1.5rem;
+    }
+
+    .specs-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--chaos-black);
+      border-bottom: 1px solid var(--grey-clouds);
+      padding-bottom: 0.5rem;
+    }
+
+    .specs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .spec-item {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .spec-label {
+      font-weight: 600;
+      color: var(--fifty-grey);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-btn {
+      background-color: var(--accent-red);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-btn:hover {
+      background-color: #c62828;
     }
 
     /* Existing Navbar Styles */
@@ -845,8 +973,8 @@
           <div class="navbar">
             <i class='bx bx-menu'></i>
             <div class="logo">
-              <img src="logo1.png" alt="">
-              <a href="#">ProEquipment Center</a></div>
+              <img src="logo1.png" alt="AutoParts Pro">
+              <a href="#">AutoParts Pro</a></div>
             <div class="nav-links">
               <div class="sidebar-logo">
                   <div class="sidebar-logo-inner">
@@ -891,14 +1019,14 @@
         <h2 class="products-title">Our Products</h2>
         <div class="products-filter">
           <span class="filter-label">Filter by:</span>
-          <select class="filter-select">
+          <select class="filter-select" id="categoryFilter">
             <option value="all">All Categories</option>
-            <option value="diagnostic">Diagnostic Tools</option>
-            <option value="lifting">Lifting Equipment</option>
-            <option value="tire">Tire Service</option>
-            <option value="shop">Shop Equipment</option>
+            <option value="Diagnostic Tools">Diagnostic Tools</option>
+            <option value="Lifting Equipment">Lifting Equipment</option>
+            <option value="Tire Service">Tire Service</option>
+            <option value="Shop Equipment">Shop Equipment</option>
           </select>
-          <select class="filter-select">
+          <select class="filter-select" id="sortFilter">
             <option value="featured">Featured</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
@@ -907,121 +1035,46 @@
         </div>
       </div>
 
-      <div class="products-grid">
-        <!-- Product 1 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diagnostic Scanner">
-          </div>
-          <div class="product-info">
-            <span class="product-category">Diagnostic Tools</span>
-            <h3 class="product-name">ProScan X9000 Diagnostic Scanner</h3>
-            <p class="product-description">Advanced OBD2 scanner with full system diagnostics for all makes and models.</p>
-            <div class="product-footer">
-              <span class="product-price">$1,299.99</span>
-              <button class="add-to-cart">
-                <i class='bx bx-cart'></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hydraulic Lift">
-          </div>
-          <div class="product-info">
-            <span class="product-category">Lifting Equipment</span>
-            <h3 class="product-name">10,000 lb Hydraulic Lift</h3>
-            <p class="product-description">Heavy-duty two-post lift with asymmetric design for easy vehicle access.</p>
-            <div class="product-footer">
-              <span class="product-price">$3,499.99</span>
-              <button class="add-to-cart">
-                <i class='bx bx-cart'></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tire Changer">
-          </div>
-          <div class="product-info">
-            <span class="product-category">Tire Service</span>
-            <h3 class="product-name">ProTire 5000 Changer</h3>
-            <p class="product-description">Professional tire changer with bead breaker and rim clamp for all wheel types.</p>
-            <div class="product-footer">
-              <span class="product-price">$2,199.99</span>
-              <button class="add-to-cart">
-                <i class='bx bx-cart'></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wheel Balancer">
-          </div>
-          <div class="product-info">
-            <span class="product-category">Tire Service</span>
-            <h3 class="product-name">Precision Wheel Balancer</h3>
-            <p class="product-description">Computerized wheel balancer with dynamic measurement technology.</p>
-            <div class="product-footer">
-              <span class="product-price">$1,799.99</span>
-              <button class="add-to-cart">
-                <i class='bx bx-cart'></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tool Cabinet">
-          </div>
-          <div class="product-info">
-            <span class="product-category">Shop Equipment</span>
-            <h3 class="product-name">ProTool 72" Roll Cabinet</h3>
-            <p class="product-description">Heavy-duty tool storage with 16 drawers and stainless steel top.</p>
-            <div class="product-footer">
-              <span class="product-price">$2,899.99</span>
-              <button class="add-to-cart">
-                <i class='bx bx-cart'></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Air Compressor">
-          </div>
-          <div class="product-info">
-            <span class="product-category">Shop Equipment</span>
-            <h3 class="product-name">Industrial Air Compressor</h3>
-            <p class="product-description">80-gallon two-stage compressor with 7.5HP motor for continuous operation.</p>
-            <div class="product-footer">
-              <span class="product-price">$2,499.99</span>
-              <button class="add-to-cart">
-                <i class='bx bx-cart'></i> Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be dynamically inserted here -->
       </div>
 
-      <div class="pagination">
-        <button class="pagination-button active">1</button>
-        <button class="pagination-button">2</button>
-        <button class="pagination-button">3</button>
-        <button class="pagination-button">Next</button>
+      <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="product-modal">
+      <button class="modal-close" id="closeModal">
+        <i class='bx bx-x'></i>
+      </button>
+      <div class="modal-content">
+        <div class="modal-image" id="modalImage"></div>
+        <div class="modal-details">
+          <span class="modal-category" id="modalCategory"></span>
+          <h2 class="modal-name" id="modalName"></h2>
+          <div class="modal-price" id="modalPrice"></div>
+          <p class="modal-description" id="modalDescription"></p>
+          
+          <div class="modal-specs">
+            <h3 class="specs-title">Specifications</h3>
+            <div class="specs-list" id="specsList">
+              <!-- Specifications will be inserted here -->
+            </div>
+          </div>
+          
+          <div class="modal-actions">
+            <button class="contact-btn">
+              <i class='bx bx-phone'></i> Contact Us
+            </button>
+            <button class="view-btn" id="requestQuote">
+              <i class='bx bx-file'></i> Request Quote
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1030,8 +1083,8 @@
     <div class="footer-container">
       <div class="footer-about">
         <div class="footer-logo">
-          <img src="logo1.png" alt="ProEquipment Center">
-          <span class="footer-logo-text">ProEquipment Center</span>
+          <img src="logo1.png" alt="AutoParts Pro">
+          <span class="footer-logo-text">AutoParts Pro</span>
         </div>
         <p>Providing high-quality professional equipment since 2010. We're committed to excellence in every product we offer.</p>
         <div class="footer-social">
@@ -1067,7 +1120,7 @@
         <h3>Contact Us</h3>
         <p><i class="fas fa-map-marker-alt"></i> 123 Equipment Street, Industrial Area, City, Country 12345</p>
         <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
-        <p><i class="fas fa-envelope"></i> info@proequipment.com</p>
+        <p><i class="fas fa-envelope"></i> info@autopartspro.com</p>
         <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
       </div>
 
@@ -1082,11 +1135,466 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 ProEquipment Center. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ff0000;"></i> by Your Company</p>
+      <p>&copy; 2025 AutoParts Pro Equipment Center. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script>
+    // Product Data - 15 products for pagination demo
+    const products = [
+      {
+        id: 1,
+        name: "ProScan X9000 Diagnostic Scanner",
+        category: "Diagnostic Tools",
+        price: 1299.99,
+        image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Advanced OBD2 scanner with full system diagnostics for all makes and models. Features include live data streaming, module coding, and advanced diagnostics.",
+        specs: [
+          { label: "Compatibility", value: "All makes & models" },
+          { label: "Screen", value: "7-inch touchscreen" },
+          { label: "Connectivity", value: "Wi-Fi, Bluetooth" },
+          { label: "Battery", value: "8 hours" },
+          { label: "Weight", value: "2.5 lbs" },
+          { label: "Warranty", value: "3 years" }
+        ]
+      },
+      {
+        id: 2,
+        name: "10,000 lb Hydraulic Lift",
+        category: "Lifting Equipment",
+        price: 3499.99,
+        image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Heavy-duty two-post lift with asymmetric design for easy vehicle access. Features include automatic safety locks, low-profile arms, and durable construction.",
+        specs: [
+          { label: "Capacity", value: "10,000 lbs" },
+          { label: "Lift Type", value: "Two-post asymmetric" },
+          { label: "Max Height", value: "78 inches" },
+          { label: "Power", value: "220V/3-phase" },
+          { label: "Installation", value: "Professional required" },
+          { label: "Warranty", value: "5 years" }
+        ]
+      },
+      {
+        id: 3,
+        name: "ProTire 5000 Changer",
+        category: "Tire Service",
+        price: 2199.99,
+        image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Professional tire changer with bead breaker and rim clamp for all wheel types. Designed for high-volume shops with quick change capabilities.",
+        specs: [
+          { label: "Rim Size", value: "10-24 inches" },
+          { label: "Motor Power", value: "1.5 HP" },
+          { label: "Air Pressure", value: "90-120 PSI" },
+          { label: "Weight", value: "550 lbs" },
+          { label: "Dimensions", value: "48x36x48 inches" },
+          { label: "Warranty", value: "3 years" }
+        ]
+      },
+      {
+        id: 4,
+        name: "Precision Wheel Balancer",
+        category: "Tire Service",
+        price: 1799.99,
+        image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Computerized wheel balancer with dynamic measurement technology. Features include alloy wheel mode, static/dynamic balancing, and quick calibration.",
+        specs: [
+          { label: "Wheel Size", value: "10-24 inches" },
+          { label: "Max Weight", value: "150 lbs" },
+          { label: "Accuracy", value: "±0.01 oz" },
+          { label: "Display", value: "8-inch color LCD" },
+          { label: "Power", value: "110V/220V" },
+          { label: "Warranty", value: "2 years" }
+        ]
+      },
+      {
+        id: 5,
+        name: "ProTool 72\" Roll Cabinet",
+        category: "Shop Equipment",
+        price: 2899.99,
+        image: "https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Heavy-duty tool storage with 16 drawers and stainless steel top. Features include ball-bearing slides, locking system, and reinforced construction.",
+        specs: [
+          { label: "Drawers", value: "16" },
+          { label: "Weight Capacity", value: "3,000 lbs" },
+          { label: "Dimensions", value: "72x24x42 inches" },
+          { label: "Material", value: "18-gauge steel" },
+          { label: "Color", value: "Red/Black" },
+          { label: "Warranty", value: "Lifetime" }
+        ]
+      },
+      {
+        id: 6,
+        name: "Industrial Air Compressor",
+        category: "Shop Equipment",
+        price: 2499.99,
+        image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "80-gallon two-stage compressor with 7.5HP motor for continuous operation. Features include low RPM pump, thermal protection, and automatic drain.",
+        specs: [
+          { label: "Tank Size", value: "80 gallons" },
+          { label: "Motor Power", value: "7.5 HP" },
+          { label: "PSI", value: "175 max" },
+          { label: "CFM", value: "18.1 @ 90 PSI" },
+          { label: "Noise Level", value: "78 dBA" },
+          { label: "Warranty", value: "3 years" }
+        ]
+      },
+      {
+        id: 7,
+        name: "Laser Wheel Alignment System",
+        category: "Tire Service",
+        price: 5999.99,
+        image: "https://images.unsplash.com/photo-1581093458799-efb7b0c3f5e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Advanced laser alignment system with 3D imaging technology for precise measurements and quick setup.",
+        specs: [
+          { label: "Technology", value: "3D Laser Imaging" },
+          { label: "Accuracy", value: "±0.01°" },
+          { label: "Setup Time", value: "Under 5 minutes" },
+          { label: "Compatibility", value: "All vehicles" },
+          { label: "Display", value: "24-inch HD monitor" },
+          { label: "Warranty", value: "5 years" }
+        ]
+      },
+      {
+        id: 8,
+        name: "Professional Brake Lathe",
+        category: "Shop Equipment",
+        price: 3499.99,
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "On-car brake lathe for precision resurfacing of rotors without removal. Features automatic feed and digital measurements.",
+        specs: [
+          { label: "Max Rotor Size", value: "18 inches" },
+          { label: "Min Rotor Size", value: "8 inches" },
+          { label: "Power", value: "1/2 HP motor" },
+          { label: "Runout Correction", value: "0.0005 inches" },
+          { label: "Weight", value: "85 lbs" },
+          { label: "Warranty", value: "2 years" }
+        ]
+      },
+      {
+        id: 9,
+        name: "Heavy Duty Transmission Jack",
+        category: "Lifting Equipment",
+        price: 1299.99,
+        image: "https://images.unsplash.com/photo-1581092582650-4e0d0a4d4e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Low-profile transmission jack with 1500 lb capacity and adjustable arms for secure transmission handling.",
+        specs: [
+          { label: "Capacity", value: "1500 lbs" },
+          { label: "Min Height", value: "7.5 inches" },
+          { label: "Max Height", value: "48 inches" },
+          { label: "Platform Size", value: "24x18 inches" },
+          { label: "Wheels", value: "4 swivel casters" },
+          { label: "Warranty", value: "3 years" }
+        ]
+      },
+      {
+        id: 10,
+        name: "Professional Oil Drain System",
+        category: "Shop Equipment",
+        price: 899.99,
+        image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Mobile oil drain system with 30-gallon capacity, drum dolly, and spill containment for efficient oil changes.",
+        specs: [
+          { label: "Capacity", value: "30 gallons" },
+          { label: "Hose Length", value: "15 feet" },
+          { label: "Drum Size", value: "30 gallon" },
+          { label: "Material", value: "Steel construction" },
+          { label: "Wheels", value: "Heavy-duty casters" },
+          { label: "Warranty", value: "2 years" }
+        ]
+      },
+      {
+        id: 11,
+        name: "Engine Hoist Crane",
+        category: "Lifting Equipment",
+        price: 899.99,
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "2-ton folding engine hoist with adjustable boom and hydraulic pump for engine removal and installation.",
+        specs: [
+          { label: "Capacity", value: "2 tons" },
+          { label: "Boom Length", value: "48 inches" },
+          { label: "Min Height", value: "33 inches" },
+          { label: "Max Height", value: "76 inches" },
+          { label: "Foldable", value: "Yes" },
+          { label: "Warranty", value: "2 years" }
+        ]
+      },
+      {
+        id: 12,
+        name: "Digital Battery Tester",
+        category: "Diagnostic Tools",
+        price: 499.99,
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Advanced battery and charging system tester with color display and print capability for comprehensive diagnostics.",
+        specs: [
+          { label: "Compatibility", value: "6V/12V systems" },
+          { label: "Tests", value: "Battery, starter, alternator" },
+          { label: "Display", value: "5-inch color LCD" },
+          { label: "Print Capability", value: "Yes" },
+          { label: "Battery", value: "Rechargeable" },
+          { label: "Warranty", value: "1 year" }
+        ]
+      },
+      {
+        id: 13,
+        name: "Professional Scan Tool",
+        category: "Diagnostic Tools",
+        price: 1999.99,
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "All-system diagnostic tool with bidirectional controls, programming capability, and online updates.",
+        specs: [
+          { label: "Coverage", value: "All systems" },
+          { label: "Display", value: "10-inch touchscreen" },
+          { label: "Connectivity", value: "Wi-Fi, USB" },
+          { label: "Bidirectional", value: "Yes" },
+          { label: "Updates", value: "Lifetime" },
+          { label: "Warranty", value: "3 years" }
+        ]
+      },
+      {
+        id: 14,
+        name: "Tire Inflator with Gauge",
+        category: "Tire Service",
+        price: 299.99,
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Heavy-duty digital tire inflator with 200 PSI capacity and automatic shutoff for precise inflation.",
+        specs: [
+          { label: "Max PSI", value: "200" },
+          { label: "Gauge Type", value: "Digital" },
+          { label: "Hose Length", value: "24 inches" },
+          { label: "Power", value: "12V DC" },
+          { label: "Auto Shutoff", value: "Yes" },
+          { label: "Warranty", value: "1 year" }
+        ]
+      },
+      {
+        id: 15,
+        name: "Shop Crane with Stand",
+        category: "Shop Equipment",
+        price: 1499.99,
+        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        description: "Adjustable engine stand with 1000 lb capacity and 360-degree rotation for engine rebuilding.",
+        specs: [
+          { label: "Capacity", value: "1000 lbs" },
+          { label: "Rotation", value: "360 degrees" },
+          { label: "Mounting Arms", value: "4 adjustable" },
+          { label: "Base", value: "Tripod design" },
+          { label: "Wheels", value: "4 locking casters" },
+          { label: "Warranty", value: "3 years" }
+        ]
+      }
+    ];
+
+    // DOM Elements
+    const productsGrid = document.getElementById('productsGrid');
+    const paginationContainer = document.getElementById('pagination');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sortFilter = document.getElementById('sortFilter');
+    const productModal = document.getElementById('productModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalName = document.getElementById('modalName');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalDescription = document.getElementById('modalDescription');
+    const specsList = document.getElementById('specsList');
+    const requestQuote = document.getElementById('requestQuote');
+
+    // Configuration
+    const productsPerPage = 6;
+    let currentPage = 1;
+    let currentProducts = [...products];
+    let filteredProducts = [...products];
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      setupEventListeners();
+    });
+
+    // Set up event listeners
+    function setupEventListeners() {
+      categoryFilter.addEventListener('change', filterProducts);
+      sortFilter.addEventListener('change', sortProducts);
+      closeModal.addEventListener('click', closeProductModal);
+      requestQuote.addEventListener('click', handleQuoteRequest);
+      
+      // Close modal when clicking outside
+      productModal.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+          closeProductModal();
+        }
+      });
+    }
+
+    // Filter products by category
+    function filterProducts() {
+      const category = categoryFilter.value;
+      
+      if (category === 'all') {
+        filteredProducts = [...products];
+      } else {
+        filteredProducts = products.filter(product => product.category === category);
+      }
+      
+      currentPage = 1;
+      sortProducts();
+    }
+
+    // Sort products based on selected option
+    function sortProducts() {
+      const sortOption = sortFilter.value;
+      
+      switch(sortOption) {
+        case 'price-low':
+          filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high':
+          filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'newest':
+          // For demo, we'll consider higher IDs as newer
+          filteredProducts.sort((a, b) => b.id - a.id);
+          break;
+        default:
+          // Featured - original order
+          filteredProducts.sort((a, b) => a.id - b.id);
+      }
+      
+      renderProducts();
+    }
+
+    // Render products for the current page
+    function renderProducts() {
+      // Clear the products grid
+      productsGrid.innerHTML = '';
+      
+      // Calculate pagination
+      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+      const startIndex = (currentPage - 1) * productsPerPage;
+      const endIndex = Math.min(startIndex + productsPerPage, filteredProducts.length);
+      const currentPageProducts = filteredProducts.slice(startIndex, endIndex);
+      
+      // Render products
+      currentPageProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+          <div class="product-info">
+            <span class="product-category">${product.category}</span>
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-description">${product.description.substring(0, 100)}...</p>
+            <div class="product-footer">
+              <span class="product-price">$${product.price.toFixed(2)}</span>
+              <button class="view-btn" data-id="${product.id}">
+                <i class='bx bx-show'></i> View
+              </button>
+            </div>
+          </div>
+        `;
+        productsGrid.appendChild(productCard);
+      });
+      
+      // Add event listeners to view buttons
+      document.querySelectorAll('.view-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          const productId = parseInt(button.getAttribute('data-id'));
+          const product = products.find(p => p.id === productId);
+          showProductModal(product);
+        });
+      });
+      
+      // Render pagination
+      renderPagination(totalPages);
+    }
+
+    // Render pagination buttons
+    function renderPagination(totalPages) {
+      paginationContainer.innerHTML = '';
+      
+      // Previous button
+      if (currentPage > 1) {
+        const prevButton = document.createElement('button');
+        prevButton.className = 'pagination-button';
+        prevButton.innerHTML = '<i class="bx bx-chevron-left"></i> Prev';
+        prevButton.addEventListener('click', () => {
+          currentPage--;
+          renderProducts();
+        });
+        paginationContainer.appendChild(prevButton);
+      }
+      
+      // Page buttons
+      for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => {
+          currentPage = i;
+          renderProducts();
+        });
+        paginationContainer.appendChild(pageButton);
+      }
+      
+      // Next button
+      if (currentPage < totalPages) {
+        const nextButton = document.createElement('button');
+        nextButton.className = 'pagination-button';
+        nextButton.innerHTML = 'Next <i class="bx bx-chevron-right"></i>';
+        nextButton.addEventListener('click', () => {
+          currentPage++;
+          renderProducts();
+        });
+        paginationContainer.appendChild(nextButton);
+      }
+    }
+
+    // Show product modal
+    function showProductModal(product) {
+      modalImage.style.backgroundImage = `url('${product.image}')`;
+      modalCategory.textContent = product.category;
+      modalName.textContent = product.name;
+      modalPrice.textContent = `$${product.price.toFixed(2)}`;
+      modalDescription.textContent = product.description;
+      
+      // Render specifications
+      specsList.innerHTML = '';
+      product.specs.forEach(spec => {
+        const specItem = document.createElement('div');
+        specItem.className = 'spec-item';
+        specItem.innerHTML = `
+          <span class="spec-label">${spec.label}:</span>
+          <span>${spec.value}</span>
+        `;
+        specsList.appendChild(specItem);
+      });
+      
+      // Set quote button data
+      requestQuote.setAttribute('data-id', product.id);
+      
+      // Show modal
+      productModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close product modal
+    function closeProductModal() {
+      productModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Handle quote request
+    function handleQuoteRequest() {
+      const productId = requestQuote.getAttribute('data-id');
+      const product = products.find(p => p.id === parseInt(productId));
+      
+      alert(`Quote request sent for: ${product.name}\nOur team will contact you shortly!`);
+      closeProductModal();
+    }
+
+    // Existing navbar functionality
     // search-box open close js code
     let navbar = document.querySelector(".navbar");
     let searchBox = document.querySelector(".search-box .bx-search");
@@ -1216,55 +1724,6 @@
         emailInput.value = '';
       });
     }
-
-    // Product filter functionality
-    const filterSelects = document.querySelectorAll('.filter-select');
-    filterSelects.forEach(select => {
-      select.addEventListener('change', function() {
-        // In a real implementation, this would filter the products
-        console.log(`Filter by ${this.value}`);
-      });
-    });
-
-    // Pagination button functionality
-    const paginationButtons = document.querySelectorAll('.pagination-button');
-    paginationButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        // Remove active class from all buttons
-        paginationButtons.forEach(btn => btn.classList.remove('active'));
-        
-        // Add active class to clicked button if it's a number
-        if (!isNaN(parseInt(this.textContent))) {
-          this.classList.add('active');
-        }
-        
-        // In a real implementation, this would load the appropriate page
-        console.log(`Go to page ${this.textContent}`);
-      });
-    });
-
-    // Add to cart functionality
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const productCard = this.closest('.product-card');
-        const productName = productCard.querySelector('.product-name').textContent;
-        const productPrice = productCard.querySelector('.product-price').textContent;
-        
-        // In a real implementation, this would add the item to a shopping cart
-        console.log(`Added ${productName} (${productPrice}) to cart`);
-        
-        // Visual feedback
-        const originalText = this.innerHTML;
-        this.innerHTML = '<i class="bx bx-check"></i> Added';
-        this.style.backgroundColor = '#4CAF50';
-        
-        setTimeout(() => {
-          this.innerHTML = originalText;
-          this.style.backgroundColor = '';
-        }, 2000);
-      });
-    });
   </script>
 </body>
 </html>

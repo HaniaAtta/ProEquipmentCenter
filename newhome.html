@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pro Equipment Centre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --dark-bg: #0b0b0b;
+      --light-text: #fff;
+      --accent: #b51942;
+      --nav-bg: #1a1a1a;
+      --card-bg: #151515;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--light-text);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #9e153a;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--light-text);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: rgba(255,255,255,0.7);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(rgba(11,11,11,0.7), rgba(11,11,11,0.7)), 
+                  url('https://images.unsplash.com/photo-1631021937703-b9f6c3a7dd28') no-repeat center center/cover;
+      color: var(--light-text);
+      text-align: center;
+      position: relative;
+      margin-top: 80px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Categories Section */
+    .categories {
+      background-color: var(--dark-bg);
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .category-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .category-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .category-card:hover .category-img img {
+      transform: scale(1.1);
+    }
+
+    .category-content {
+      padding: 1.5rem;
+    }
+
+    .category-content h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .category-content p {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1rem;
+    }
+
+    /* Slideshow Section */
+    .slideshow {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-img {
+      flex: 1;
+      height: 100%;
+    }
+
+    .slide-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .slide-content h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .slide-content p {
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .slide-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+    }
+
+    .indicator.active {
+      background: var(--accent);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--card-bg);
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-info h3 {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 4px;
+      color: var(--light-text);
+    }
+
+    .contact-form textarea,
+    .booking-form textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .contact-form button,
+    .booking-form button {
+      width: 100%;
+    }
+
+    /* Booking Section */
+    .booking {
+      background: var(--dark-bg);
+    }
+
+    .booking-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .booking-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .booking-info h3 {
+      margin-bottom: 1.5rem;
+    }
+
+    .booking-info p {
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .slide {
+        flex-direction: column;
+      }
+      
+      .slide-img {
+        height: 300px;
+        width: 100%;
+      }
+      
+      .slide-content {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        min-height: 600px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-btns {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+
+
+            /* Navbar Styles */
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 70px;
+                background: var(--nav-bg);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                z-index: 99;
+            }
+            
+            nav .navbar {
+                height: 100%;
+                max-width: 1250px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: auto;
+                padding: 0 50px;
+            }
+            
+            .navbar .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .navbar .logo a {
+                font-size: 30px;
+                color: var(--light-cipollino);
+                text-decoration: none;
+                font-weight: 600;
+            }
+            
+            nav .navbar .nav-links {
+                line-height: 70px;
+                height: 100%;
+                margin-left: auto;
+            }
+            
+            nav .navbar .links {
+                display: flex;
+            }
+            
+            nav .navbar .links li {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                list-style: none;
+                padding: 0 14px;
+            }
+            
+            nav .navbar .links li a {
+                height: 100%;
+                text-decoration: none;
+                white-space: nowrap;
+                color: var(--light-cipollino);
+                font-size: 15px;
+                font-weight: 500;
+            }
+            
+            .links li:hover .htmlcss-arrow,
+            .links li:hover .js-arrow {
+                transform: rotate(180deg);
+            }
+            
+            nav .navbar .links li .arrow {
+                height: 100%;
+                width: 22px;
+                line-height: 70px;
+                text-align: center;
+                display: inline-block;
+                color: var(--light-cipollino);
+                transition: all 0.3s ease;
+            }
+            
+            nav .navbar .links li .sub-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                line-height: 40px;
+                background: var(--fifty-grey);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                border-radius: 0 0 4px 4px;
+                display: none;
+                z-index: 2;
+            }
+            
+            nav .navbar .links li:hover .htmlCss-sub-menu,
+            nav .navbar .links li:hover .js-sub-menu {
+                display: block;
+            }
+            
+            .navbar .links li .sub-menu li {
+                padding: 0 22px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .navbar .links li .sub-menu a {
+                color: var(--light-cipollino);
+                font-size: 15px;
+                font-weight: 500;
+            }
+            
+            .navbar .links li .sub-menu .more-arrow {
+                line-height: 40px;
+            }
+            
+            .navbar .links li .htmlCss-more-sub-menu {
+            }
+            
+            .navbar .links li .sub-menu .more-sub-menu {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                border-radius: 0 4px 4px 4px;
+                z-index: 1;
+                display: none;
+            }
+            
+            .links li .sub-menu .more:hover .more-sub-menu {
+                display: block;
+            }
+            
+            .navbar .search-box {
+                position: relative;
+                height: 40px;
+                width: 40px;
+            }
+            
+            .navbar .search-box i {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                line-height: 40px;
+                text-align: center;
+                font-size: 22px;
+                color: var(--light-cipollino);
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .navbar .search-box .input-box {
+                position: absolute;
+                right: calc(100% - 40px);
+                top: 80px;
+                height: 60px;
+                width: 300px;
+                background: var(--fifty-grey);
+                border-radius: 6px;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.4s ease;
+            }
+            
+            .navbar.showInput .search-box .input-box {
+                top: 65px;
+                opacity: 1;
+                pointer-events: auto;
+                background: var(--fifty-grey);
+            }
+            
+            .navbar .logo img {
+                height: 80px;
+                width: auto;
+                display: block;
+            }
+            
+            .search-box .input-box::before {
+                content: '';
+                position: absolute;
+                height: 20px;
+                width: 20px;
+                background: var(--nav-bg);
+                right: 10px;
+                top: -6px;
+                transform: rotate(45deg);
+            }
+            
+            .search-box .input-box input {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 4px;
+                transform: translate(-50%, -50%);
+                height: 35px;
+                width: 280px;
+                outline: none;
+                padding: 0 15px;
+                font-size: 16px;
+                border: none;
+            }
+            
+            .navbar .nav-links .sidebar-logo {
+                display: none;
+            }
+            
+            .navbar .bx-menu {
+                display: none;
+            }
+            
+
+    
+            /* Footer Styles */
+            footer {
+                background-color: var(--nav-bg);
+                color: var(--light-cipollino);
+                padding: 3rem 1rem 1rem;
+                margin-top: auto;
+            }
+    
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                padding-bottom: 2rem;
+            }
+    
+            .footer-logo {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+    
+            .footer-logo img {
+                height: 60px;
+                margin-right: 10px;
+            }
+    
+            .footer-logo-text {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+    
+            .footer-about p {
+                margin-bottom: 1rem;
+                line-height: 1.6;
+            }
+    
+            .footer-social {
+                display: flex;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+    
+                .footer-social a {
+                    color: var(--light-text);
+                    background-color: rgba(255, 255, 255, 0.1);
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .footer-social a:hover {
+                    background-color: var(--accent);
+                    transform: translateY(-3px);
+                    box-shadow: 0 0 10px 2px rgba(181, 25, 66, 0.7);
+                }
+                
+                .footer-social a::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: var(--accent);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    border-radius: 50%;
+                }
+                
+                .footer-social a:hover::before {
+                    opacity: 0.3;
+                    animation: pulse 1.5s infinite;
+                }
+                
+                @keyframes pulse {
+                    0% {
+                        transform: scale(0.95);
+                        box-shadow: 0 0 0 0 rgba(181, 25, 66, 0.7);
+                    }
+                    70% {
+                        transform: scale(1.1);
+                        box-shadow: 0 0 0 10px rgba(181, 25, 66, 0);
+                    }
+                    100% {
+                        transform: scale(0.95);
+                        box-shadow: 0 0 0 0 rgba(181, 25, 66, 0);
+                    }
+                }
+    
+            .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+                color: var(--light-cipollino);
+                position: relative;
+                padding-bottom: 0.5rem;
+            }
+    
+            .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50px;
+                height: 2px;
+                background-color: var(--fifty-grey);
+            }
+    
+            .footer-links ul {
+                list-style: none;
+            }
+    
+            .footer-links li {
+                margin-bottom: 0.8rem;
+            }
+    
+            .footer-links a {
+                color: var(--light-cipollino);
+                text-decoration: none;
+                transition: color 0.3s ease;
+                display: block;
+                padding: 0.3rem 0;
+            }
+    
+            .footer-links a:hover {
+                color: var(--grey-clouds);
+                padding-left: 5px;
+            }
+    
+            .footer-dropdown {
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+                display: none;
+            }
+    
+            .footer-links li.active .footer-dropdown {
+                display: block;
+            }
+            .footer-dropdown-container.active .footer-dropdown {
+                display: block;
+            }
+    
+            .footer-dropdown li {
+                margin-bottom: 0.5rem;
+            }
+    
+            .footer-dropdown a {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+    
+            .footer-dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+            }
+    
+            .footer-dropdown-toggle i {
+                transition: transform 0.3s ease;
+            }
+    
+            .footer-links li.active .footer-dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+    
+            .footer-contact p {
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: flex-start;
+            }
+    
+            .footer-contact i {
+                margin-right: 10px;
+                color: var(--fifty-grey);
+                margin-top: 3px;
+            }
+    
+            .footer-newsletter p {
+                margin-bottom: 1.5rem;
+            }
+    
+            .newsletter-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+    
+            .newsletter-form input {
+                padding: 0.8rem 1rem;
+                border: none;
+                border-radius: 4px;
+                background-color: rgba(179, 160, 176, 0.1);
+                color: var(--light-cipollino);
+                font-size: 1rem;
+                transition: all 0.3s ease;
+            }
+    
+            .newsletter-form input:focus {
+                outline: none;
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+    
+            .newsletter-form button {
+                padding: 0.8rem 1rem;
+                background-color: var(--accent);
+                color: var(--light-cipollino);
+                border: none;
+                border-radius: 4px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+    
+            .newsletter-form button:hover {
+                background-color: #9e153a;
+            }
+    
+            .footer-bottom {
+                text-align: center;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 2rem;
+            }
+    
+            .footer-bottom p {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+    
+            .footer-chevron-icon {
+                transition: transform 0.3s ease;
+            }
+            .footer-dropdown-container.active .footer-chevron-icon.bxs-chevron-up {
+                transform: rotate(180deg);
+            }
+            .footer-dropdown-toggle {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                color: var(--light-cipollino);
+                transition: color 0.3s ease;
+            }
+    
+            .footer-dropdown-toggle:hover {
+                color: var(--grey-clouds);
+            }
+    
+            .footer-dropdown-toggle span {
+                padding: 0.3rem 0;
+            }
+    
+            .footer-dropdown-container:hover .footer-dropdown-toggle {
+                color: var(--grey-clouds);
+            }
+    
+            @media (min-width: 769px) {
+                .footer-dropdown-container:hover .footer-dropdown {
+                    display: block;
+                }
+            }
+    
+            /* Responsive adjustments */
+            @media (max-width: 920px) {
+                nav .navbar {
+                    max-width: 100%;
+                    padding: 0 25px;
+                }
+                
+                nav .navbar .logo img {
+                    height: 60px;
+                }
+                
+                nav .navbar .logo a {
+                    font-size: 22px;
+                }
+                
+                nav .navbar .links li {
+                    padding: 0 10px;
+                    white-space: nowrap;
+                }
+                
+                nav .navbar .links li a {
+                    font-size: 15px;
+                }
+            }
+            
+            @media (max-width: 800px) {
+                .navbar .bx-menu {
+                    display: block;
+                }
+                
+                nav .navbar .nav-links {
+                    position: fixed;
+                    top: 0;
+                    left: -100%;
+                    display: block;
+                    max-width: 270px;
+                    width: 100%;
+                    background: var(--nav-bg);
+                    line-height: 40px;
+                    padding: 20px;
+                    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                    transition: all 0.5s ease;
+                    z-index: 1000;
+                }
+                
+                .navbar .nav-links .sidebar-logo {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                
+                .sidebar-logo-inner {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .sidebar-logo-inner img {
+                    height: 80px;
+                    top: 3%;
+                    width: auto;
+                    object-fit: contain;
+                    display: block;
+                }
+                
+                .sidebar-logo .logo-name {
+                    font-size: 20px;
+                    color: var(--light-cipollino);
+                    font-weight: 600;
+                }
+                
+                .sidebar-logo i,
+                .navbar .bx-menu {
+                    font-size: 25px;
+                    color: var(--light-cipollino);
+                    cursor: pointer;
+                }
+                
+                nav .navbar .links {
+                    display: block;
+                    margin-top: 20px;
+                }
+                
+                nav .navbar .links li .arrow {
+                    line-height: 40px;
+                }
+                
+                nav .navbar .links li {
+                    display: block;
+                }
+                
+                nav .navbar .links li .sub-menu {
+                    position: relative;
+                    top: 0;
+                    box-shadow: none;
+                    display: none;
+                }
+                
+                nav .navbar .links li .sub-menu li {
+                    border-bottom: none;
+                }
+                
+                .navbar .links li .sub-menu .more-sub-menu {
+                    display: none;
+                    position: relative;
+                    left: 0;
+                }
+                
+                .navbar .links li .sub-menu .more-sub-menu li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                
+                .links li:hover .htmlcss-arrow,
+                .links li:hover .js-arrow {
+                    transform: rotate(0deg);
+                }
+                
+                .navbar .links li .sub-menu .more-sub-menu {
+                    display: none;
+                }
+                
+                .navbar .links li .sub-menu .more span {
+                    display: flex;
+                    align-items: center;
+                }
+                
+                .links li .sub-menu .more:hover .more-sub-menu {
+                    display: none;
+                }
+                
+                nav .navbar .links li:hover .htmlCss-sub-menu,
+                nav .navbar .links li:hover .js-sub-menu {
+                    display: none;
+                }
+                
+                .navbar .nav-links.show1 .links .htmlCss-sub-menu,
+                .navbar .nav-links.show3 .links .js-sub-menu,
+                .navbar .nav-links.show2 .links .more .more-sub-menu {
+                    display: block;
+                }
+                
+                .navbar .nav-links.show1 .links .htmlcss-arrow,
+                .navbar .nav-links.show3 .links .js-arrow {
+                    transform: rotate(180deg);
+                }
+                
+                .navbar .nav-links.show2 .links .more-arrow {
+                    transform: rotate(90deg);
+                }
+            }
+            
+            @media (max-width: 370px) {
+                nav .navbar .nav-links {
+                    max-width: 100%;
+                }
+            }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="navbar">
+        <i class='bx bx-menu'></i>
+        <div class="logo">
+            <img src="logo1.png" alt="">
+            <a href="#">ProEquipment Center</a>
+        </div>
+        <div class="nav-links">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-inner">
+                    <img src="logo1.png" alt="Logo">
+                </div>
+                <i class='bx bx-x'></i>
+            </div>
+            
+            <ul class="links">
+                <li><a href="#">HOME</a></li>
+                <li>
+                    <a href="#">PRODUCTS</a>
+                    <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+                    <ul class="htmlCss-sub-menu sub-menu">
+                        <li><a href="#">P1</a></li>
+                        <li><a href="#">P2</a></li>
+                        <li><a href="#">P3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">CONTACT US</a></li>
+            </ul>
+        </div>
+        <div class="search-box">
+            <i class='bx bx-search'></i>
+            <div class="input-box">
+                <input type="text" placeholder="Search...">
+            </div>
+        </div>
+    </div>
+</nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Premium Industrial Equipment Solutions</h1>
+      <p>Your trusted partner for high-quality machinery and tools with unmatched reliability and performance</p>
+      <div class="hero-btns">
+        <a href="#" class="btn">Explore Products</a>
+        <a href="#" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Product Categories</h2>
+        <p>Browse our wide range of industrial equipment designed to meet your professional needs</p>
+      </div>
+      
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-img">
+            <img src="https://images.unsplash.com/photo-1581093450021-4a6dfdb0d379" alt="Heavy Machinery">
+          </div>
+          <div class="category-content">
+            <h3>Heavy Machinery</h3>
+            <p>Powerful equipment for construction and industrial applications</p>
+            <a href="#" class="btn">View Products</a>
+          </div>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-img">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789" alt="Industrial Tools">
+          </div>
+          <div class="category-content">
+            <h3>Industrial Tools</h3>
+            <p>Professional grade tools for precision and durability</p>
+            <a href="#" class="btn">View Products</a>
+          </div>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-img">
+            <img src="https://images.unsplash.com/photo-1581093057305-409e0ff73cee" alt="Safety Equipment">
+          </div>
+          <div class="category-content">
+            <h3>Safety Equipment</h3>
+            <p>Protective gear to ensure workplace safety</p>
+            <a href="#" class="btn">View Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slideshow Section -->
+  <section class="slideshow-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Products</h2>
+        <p>Discover our top-rated equipment trusted by professionals worldwide</p>
+      </div>
+      
+      <div class="slideshow">
+        <div class="slide active">
+          <div class="slide-img">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Industrial Excavator">
+          </div>
+          <div class="slide-content">
+            <h3>Premium Excavators</h3>
+            <p>Our heavy-duty excavators deliver unmatched performance in the most demanding conditions. Built with advanced technology for maximum efficiency and durability.</p>
+            <p>Features include enhanced fuel efficiency, superior digging force, and operator comfort.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <div class="slide-img">
+            <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968" alt="Power Tools">
+          </div>
+          <div class="slide-content">
+            <h3>Professional Power Tools</h3>
+            <p>The most reliable power tools for industrial applications. Engineered for precision and long-lasting performance.</p>
+            <p>Our tools feature brushless motors, advanced battery technology, and ergonomic designs.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <div class="slide-img">
+            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2" alt="Safety Gear">
+          </div>
+          <div class="slide-content">
+            <h3>Advanced Safety Equipment</h3>
+            <p>Protect your workforce with our certified safety gear. Comfortable, durable, and compliant with all safety standards.</p>
+            <p>Includes helmets, protective eyewear, high-visibility clothing, and respiratory protection.</p>
+            <a href="#" class="btn">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="slide-indicators">
+          <div class="indicator active" data-slide="0"></div>
+          <div class="indicator" data-slide="1"></div>
+          <div class="indicator" data-slide="2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Get in touch with our team for inquiries, support, or partnership opportunities</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Let's Talk About Your Equipment Needs</h3>
+          <p>Our experts are ready to help you find the perfect solutions for your industrial requirements.</p>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>info@proequipment.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4>Address</h4>
+              <p>123 Industrial Park, City, Country 12345</p>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <input type="text" placeholder="Subject">
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="booking">
+    <div class="container">
+      <div class="section-title">
+        <h2>Book Equipment Demo</h2>
+        <p>Schedule a demonstration of our equipment to experience their capabilities firsthand</p>
+      </div>
+      
+      <div class="booking-container">
+        <div class="booking-info">
+          <h3>Experience Before You Purchase</h3>
+          <p>Our equipment demonstrations allow you to:</p>
+          <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; color: rgba(255,255,255,0.8);">
+            <li style="margin-bottom: 0.5rem;">Test performance in real-world conditions</li>
+            <li style="margin-bottom: 0.5rem;">Evaluate features with expert guidance</li>
+            <li style="margin-bottom: 0.5rem;">Get answers to all your technical questions</li>
+            <li>Receive personalized recommendations</li>
+          </ul>
+          <p>Our team will work with you to arrange the most convenient time and location for your demonstration.</p>
+        </div>
+        
+        <form class="booking-form">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="tel" placeholder="Phone Number">
+          <select required>
+            <option value="">Select Equipment Category</option>
+            <option value="heavy">Heavy Machinery</option>
+            <option value="tools">Industrial Tools</option>
+            <option value="safety">Safety Equipment</option>
+          </select>
+          <input type="date" placeholder="Preferred Date" required>
+          <textarea placeholder="Additional Requirements"></textarea>
+          <button type="submit" class="btn">Book Demo</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+        <div class="footer-about">
+            <div class="footer-logo">
+                <img src="logo1.png" alt="ProEquipment Center">
+                <span class="footer-logo-text">ProEquipment Center</span>
+            </div>
+            <p>Providing high-quality professional equipment since 2010. We're committed to excellence in every product we offer.</p>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li class="footer-dropdown-container">
+                    <div class="footer-dropdown-toggle">
+                        <span>Products</span>
+                        <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+                    </div>
+                    <ul class="footer-dropdown">
+                        <li><a href="#">Product Category 1</a></li>
+                        <li><a href="#">Product Category 2</a></li>
+                        <li><a href="#">Product Category 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Equipment Street, Industrial Area, City, Country 12345</p>
+            <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
+            <p><i class="fas fa-envelope"></i> info@proequipment.com</p>
+            <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
+        </div>
+
+        <div class="footer-newsletter">
+            <h3>Newsletter</h3>
+            <p>Subscribe to our newsletter for the latest products, offers, and industry news.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 ProEquipment Center. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ff0000;"></i> by Your Company</p>
+    </div>
+</footer>
+
+<script>
+    // Slideshow functionality - Corrected version
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(index) {
+            // Reset all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Show the selected slide
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Initialize the slideshow
+        function startSlideshow() {
+            showSlide(0); // Show first slide initially
+            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+        
+        // Click event for indicators
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+                // Reset the timer when manually changing slides
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+        
+        // Pause on hover
+        const slideshow = document.querySelector('.slideshow');
+        if (slideshow) {
+            slideshow.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            slideshow.addEventListener('mouseleave', () => {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        }
+        
+        // Start the slideshow
+        startSlideshow();
+    });
+
+    // Rest of your existing JavaScript code...
+    
+    // Form submission handlers
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will contact you soon.');
+      this.reset();
+    });
+    
+    document.querySelector('.booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your booking request! We will confirm your demo shortly.');
+      this.reset();
+    });
+    
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      alert(`Thank you for subscribing with ${email}!`);
+      this.reset();
+    });
+
+
+
+        // search-box open close js code
+        let navbar = document.querySelector(".navbar");
+        let searchBox = document.querySelector(".search-box .bx-search");
+        searchBox.addEventListener("click", ()=>{
+            navbar.classList.toggle("showInput");
+            if(navbar.classList.contains("showInput")){
+                searchBox.classList.replace("bx-search" ,"bx-x");
+            }else {
+                searchBox.classList.replace("bx-x" ,"bx-search");
+            }
+        });
+        
+        // sidebar open close js code
+        let navLinks = document.querySelector(".nav-links");
+        let menuOpenBtn = document.querySelector(".navbar .bx-menu");
+        let menuCloseBtn = document.querySelector(".nav-links .bx-x");
+        menuOpenBtn.onclick = function() {
+            navLinks.style.left = "0";
+        }
+        menuCloseBtn.onclick = function() {
+            navLinks.style.left = "-100%";
+        }
+        
+        // sidebar submenu open close js code
+        let htmlcssArrow = document.querySelector(".htmlcss-arrow");
+        htmlcssArrow.onclick = function() {
+            navLinks.classList.toggle("show1");
+        }
+        let moreArrow = document.querySelector(".more-arrow");
+        moreArrow.onclick = function() {
+            navLinks.classList.toggle("show2");
+        }
+        let jsArrow = document.querySelector(".js-arrow");
+        jsArrow.onclick = function() {
+            navLinks.classList.toggle("show3");
+        }
+        
+        // Footer dropdown functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            const footerDropdownContainers = document.querySelectorAll(".footer-dropdown-container");
+            
+            footerDropdownContainers.forEach(container => {
+                const toggle = container.querySelector(".footer-dropdown-toggle");
+                const dropdown = container.querySelector(".footer-dropdown");
+                const icon = container.querySelector("i");
+                
+                // Click functionality
+                toggle.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    
+                    // Close all other dropdowns
+                    footerDropdownContainers.forEach(item => {
+                        if (item !== container) {
+                            item.classList.remove("active");
+                            item.querySelector(".footer-dropdown").style.display = "none";
+                            item.querySelector("i").classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    container.classList.toggle("active");
+                    
+                    if (container.classList.contains("active")) {
+                        dropdown.style.display = "block";
+                        icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
+                    } else {
+                        dropdown.style.display = "none";
+                        icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                    }
+                });
+                
+                // Hover functionality for desktop
+                if (window.innerWidth > 768) {
+                    container.addEventListener("mouseenter", function() {
+                        dropdown.style.display = "block";
+                        icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
+                    });
+                    
+                    container.addEventListener("mouseleave", function() {
+                        if (!container.classList.contains("active")) {
+                            dropdown.style.display = "none";
+                            icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                        }
+                    });
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener("click", function() {
+                footerDropdownContainers.forEach(container => {
+                    container.classList.remove("active");
+                    container.querySelector(".footer-dropdown").style.display = "none";
+                    container.querySelector("i").classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                });
+            });
+            
+            // Handle window resize
+            window.addEventListener("resize", function() {
+                footerDropdownContainers.forEach(container => {
+                    const dropdown = container.querySelector(".footer-dropdown");
+                    if (window.innerWidth <= 768) {
+                        // On mobile, ensure dropdown is hidden unless active
+                        if (!container.classList.contains("active")) {
+                            dropdown.style.display = "none";
+                        }
+                    } else {
+                        // On desktop, show dropdown on hover
+                        dropdown.style.display = "none";
+                    }
+                });
+            });
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value;
+                
+                // Here you would typically send the email to your server
+                console.log('Subscribed email:', email);
+                
+                // Show success message
+                alert('Thank you for subscribing to our newsletter!');
+                emailInput.value = '';
+            });
+        }
+  </script>
+</body>
+</html>
