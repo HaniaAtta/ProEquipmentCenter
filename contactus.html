@@ -19,7 +19,9 @@
                         'grey-tote': '#817f7d',
                         'fifty-grey': '#4f504f',
                         'blackadder': '#2b2e2c',
-                        'chaos-black': '#0b100e'
+                        'chaos-black': '#0b100e',
+                        'accent': '#b51942',
+                        'dark-accent':'#9e153a'
                     },
                     dropShadow: {
                         'glow': [
@@ -39,6 +41,11 @@
             --fifty-grey: #4f504f;
             --blackadder: #2b2e2c;
             --chaos-black: #0b100e;
+            --dark-bg: #0b0b0b;
+            --light-text: #fff;
+            --accent: #b51942;
+            --nav-bg: #1a1a1a;
+            --card-bg: #151515;
         }
 
         * {
@@ -48,7 +55,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', serif;
             background-color: var(--light-cipollino);
             color: var(--blackadder);
             line-height: 1.6;
@@ -124,7 +131,11 @@
             font-size: 15px;
             font-weight: 500;
         }
-        
+        nav .navbar .links li a:hover {
+      
+            color: var(--accent);
+      
+        }
         .links li:hover .htmlcss-arrow,
         .links li:hover .js-arrow {
             transform: rotate(180deg);
@@ -295,7 +306,7 @@
         }
         
         .social-icon:hover {
-            filter: drop-shadow(0 0 2px rgba(215, 218, 209, 0.9)) drop-shadow(0 0 8px rgba(215, 218, 209, 0.6));
+            filter: drop-shadow(0 0 2px rgba(226, 78, 154, 0.9)) drop-shadow(0 0 8px rgba(211, 31, 169, 0.6));
             transform: scale(1.1);
         }
 
@@ -356,10 +367,41 @@
         }
 
         .footer-social a:hover {
-            background-color: var(--fifty-grey);
+            background-color: var(--accent);
             transform: translateY(-3px);
         }
-
+        .footer-social a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+        }
+        
+        .footer-social a:hover::before {
+            opacity: 0.3;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(181, 25, 66, 0.7);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(181, 25, 66, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(181, 25, 66, 0);
+            }
+        }
         .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
@@ -395,7 +437,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--grey-clouds);
+            color: var(--accent);
             padding-left: 5px;
         }
 
@@ -444,7 +486,7 @@
 
         .footer-contact i {
             margin-right: 10px;
-            color: var(--fifty-grey);
+            color: var(--accent);
             margin-top: 3px;
         }
 
@@ -475,7 +517,7 @@
 
         .newsletter-form button {
             padding: 0.8rem 1rem;
-            background-color: var(--fifty-grey);
+            background-color: var(--accent);
             color: var(--light-cipollino);
             border: none;
             border-radius: 4px;
@@ -485,7 +527,7 @@
         }
 
         .newsletter-form button:hover {
-            background-color: var(--blackadder);
+            background-color: #9e153a;
         }
 
         .footer-bottom {
@@ -735,7 +777,7 @@
 
         <!-- Contact Form Section -->
         <div class="container mx-auto px-4 py-12">
-            <div class="contact-section grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden">
+            <div class="contact-section grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden bg-light-cipollino ">
                 <!-- Left Column with Image and Contact Info -->
                 <div class="relative">
                     <img src="https://media.istockphoto.com/id/478107962/photo/auto-parts.jpg?s=612x612&w=0&k=20&c=C31mE-cVYFlLqJp9smDKUczPoBEtoYl5gaGxdvH0lmM=" 
@@ -785,19 +827,19 @@
                         </div>
                         
                         <div class="flex gap-4 mt-8">
-                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-chaos-black bg-opacity-80 flex items-center justify-center hover:bg-opacity-100">
+                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-chaos-black bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 hover:bg-accent">
                                 <svg width="20" height="20" fill="none" stroke="#d7dad1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg>
                             </a>
-                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-chaos-black bg-opacity-80 flex items-center justify-center hover:bg-opacity-100">
+                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-chaos-black bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 hover:bg-accent">
                                 <svg width="20" height="20" fill="none" stroke="#d7dad1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                                 </svg>
                             </a>
-                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-chaos-black bg-opacity-80 flex items-center justify-center hover:bg-opacity-100">
+                            <a href="#" class="social-icon w-10 h-10 rounded-full bg-chaos-black bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 hover:bg-accent">
                                 <svg width="20" height="20" fill="none" stroke="#d7dad1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
                                 </svg>
@@ -865,7 +907,7 @@
                                       class="form-control w-full bg-transparent border border-grey-tote text-blackadder placeholder-grey-tote rounded-2xl p-4 h-32 focus:outline-none"></textarea>
                         </div>
                         
-                        <button type="submit" class="btn w-full h-12 bg-fifty-grey text-grey-clouds font-semibold rounded-full hover:bg-grey-tote transition-all">
+                        <button type="submit" class="btn w-full h-12 bg-accent text-light-cipollino font-semibold rounded-full hover:bg-accent transition-all">
                             Send Message
                         </button>
                     </form>
