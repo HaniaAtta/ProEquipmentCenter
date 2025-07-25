@@ -14,8 +14,8 @@
       --fifty-grey: #4f504f;
       --blackadder: #2b2e2c;
       --chaos-black: #0b100e;
-      --accent-red: #d32f2f;
-      --accent-blue: #1976d2;
+      --accent-red: #4f504f;
+      --accent-blue: #b51942;
     }
 
     * {
@@ -79,15 +79,14 @@
       align-items: center;
       margin-bottom: 2rem;
       flex-wrap: wrap;
-      background: white;
+      background: var(--grey-clouds);
       padding: 1rem;
-      border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .products-title {
       font-size: 2rem;
-      color: var(--chaos-black);
+      color: var(--blackadder);
     }
 
     .products-filter {
@@ -102,7 +101,6 @@
 
     .filter-select {
       padding: 0.5rem;
-      border-radius: 4px;
       border: 1px solid var(--grey-tote);
       background-color: var(--light-cipollino);
       cursor: pointer;
@@ -115,8 +113,7 @@
     }
 
     .product-card {
-      background-color: white;
-      border-radius: 8px;
+      background-color: #f7f7ee;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -160,7 +157,7 @@
     .product-name {
       font-size: 1.2rem;
       margin-bottom: 0.75rem;
-      color: var(--chaos-black);
+      color: var(--blackadder);
     }
 
     .product-description {
@@ -185,10 +182,9 @@
 
     .view-btn {
       background-color: var(--accent-blue);
-      color: white;
+      color: var(--light-cipollino);
       border: none;
       padding: 0.6rem 1.2rem;
-      border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       display: flex;
@@ -198,7 +194,7 @@
     }
 
     .view-btn:hover {
-      background-color: #1565c0;
+      background-color: #861237;
     }
 
     .pagination {
@@ -212,20 +208,19 @@
     .pagination-button {
       padding: 0.6rem 1.2rem;
       border: 1px solid var(--grey-tote);
-      background-color: white;
-      border-radius: 4px;
+      background-color: var(--grey-clouds);
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 500;
     }
 
     .pagination-button:hover {
-      background-color: var(--grey-clouds);
+      background-color: var(--grey-tote);
     }
 
     .pagination-button.active {
       background-color: var(--fifty-grey);
-      color: white;
+      color: var(--light-cipollino);
       border-color: var(--fifty-grey);
     }
 
@@ -252,8 +247,7 @@
     }
 
     .product-modal {
-      background: white;
-      border-radius: 10px;
+      background: #f7f7ee;
       width: 90%;
       max-width: 800px;
       max-height: 90vh;
@@ -314,7 +308,7 @@
     .modal-name {
       font-size: 1.8rem;
       margin-bottom: 1rem;
-      color: var(--chaos-black);
+      color: var(--blackadder);
     }
 
     .modal-price {
@@ -366,10 +360,9 @@
 
     .contact-btn {
       background-color: var(--accent-red);
-      color: white;
+      color: var(--light-cipollino);
       border: none;
       padding: 0.8rem 1.5rem;
-      border-radius: 4px;
       cursor: pointer;
       font-weight: 500;
       transition: background-color 0.3s ease;
@@ -379,7 +372,7 @@
     }
 
     .contact-btn:hover {
-      background-color: #c62828;
+      background-color: #2b2e2c;
     }
 
     /* Existing Navbar Styles */
@@ -440,6 +433,11 @@
         color: var(--light-cipollino);
         font-size: 15px;
         font-weight: 500;
+      }
+      nav .navbar .links li a:hover{
+  
+        color: var(--accent-blue);
+
       }
       .links li:hover .htmlcss-arrow,
       .links li:hover .js-arrow{
@@ -721,38 +719,7 @@
         max-width: 100%;
       } 
       }
-      .footer-chevron-icon {
-        transition: transform 0.3s ease;
-      }
-      .footer-dropdown-container.active .footer-chevron-icon.bxs-chevron-up {
-        transform: rotate(180deg);
-      }
-      .footer-dropdown-toggle {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  color: var(--light-cipollino);
-  transition: color 0.3s ease;
-}
-
-.footer-dropdown-toggle:hover {
-  color: var(--grey-clouds);
-}
-
-.footer-dropdown-toggle span {
-  padding: 0.3rem 0;
-}
-
-.footer-dropdown-container:hover .footer-dropdown-toggle {
-  color: var(--grey-clouds);
-}
-
-@media (min-width: 769px) {
-  .footer-dropdown-container:hover .footer-dropdown {
-    display: block;
-  }
-}
-
+      
     /* Modern Footer Styles */
     footer {
       background-color: var(--blackadder);
@@ -785,7 +752,9 @@
       font-size: 1.5rem;
       font-weight: 600;
     }
-
+    .footer-logo a{
+      color: var(--light-cipollino);
+    }
     .footer-about p {
       margin-bottom: 1rem;
       line-height: 1.6;
@@ -810,7 +779,7 @@
     }
 
     .footer-social a:hover {
-      background-color: var(--fifty-grey);
+      background-color: var(--accent-blue);
       transform: translateY(-3px);
     }
 
@@ -849,7 +818,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--grey-clouds);
+      color: var(--accent-blue);
       padding-left: 5px;
     }
 
@@ -898,7 +867,7 @@
 
     .footer-contact i {
       margin-right: 10px;
-      color: var(--fifty-grey);
+      color: var(--accent-blue);
       margin-top: 3px;
     }
 
@@ -929,7 +898,7 @@
 
     .newsletter-form button {
       padding: 0.8rem 1rem;
-      background-color: var(--fifty-grey);
+      background-color: var(--accent-blue);
       color: var(--light-cipollino);
       border: none;
       border-radius: 4px;
@@ -939,7 +908,7 @@
     }
 
     .newsletter-form button:hover {
-      background-color: var(--blackadder);
+      background-color: #9e153a;
     }
 
     .footer-bottom {
@@ -964,6 +933,38 @@
         margin-top: 1.5rem;
       }
     }
+    .footer-chevron-icon {
+      transition: transform 0.3s ease;
+    }
+    .footer-dropdown-container.active .footer-chevron-icon.bxs-chevron-up {
+      transform: rotate(180deg);
+    }
+    .footer-dropdown-toggle {
+cursor: pointer;
+display: flex;
+align-items: center;
+color: var(--light-cipollino);
+transition: color 0.3s ease;
+}
+
+.footer-dropdown-toggle:hover {
+color: var(--grey-clouds);
+}
+
+.footer-dropdown-toggle span {
+padding: 0.3rem 0;
+}
+
+.footer-dropdown-container:hover .footer-dropdown-toggle {
+color: var(--grey-clouds);
+}
+
+@media (min-width: 769px) {
+.footer-dropdown-container:hover .footer-dropdown {
+  display: block;
+}
+}
+
   </style>
 </head>
 <body>
@@ -973,12 +974,12 @@
           <div class="navbar">
             <i class='bx bx-menu'></i>
             <div class="logo">
-              <img src="logo1.png" alt="AutoParts Pro">
-              <a href="#">AutoParts Pro</a></div>
+              <a href="index.html"><img src="logo1.png" alt=""></a> 
+              <a href="index.html">ProEquipment Center</a></div>
             <div class="nav-links">
               <div class="sidebar-logo">
                   <div class="sidebar-logo-inner">
-                    <img src="logo1.png" alt="Logo">
+                  <a href="index.html"> <img src="logo1.png" alt="Logo"></a>
                   </div>
                   <i class='bx bx-x'></i>
                 </div>
@@ -986,17 +987,16 @@
               <ul class="links">
                 <li><a href="index.html">HOME</a></li>
                 <li>
-                  <a href="products.html">PRODUCTS</a>
+                  <a href="#">PRODUCTS</a>
                   <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
                   <ul class="htmlCss-sub-menu sub-menu">
-                    <li><a href="#">Diagnostic Tools</a></li>
-                    <li><a href="#">Lifting Equipment</a></li>
-                    <li><a href="#">Tire Service</a></li>
-                    <li><a href="#">Shop Equipment</a></li>
+                    <li><a href="newproducts.html">P1</a></li>
+                    <li><a href="products.html">P2</a></li>
+                    <li><a href="products1.html">P3</a></li>
                   </ul>
                 </li>
       
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="contactus.html">CONTACT US</a></li>
               </ul>
             </div>
             <div class="search-box">
@@ -1019,13 +1019,9 @@
         <h2 class="products-title">Our Products</h2>
         <div class="products-filter">
           <span class="filter-label">Filter by:</span>
-          <select class="filter-select" id="categoryFilter">
-            <option value="all">All Categories</option>
-            <option value="Diagnostic Tools">Diagnostic Tools</option>
-            <option value="Lifting Equipment">Lifting Equipment</option>
-            <option value="Tire Service">Tire Service</option>
-            <option value="Shop Equipment">Shop Equipment</option>
-          </select>
+          <div class="filter-select1" id="categoryFilter">
+       
+          </div>
           <select class="filter-select" id="sortFilter">
             <option value="featured">Featured</option>
             <option value="price-low">Price: Low to High</option>
@@ -1067,12 +1063,12 @@
           </div>
           
           <div class="modal-actions">
-            <button class="contact-btn">
+         <button class="contact-btn">
               <i class='bx bx-phone'></i> Contact Us
             </button>
-            <button class="view-btn" id="requestQuote">
+            <a href="contactus.html" style="text-decoration: none;">  <button class="view-btn" id="requestQuote">
               <i class='bx bx-file'></i> Request Quote
-            </button>
+            </button></a>
           </div>
         </div>
       </div>
@@ -1083,8 +1079,8 @@
     <div class="footer-container">
       <div class="footer-about">
         <div class="footer-logo">
-          <img src="logo1.png" alt="AutoParts Pro">
-          <span class="footer-logo-text">AutoParts Pro</span>
+        <a href="index.html">  <img src="logo1.png" alt="AutoParts Pro"></a>
+        <a href="index.html" style="text-decoration: none;"><span class="footer-logo-text">ProEquipment Center</span></a>
         </div>
         <p>Providing high-quality professional equipment since 2010. We're committed to excellence in every product we offer.</p>
         <div class="footer-social">
@@ -1106,13 +1102,12 @@
               <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
             </div>
             <ul class="footer-dropdown">
-              <li><a href="#">Diagnostic Tools</a></li>
-              <li><a href="#">Lifting Equipment</a></li>
-              <li><a href="#">Tire Service</a></li>
-              <li><a href="#">Shop Equipment</a></li>
+              <li><a href="newproducts.html">P1</a></li>
+              <li><a href="products.html">P2</a></li>
+              <li><a href="products1.html">P3</a></li>
             </ul>
           </li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
         </ul>
       </div>
 

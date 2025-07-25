@@ -468,6 +468,7 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            user-select: none;
         }
 
         .footer-dropdown-toggle i {
@@ -732,6 +733,7 @@
                 max-width: 100%;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -941,7 +943,7 @@
                     <li class="footer-dropdown-container">
                         <div class="footer-dropdown-toggle">
                             <span>Products</span>
-                            <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+                            <i class='bx bxs-chevron-down arrow'></i>
                         </div>
                         <ul class="footer-dropdown">
                             <li><a href="newproducts.html">Product Category 1</a></li>
@@ -1014,82 +1016,102 @@
             navLinks.classList.toggle("show3");
         }
         
-        // Footer dropdown functionality
         document.addEventListener("DOMContentLoaded", function() {
             const footerDropdownContainers = document.querySelectorAll(".footer-dropdown-container");
             
             footerDropdownContainers.forEach(container => {
                 const toggle = container.querySelector(".footer-dropdown-toggle");
                 const dropdown = container.querySelector(".footer-dropdown");
-                const icon = container.querySelector("i");
+                const icon = container.querySelector(".arrow");
                 
-                // Click functionality
+                // Click functionality for all screens
                 toggle.addEventListener("click", function(e) {
+                    e.preventDefault();
                     e.stopPropagation();
                     
-                    // Close all other dropdowns
+                    // Close all other dropdowns first
                     footerDropdownContainers.forEach(item => {
                         if (item !== container) {
                             item.classList.remove("active");
                             item.querySelector(".footer-dropdown").style.display = "none";
-                            item.querySelector("i").classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                            const otherIcon = item.querySelector(".arrow");
+                            if (otherIcon) {
+                                otherIcon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                            }
                         }
                     });
                     
                     // Toggle current dropdown
+                    const isActive = container.classList.contains("active");
                     container.classList.toggle("active");
                     
-                    if (container.classList.contains("active")) {
+                    if (!isActive) {
                         dropdown.style.display = "block";
-                        icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
+                        if (icon) {
+                            icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
+                        }
                     } else {
                         dropdown.style.display = "none";
-                        icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                        if (icon) {
+                            icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                        }
                     }
                 });
                 
-                // Hover functionality for desktop
-                if (window.innerWidth > 768) {
-                    container.addEventListener("mouseenter", function() {
-                        dropdown.style.display = "block";
-                        icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
-                    });
-                    
-                    container.addEventListener("mouseleave", function() {
+                // Hover functionality only for desktop
+                function handleHover() {
+                    if (window.innerWidth > 768) {
+                        container.addEventListener("mouseenter", function() {
+                            if (!container.classList.contains("active")) {
+                                dropdown.style.display = "block";
+                                if (icon) {
+                                    icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
+                                }
+                            }
+                        });
+                        
+                        container.addEventListener("mouseleave", function() {
+                            if (!container.classList.contains("active")) {
+                                dropdown.style.display = "none";
+                                if (icon) {
+                                    icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                // Initialize hover behavior
+                handleHover();
+                
+                // Update on resize
+                window.addEventListener("resize", function() {
+                    if (window.innerWidth <= 768) {
+                        // On mobile, ensure dropdown is hidden unless active
                         if (!container.classList.contains("active")) {
                             dropdown.style.display = "none";
+                            if (icon) {
+                                icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener("click", function(e) {
+                if (!e.target.closest(".footer-dropdown-container")) {
+                    document.querySelectorAll(".footer-dropdown-container").forEach(container => {
+                        container.classList.remove("active");
+                        container.querySelector(".footer-dropdown").style.display = "none";
+                        const icon = container.querySelector(".arrow");
+                        if (icon) {
                             icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
                         }
                     });
                 }
             });
-            
-            // Close dropdowns when clicking outside
-            document.addEventListener("click", function() {
-                footerDropdownContainers.forEach(container => {
-                    container.classList.remove("active");
-                    container.querySelector(".footer-dropdown").style.display = "none";
-                    container.querySelector("i").classList.replace("bxs-chevron-up", "bxs-chevron-down");
-                });
-            });
-            
-            // Handle window resize
-            window.addEventListener("resize", function() {
-                footerDropdownContainers.forEach(container => {
-                    const dropdown = container.querySelector(".footer-dropdown");
-                    if (window.innerWidth <= 768) {
-                        // On mobile, ensure dropdown is hidden unless active
-                        if (!container.classList.contains("active")) {
-                            dropdown.style.display = "none";
-                        }
-                    } else {
-                        // On desktop, show dropdown on hover
-                        dropdown.style.display = "none";
-                    }
-                });
-            });
         });
-        
         // Newsletter form submission
         const newsletterForm = document.getElementById('newsletterForm');
         if (newsletterForm) {
