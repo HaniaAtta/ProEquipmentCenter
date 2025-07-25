@@ -60,7 +60,7 @@
     .btn {
       display: inline-block;
       background-color: var(--accent);
-      color: var(--light-text);
+      color: var(--light-cipollino);
       padding: 0.8rem 1.5rem;
       border-radius: 4px;
       font-weight: 600;
@@ -75,8 +75,9 @@
     }
 
     .btn-outline {
+      color: var(--light-cipollino);
       background: transparent;
-      border: 2px solid var(--light-text);
+      border: 2px solid var(--light-cipollino);
     }
 
     .btn-outline:hover {
@@ -107,12 +108,24 @@
     }
 
     .section-title p {
-      color: rgba(255,255,255,0.7);
+      color: var(--light-cipollino);
       max-width: 700px;
       margin: 0 auto;
     }
 
-    
+    .section-title2 h2 {
+      color: var(--blackadder);
+
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-title2 p {
+      color: var(--blackadder);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
 
     /* Hero Section */
     .hero {
@@ -122,13 +135,15 @@
       align-items: center;
       background: linear-gradient(rgba(11,11,11,0.7), rgba(11,11,11,0.7)),
       url('a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg') no-repeat center center/cover;
-        color: var(--light-text);
+        color: var(--light-cipollino);
       text-align: center;
       position: relative;
       margin-top: 70px;
     }
 
     .hero-content {
+      position: relative;
+      z-index: 10;
       max-width: 800px;
       margin: 0 auto;
       padding: 0 20px;
@@ -147,6 +162,7 @@
     }
 
     .hero-btns {
+      color: var(--light-cipollino);
       display: flex;
       justify-content: center;
       gap: 1rem;
@@ -210,7 +226,7 @@
       position: relative;
       height: 700px;
       overflow: hidden;
-      background: var(--card-bg);
+      background: var(--blackadder);
     }
 
     .slide {
@@ -382,9 +398,41 @@
     }
 
     .footer-social a:hover {
-      background-color: var(--fifty-grey);
+      background-color: var(--accent);
       transform: translateY(-3px);
     }
+    .footer-social a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+  }
+  
+  .footer-social a:hover::before {
+      opacity: 0.3;
+      animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+      0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(181, 25, 66, 0.7);
+      }
+      70% {
+          transform: scale(1.1);
+          box-shadow: 0 0 0 10px rgba(181, 25, 66, 0);
+      }
+      100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(181, 25, 66, 0);
+      }
+  }
 
     .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
       font-size: 1.2rem;
@@ -421,7 +469,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--grey-clouds);
+      color: var(--accent);
       padding-left: 5px;
     }
 
@@ -470,7 +518,7 @@
 
     .footer-contact i {
       margin-right: 10px;
-      color: var(--fifty-grey);
+      color: var(--accent);
       margin-top: 3px;
     }
 
@@ -501,7 +549,7 @@
 
     .newsletter-form button {
       padding: 0.8rem 1rem;
-      background-color: var(--fifty-grey);
+      background-color: var(--accent);
       color: var(--light-cipollino);
       border: none;
       border-radius: 4px;
@@ -511,7 +559,7 @@
     }
 
     .newsletter-form button:hover {
-      background-color: var(--blackadder);
+      background-color: #9e153a;
     }
 
     .footer-bottom {
@@ -595,6 +643,11 @@
         color: var(--light-cipollino);
         font-size: 15px;
         font-weight: 500;
+      }
+      nav .navbar .links li a:hover{
+       
+        color: var(--accent);
+ 
       }
       .links li:hover .htmlcss-arrow,
       .links li:hover .js-arrow{
@@ -759,6 +812,9 @@
         nav .navbar .links li a{
           font-size: 15px;
         }
+      }
+      html {
+        scroll-behavior: smooth;
       }
       @media (max-width:800px){
         .navbar .bx-menu{
@@ -1022,8 +1078,8 @@
           <div class="navbar">
             <i class='bx bx-menu'></i>
             <div class="logo">
-              <img src="logo1.png" alt="">
-              <a href="#">ProEquipment Center</a></div>
+             <a href="index.html"><img src="logo1.png" alt=""></a> 
+              <a href="index.html">ProEquipment Center</a></div>
             <div class="nav-links">
               <div class="sidebar-logo">
                   <div class="sidebar-logo-inner">
@@ -1033,19 +1089,19 @@
                 </div>
                 
               <ul class="links">
-                <li><a href="#">HOME</a></li>
+                <li><a href="index.html">HOME</a></li>
                 <li>
                   <a href="#">PRODUCTS</a>
                   <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
                   <ul class="htmlCss-sub-menu sub-menu">
-                    <li><a href="#">P1</a></li>
-                    <li><a href="#">P2</a></li>
-                    <li><a href="#">P3</a></li>
+                    <li><a href="newproducts.html">P1</a></li>
+                    <li><a href="products.html">P2</a></li>
+                    <li><a href="products1.html">P3</a></li>
               
                   </ul>
                 </li>
       
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="contactus.html">CONTACT US</a></li>
               </ul>
             </div>
             <div class="search-box">
@@ -1062,13 +1118,14 @@
       <h1>Premium Industrial Equipment Solutions</h1>
       <p>Your trusted partner for high-quality machinery and tools with unmatched reliability and performance</p>
       <div class="hero-btns">
-        <a href="#" class="btn">Explore Products</a>
-        <a href="#" class="btn btn-outline">Contact Us</a>
+        <a href="#product-categories" class="btn">Explore Products</a> <!-- Updated href -->
+        <a href="contactus.html" class="btn btn-outline">Contact Us</a>
       </div>
+      
     </div>
   </section>
   <!--our mission-->
-  <section class="our-mission">
+  <section class="our-mission" >
     <div class="container">
       <div class="section-title">
         <h2>Our Mission</h2>
@@ -1080,7 +1137,7 @@
     </div>
   </section>
   <!-- Categories Section -->
-  <section class="categories">
+  <section class="categories" id="product-categories">
     <div class="container">
       <div class="section-title">
         <h2>Our Product Categories</h2>
@@ -1095,7 +1152,7 @@
           <div class="category-content">
             <h3>Heavy Machinery</h3>
             <p>Powerful equipment for construction and industrial applications</p>
-            <a href="#" class="btn">View Products</a>
+            <a href="newproducts.html" class="btn">View Products</a>
           </div>
         </div>
         
@@ -1106,7 +1163,7 @@
           <div class="category-content">
             <h3>Industrial Tools</h3>
             <p>Professional grade tools for precision and durability</p>
-            <a href="#" class="btn">View Products</a>
+            <a href="products.html" class="btn">View Products</a>
           </div>
         </div>
         
@@ -1117,7 +1174,7 @@
           <div class="category-content">
             <h3>Safety Equipment</h3>
             <p>Protective gear to ensure workplace safety</p>
-            <a href="#" class="btn">View Products</a>
+            <a href="products1.html" class="btn">View Products</a>
           </div>
         </div>
       </div>
@@ -1128,44 +1185,44 @@
   <section class="slideshow-section">
     <div class="container">
       <div class="section-title">
-        <h2>Featured Products</h2>
-        <p>Discover our top-rated equipment trusted by professionals worldwide</p>
+        <h2 style="color: var(--blackadder);">Reviews</h2>
+        <p style="color: var(--blackadder);">Discover our top-rated equipment trusted by professionals worldwide</p>
       </div>
       
       <div class="slideshow">
         <div class="slide active">
           <div class="slide-img">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Industrial Excavator">
+            <img src="a-full-screen-background-image-for-an-au_l_ZOgvaPT0CRB8PN-OA2SA_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Industrial Excavator">
           </div>
           <div class="slide-content">
             <h3>Premium Excavators</h3>
             <p>Our heavy-duty excavators deliver unmatched performance in the most demanding conditions. Built with advanced technology for maximum efficiency and durability.</p>
             <p>Features include enhanced fuel efficiency, superior digging force, and operator comfort.</p>
-            <a href="#" class="btn">Learn More</a>
+            <!-- <a href="#" class="btn">Learn More</a> -->
           </div>
         </div>
         
         <div class="slide">
           <div class="slide-img">
-            <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968" alt="Power Tools">
+            <img src="a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg" alt="Power Tools">
           </div>
           <div class="slide-content">
             <h3>Professional Power Tools</h3>
             <p>The most reliable power tools for industrial applications. Engineered for precision and long-lasting performance.</p>
             <p>Our tools feature brushless motors, advanced battery technology, and ergonomic designs.</p>
-            <a href="#" class="btn">Learn More</a>
+            <!-- <a href="#" class="btn">Learn More</a> -->
           </div>
         </div>
         
         <div class="slide">
           <div class="slide-img">
-            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2" alt="Safety Gear">
+            <img src="a-website-header-image-for-an-automotive_QkFwqvV-SS6n4ggpE6deCw_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Safety Gear">
           </div>
           <div class="slide-content">
             <h3>Advanced Safety Equipment</h3>
             <p>Protect your workforce with our certified safety gear. Comfortable, durable, and compliant with all safety standards.</p>
             <p>Includes helmets, protective eyewear, high-visibility clothing, and respiratory protection.</p>
-            <a href="#" class="btn">Learn More</a>
+            <!-- <a href="#" class="btn">Learn More</a> -->
           </div>
         </div>
         
@@ -1181,7 +1238,7 @@
     <div class="footer-container">
       <div class="footer-about">
         <div class="footer-logo">
-          <img src="logo1.png" alt="ProEquipment Center">
+          <a href="index.html"><img src="logo1.png" alt="ProEquipment Center"></a>
           <span class="footer-logo-text">ProEquipment Center</span>
         </div>
         <p>Providing high-quality professional equipment since 2010. We're committed to excellence in every product we offer.</p>
@@ -1197,19 +1254,19 @@
       <div class="footer-links">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li class="footer-dropdown-container">
             <div class="footer-dropdown-toggle">
               <span>Products</span>
               <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
             </div>
             <ul class="footer-dropdown">
-              <li><a href="#">Product Category 1</a></li>
-              <li><a href="#">Product Category 2</a></li>
-              <li><a href="#">Product Category 3</a></li>
+              <li><a href="newproducts.html">Product Category 1</a></li>
+              <li><a href="products.html">Product Category 2</a></li>
+              <li><a href="products1.html">Product Category 3</a></li>
             </ul>
           </li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
         </ul>
       </div>
 
@@ -1232,7 +1289,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 ProEquipment Center. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ff0000;"></i> by Your Company</p>
+      <p>&copy; 2025 ProEquipment Center. All Rights Reserved. </p>
     </div>
   </footer>
   <script>
