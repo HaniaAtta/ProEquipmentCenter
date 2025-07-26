@@ -310,270 +310,7 @@
             transform: scale(1.1);
         }
 
-        /* Footer Styles */
-        footer {
-            background-color: var(--blackadder);
-            color: var(--light-cipollino);
-            padding: 3rem 1rem 1rem;
-            margin-top: auto;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding-bottom: 2rem;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo img {
-            height: 60px;
-            margin-right: 10px;
-        }
-
-        .footer-logo-text {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .footer-about p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .footer-social a {
-            color: var(--light-cipollino);
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        .footer-social a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--accent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 50%;
-        }
-        
-        .footer-social a:hover::before {
-            opacity: 0.3;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(181, 25, 66, 0.7);
-            }
-            70% {
-                transform: scale(1.1);
-                box-shadow: 0 0 0 10px rgba(181, 25, 66, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(181, 25, 66, 0);
-            }
-        }
-        .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--light-cipollino);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--fifty-grey);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--light-cipollino);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: block;
-            padding: 0.3rem 0;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .footer-dropdown {
-            margin-left: 1rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .footer-links li.active .footer-dropdown {
-            display: block;
-        }
-        .footer-dropdown-container.active .footer-dropdown {
-            display: block;
-        }
-
-        .footer-dropdown li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-dropdown a {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .footer-dropdown-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .footer-dropdown-toggle i {
-            transition: transform 0.3s ease;
-        }
-
-        .footer-links li.active .footer-dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-
-        .footer-contact p {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .footer-contact i {
-            margin-right: 10px;
-            color: var(--accent);
-            margin-top: 3px;
-        }
-
-        .footer-newsletter p {
-            margin-bottom: 1.5rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .newsletter-form input {
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--light-cipollino);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-form input:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .newsletter-form button {
-            padding: 0.8rem 1rem;
-            background-color: var(--accent);
-            color: var(--light-cipollino);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-form button:hover {
-            background-color: #9e153a;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 2rem;
-        }
-
-        .footer-bottom p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .footer-chevron-icon {
-            transition: transform 0.3s ease;
-        }
-        .footer-dropdown-container.active .footer-chevron-icon.bxs-chevron-up {
-            transform: rotate(180deg);
-        }
-        .footer-dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            color: var(--light-cipollino);
-            transition: color 0.3s ease;
-        }
-
-        .footer-dropdown-toggle:hover {
-            color: var(--grey-clouds);
-        }
-
-        .footer-dropdown-toggle span {
-            padding: 0.3rem 0;
-        }
-
-        .footer-dropdown-container:hover .footer-dropdown-toggle {
-            color: var(--grey-clouds);
-        }
-
-        @media (min-width: 769px) {
-            .footer-dropdown-container:hover .footer-dropdown {
-                display: block;
-            }
-        }
+ 
 
         /* Responsive adjustments */
         @media (max-width: 920px) {
@@ -734,6 +471,301 @@
             }
         }
         
+    /* Modern Footer Styles */
+    footer {
+        background-color: var(--blackadder);
+        color: var(--light-cipollino);
+        padding: 3rem 1rem 1rem;
+        margin-top: auto;
+      }
+  
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding-bottom: 2rem;
+      }
+  
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+  
+      .footer-logo img {
+        height: 60px;
+        margin-right: 10px;
+      }
+  
+      .footer-logo-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+  
+      .footer-about p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+  
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+  
+      .footer-social a {
+        color: var(--light-cipollino);
+        background-color: rgba(255, 255, 255, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+  
+      .footer-social a:hover {
+        background-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .footer-social a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 50%;
+    }
+    
+    .footer-social a:hover::before {
+        opacity: 0.3;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(181, 25, 66, 0.7);
+        }
+        70% {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 10px rgba(181, 25, 66, 0);
+        }
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(181, 25, 66, 0);
+        }
+    }
+  
+      .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--light-cipollino);
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+  
+      .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--fifty-grey);
+      }
+  
+      .footer-links ul {
+        list-style: none;
+      }
+  
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+  
+      .footer-links a {
+        color: var(--light-cipollino);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: block;
+        padding: 0.3rem 0;
+      }
+  
+      .footer-links a:hover {
+        color: var(--accent);
+        padding-left: 5px;
+      }
+  
+      .footer-dropdown {
+        margin-left: 1rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+  
+      .footer-links li.active .footer-dropdown {
+        display: block;
+      }
+      .footer-dropdown-container.active .footer-dropdown {
+          display: block;
+        }
+  
+      .footer-dropdown li {
+        margin-bottom: 0.5rem;
+      }
+  
+      .footer-dropdown a {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+  
+      .footer-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+  
+      .footer-dropdown-toggle i {
+        transition: transform 0.3s ease;
+      }
+  
+      .footer-links li.active .footer-dropdown-toggle i {
+        transform: rotate(180deg);
+      }
+  
+      .footer-contact p {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+      }
+  
+      .footer-contact i {
+        margin-right: 10px;
+        color: var(--accent);
+        margin-top: 3px;
+      }
+  
+      .footer-newsletter p {
+        margin-bottom: 1.5rem;
+      }
+  
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+  
+      .newsletter-form input {
+        padding: 0.8rem 1rem;
+        border: none;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--light-cipollino);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+  
+      .newsletter-form input:focus {
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+  
+      .newsletter-form button {
+        padding: 0.8rem 1rem;
+        background-color: var(--accent);
+        color: var(--light-cipollino);
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+  
+      .newsletter-form button:hover {
+        background-color: #9e153a;
+      }
+  
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+      }
+  
+      .footer-bottom p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+  
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .footer-container {
+          grid-template-columns: 1fr;
+        }
+        
+        .footer-links, .footer-contact, .footer-newsletter {
+          margin-top: 1.5rem;
+        }
+      }
+
+
+
+        .footer-chevron-icon {
+            transition: transform 0.3s ease;
+          }
+          .footer-dropdown-container.active .footer-chevron-icon.bxs-chevron-up {
+            transform: rotate(180deg);
+          }
+          .footer-dropdown-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: var(--light-cipollino);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-dropdown-toggle:hover {
+      color: var(--grey-clouds);
+    }
+    
+    .footer-dropdown-toggle span {
+      padding: 0.3rem 0;
+    }
+    
+    .footer-dropdown-container:hover .footer-dropdown-toggle {
+      color: var(--grey-clouds);
+    }
+    
+    @media (min-width: 769px) {
+      .footer-dropdown-container:hover .footer-dropdown {
+        display: block;
+      }
+    }
+
+    /* For mobile */
+/* Base dropdown styles - hidden by default */
+.footer-dropdown {
+    display: none;
+    position: relative;
+    /* Add your positioning styles */
+}
+
+/* Hover behavior - works on all devices that support hover */
+.footer-dropdown-container:hover .footer-dropdown {
+    display: block;
+}
+
+/* Mobile fallback - ensures dropdown is visible when active */
+.footer-dropdown-container.active .footer-dropdown {
+    display: block;
+} 
     </style>
 </head>
 <body>
@@ -940,7 +972,7 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li class="footer-dropdown-container">
+                    <div class="footer-dropdown-container">
                         <div class="footer-dropdown-toggle">
                             <span>Products</span>
                             <i class='bx bxs-chevron-down arrow'></i>
@@ -950,7 +982,7 @@
                             <li><a href="products.html">Product Category 2</a></li>
                             <li><a href="products1.html">Product Category 3</a></li>
                         </ul>
-                    </li>
+                    </div>
                     <li><a href="contactus.html">Contact Us</a></li>
                 </ul>
             </div>
@@ -977,18 +1009,19 @@
             <p>&copy; 2025 ProEquipment Center. All Rights Reserved.</p>
         </div>
     </footer>
-
     <script>
+
+    
         // search-box open close js code
         let navbar = document.querySelector(".navbar");
         let searchBox = document.querySelector(".search-box .bx-search");
         searchBox.addEventListener("click", ()=>{
-            navbar.classList.toggle("showInput");
-            if(navbar.classList.contains("showInput")){
-                searchBox.classList.replace("bx-search" ,"bx-x");
-            }else {
-                searchBox.classList.replace("bx-x" ,"bx-search");
-            }
+          navbar.classList.toggle("showInput");
+          if(navbar.classList.contains("showInput")){
+            searchBox.classList.replace("bx-search" ,"bx-x");
+          }else {
+            searchBox.classList.replace("bx-x" ,"bx-search");
+          }
         });
         
         // sidebar open close js code
@@ -996,138 +1029,84 @@
         let menuOpenBtn = document.querySelector(".navbar .bx-menu");
         let menuCloseBtn = document.querySelector(".nav-links .bx-x");
         menuOpenBtn.onclick = function() {
-            navLinks.style.left = "0";
+          navLinks.style.left = "0";
         }
         menuCloseBtn.onclick = function() {
-            navLinks.style.left = "-100%";
+          navLinks.style.left = "-100%";
         }
         
         // sidebar submenu open close js code
         let htmlcssArrow = document.querySelector(".htmlcss-arrow");
         htmlcssArrow.onclick = function() {
-            navLinks.classList.toggle("show1");
+          navLinks.classList.toggle("show1");
         }
         let moreArrow = document.querySelector(".more-arrow");
         moreArrow.onclick = function() {
-            navLinks.classList.toggle("show2");
+          navLinks.classList.toggle("show2");
         }
         let jsArrow = document.querySelector(".js-arrow");
         jsArrow.onclick = function() {
-            navLinks.classList.toggle("show3");
+          navLinks.classList.toggle("show3");
         }
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            const footerDropdownContainers = document.querySelectorAll(".footer-dropdown-container");
+      
+   // Footer dropdown functionality
+document.addEventListener("DOMContentLoaded", function() {
+    const footerDropdownContainers = document.querySelectorAll(".footer-dropdown-container");
+    
+    // Check if the device supports hover
+    const hasHover = window.matchMedia("(hover: hover)").matches;
+    
+    if (!hasHover) {
+        // Add click handlers for devices that don't support hover
+        footerDropdownContainers.forEach(container => {
+            const toggle = container.querySelector(".footer-dropdown-toggle");
+            const text = toggle.querySelector("span"); // The "Products" text
+            const icon = toggle.querySelector(".arrow"); // The chevron icon
             
-            footerDropdownContainers.forEach(container => {
-                const toggle = container.querySelector(".footer-dropdown-toggle");
-                const dropdown = container.querySelector(".footer-dropdown");
-                const icon = container.querySelector(".arrow");
-                
-                // Click functionality for all screens
-                toggle.addEventListener("click", function(e) {
+            // Make both the text and icon clickable
+            [text, icon].forEach(element => {
+                element.addEventListener("click", function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    // Close all other dropdowns first
-                    footerDropdownContainers.forEach(item => {
-                        if (item !== container) {
-                            item.classList.remove("active");
-                            item.querySelector(".footer-dropdown").style.display = "none";
-                            const otherIcon = item.querySelector(".arrow");
-                            if (otherIcon) {
-                                otherIcon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
-                            }
+                    // Close all other dropdowns
+                    document.querySelectorAll(".footer-dropdown-container.active").forEach(activeContainer => {
+                        if (activeContainer !== container) {
+                            activeContainer.classList.remove("active");
                         }
                     });
                     
                     // Toggle current dropdown
-                    const isActive = container.classList.contains("active");
                     container.classList.toggle("active");
-                    
-                    if (!isActive) {
-                        dropdown.style.display = "block";
-                        if (icon) {
-                            icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
-                        }
-                    } else {
-                        dropdown.style.display = "none";
-                        if (icon) {
-                            icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
-                        }
-                    }
                 });
-                
-                // Hover functionality only for desktop
-                function handleHover() {
-                    if (window.innerWidth > 768) {
-                        container.addEventListener("mouseenter", function() {
-                            if (!container.classList.contains("active")) {
-                                dropdown.style.display = "block";
-                                if (icon) {
-                                    icon.classList.replace("bxs-chevron-down", "bxs-chevron-up");
-                                }
-                            }
-                        });
-                        
-                        container.addEventListener("mouseleave", function() {
-                            if (!container.classList.contains("active")) {
-                                dropdown.style.display = "none";
-                                if (icon) {
-                                    icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
-                                }
-                            }
-                        });
-                    }
-                }
-                
-                // Initialize hover behavior
-                handleHover();
-                
-                // Update on resize
-                window.addEventListener("resize", function() {
-                    if (window.innerWidth <= 768) {
-                        // On mobile, ensure dropdown is hidden unless active
-                        if (!container.classList.contains("active")) {
-                            dropdown.style.display = "none";
-                            if (icon) {
-                                icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
-                            }
-                        }
-                    }
-                });
-            });
-            
-            // Close dropdowns when clicking outside
-            document.addEventListener("click", function(e) {
-                if (!e.target.closest(".footer-dropdown-container")) {
-                    document.querySelectorAll(".footer-dropdown-container").forEach(container => {
-                        container.classList.remove("active");
-                        container.querySelector(".footer-dropdown").style.display = "none";
-                        const icon = container.querySelector(".arrow");
-                        if (icon) {
-                            icon.classList.replace("bxs-chevron-up", "bxs-chevron-down");
-                        }
-                    });
-                }
             });
         });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener("click", function() {
+            footerDropdownContainers.forEach(container => {
+                container.classList.remove("active");
+            });
+        });
+    }
+});
         // Newsletter form submission
         const newsletterForm = document.getElementById('newsletterForm');
         if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                const email = emailInput.value;
-                
-                // Here you would typically send the email to your server
-                console.log('Subscribed email:', email);
-                
-                // Show success message
-                alert('Thank you for subscribing to our newsletter!');
-                emailInput.value = '';
-            });
+          newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            // Here you would typically send the email to your server
+            console.log('Subscribed email:', email);
+            
+            // Show success message
+            alert('Thank you for subscribing to our newsletter!');
+            emailInput.value = '';
+          });
         }
-    </script>
+      </script>
+
 </body>
 </html>
