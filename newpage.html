@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | ProEquipment Center</title>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="icon" type="image/x-icon" href="logo.ico">
+  <link rel="icon" type="image/x-icon" href="logo.ico">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -132,7 +132,9 @@
             font-weight: 500;
         }
         nav .navbar .links li a:hover {
+      
             color: var(--accent);
+      
         }
         .links li:hover .htmlcss-arrow,
         .links li:hover .js-arrow {
@@ -175,6 +177,26 @@
             color: var(--light-cipollino);
             font-size: 15px;
             font-weight: 500;
+        }
+        
+        .navbar .links li .sub-menu .more-arrow {
+            line-height: 40px;
+        }
+        
+        .navbar .links li .htmlCss-more-sub-menu {
+        }
+        
+        .navbar .links li .sub-menu .more-sub-menu {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            border-radius: 0 4px 4px 4px;
+            z-index: 1;
+            display: none;
+        }
+        
+        .links li .sub-menu .more:hover .more-sub-menu {
+            display: block;
         }
         
         .navbar .search-box {
@@ -258,7 +280,7 @@
         /* Contact Form Styles */
         .contact-section {
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-top: 70px;
+            margin-top: 70px; /* To account for fixed navbar */
         }
         
         .info-item {
@@ -288,19 +310,7 @@
             transform: scale(1.1);
         }
 
-        /* Form Input Fixes */
-        #contactForm input,
-        #contactForm textarea,
-        #contactForm select {
-            pointer-events: auto !important;
-            user-select: text !important;
-        }
-
-        #contactForm input:focus,
-        #contactForm textarea:focus,
-        #contactForm select:focus {
-            box-shadow: none !important;
-        }
+ 
 
         /* Responsive adjustments */
         @media (max-width: 920px) {
@@ -410,14 +420,48 @@
                 left: 0;
             }
             
+            .navbar .links li .sub-menu .more-sub-menu li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
             .links li:hover .htmlcss-arrow,
             .links li:hover .js-arrow {
                 transform: rotate(0deg);
             }
             
+            .navbar .links li .sub-menu .more-sub-menu {
+                display: none;
+            }
+            
+            .navbar .links li .sub-menu .more span {
+                display: flex;
+                align-items: center;
+            }
+            
+            .links li .sub-menu .more:hover .more-sub-menu {
+                display: none;
+            }
+            
+            nav .navbar .links li:hover .htmlCss-sub-menu,
+            nav .navbar .links li:hover .js-sub-menu {
+                display: none;
+            }
+            
             .navbar .nav-links.show1 .links .htmlCss-sub-menu,
-            .navbar .nav-links.show3 .links .js-sub-menu {
+            .navbar .nav-links.show3 .links .js-sub-menu,
+            .navbar .nav-links.show2 .links .more .more-sub-menu {
                 display: block;
+            }
+            
+            .navbar .nav-links.show1 .links .htmlcss-arrow,
+            .navbar .nav-links.show3 .links .js-arrow {
+                transform: rotate(180deg);
+            }
+            
+            .navbar .nav-links.show2 .links .more-arrow {
+                transform: rotate(90deg);
             }
         }
         
@@ -427,219 +471,301 @@
             }
         }
         
-        /* Modern Footer Styles */
-        footer {
-            background-color: var(--blackadder);
-            color: var(--light-cipollino);
-            padding: 3rem 1rem 1rem;
-            margin-top: auto;
+    /* Modern Footer Styles */
+    footer {
+        background-color: var(--blackadder);
+        color: var(--light-cipollino);
+        padding: 3rem 1rem 1rem;
+        margin-top: auto;
+      }
+  
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding-bottom: 2rem;
+      }
+  
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+  
+      .footer-logo img {
+        height: 60px;
+        margin-right: 10px;
+      }
+  
+      .footer-logo-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+  
+      .footer-about p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+  
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+  
+      .footer-social a {
+        color: var(--light-cipollino);
+        background-color: rgba(255, 255, 255, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+  
+      .footer-social a:hover {
+        background-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .footer-social a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 50%;
+    }
+    
+    .footer-social a:hover::before {
+        opacity: 0.3;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(181, 25, 66, 0.7);
+        }
+        70% {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 10px rgba(181, 25, 66, 0);
+        }
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(181, 25, 66, 0);
+        }
+    }
+  
+      .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--light-cipollino);
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+  
+      .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--fifty-grey);
+      }
+  
+      .footer-links ul {
+        list-style: none;
+      }
+  
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+  
+      .footer-links a {
+        color: var(--light-cipollino);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: block;
+        padding: 0.3rem 0;
+      }
+  
+      .footer-links a:hover {
+        color: var(--accent);
+        padding-left: 5px;
+      }
+  
+      .footer-dropdown {
+        margin-left: 1rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+  
+      .footer-links li.active .footer-dropdown {
+        display: block;
+      }
+      .footer-dropdown-container.active .footer-dropdown {
+          display: block;
         }
   
+      .footer-dropdown li {
+        margin-bottom: 0.5rem;
+      }
+  
+      .footer-dropdown a {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+  
+      .footer-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+  
+      .footer-dropdown-toggle i {
+        transition: transform 0.3s ease;
+      }
+  
+      .footer-links li.active .footer-dropdown-toggle i {
+        transform: rotate(180deg);
+      }
+  
+      .footer-contact p {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+      }
+  
+      .footer-contact i {
+        margin-right: 10px;
+        color: var(--accent);
+        margin-top: 3px;
+      }
+  
+      .footer-newsletter p {
+        margin-bottom: 1.5rem;
+      }
+  
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+  
+      .newsletter-form input {
+        padding: 0.8rem 1rem;
+        border: none;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--light-cipollino);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+  
+      .newsletter-form input:focus {
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+  
+      .newsletter-form button {
+        padding: 0.8rem 1rem;
+        background-color: var(--accent);
+        color: var(--light-cipollino);
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+  
+      .newsletter-form button:hover {
+        background-color: #9e153a;
+      }
+  
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+      }
+  
+      .footer-bottom p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+  
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
         .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding-bottom: 2rem;
+          grid-template-columns: 1fr;
         }
-  
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
+        
+        .footer-links, .footer-contact, .footer-newsletter {
+          margin-top: 1.5rem;
         }
-  
-        .footer-logo img {
-            height: 60px;
-            margin-right: 10px;
-        }
-  
-        .footer-logo-text {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-  
-        .footer-about p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-  
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-  
-        .footer-social a {
-            color: var(--light-cipollino);
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-  
-        .footer-social a:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-  
-        .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--light-cipollino);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-  
-        .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--fifty-grey);
-        }
-  
-        .footer-links ul {
-            list-style: none;
-        }
-  
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-  
-        .footer-links a {
-            color: var(--light-cipollino);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: block;
-            padding: 0.3rem 0;
-        }
-  
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-  
-        .footer-dropdown {
-            margin-left: 1rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-  
-        .footer-dropdown-container.active .footer-dropdown {
-            display: block;
-        }
-  
-        .footer-dropdown li {
-            margin-bottom: 0.5rem;
-        }
-  
-        .footer-dropdown a {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-  
-        .footer-dropdown-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-  
-        .footer-dropdown-toggle i {
+      }
+
+
+
+        .footer-chevron-icon {
             transition: transform 0.3s ease;
-        }
-  
-        .footer-contact p {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-        }
-  
-        .footer-contact i {
-            margin-right: 10px;
-            color: var(--accent);
-            margin-top: 3px;
-        }
-  
-        .footer-newsletter p {
-            margin-bottom: 1.5rem;
-        }
-  
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-  
-        .newsletter-form input {
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--light-cipollino);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-  
-        .newsletter-form input:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-  
-        .newsletter-form button {
-            padding: 0.8rem 1rem;
-            background-color: var(--accent);
-            color: var(--light-cipollino);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-  
-        .newsletter-form button:hover {
-            background-color: #9e153a;
-        }
-  
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 2rem;
-        }
-  
-        .footer-bottom p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-  
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-links, .footer-contact, .footer-newsletter {
-                margin-top: 1.5rem;
-            }
-        }
+          }
+          .footer-dropdown-container.active .footer-chevron-icon.bxs-chevron-up {
+            transform: rotate(180deg);
+          }
+          .footer-dropdown-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: var(--light-cipollino);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-dropdown-toggle:hover {
+      color: var(--grey-clouds);
+    }
+    
+    .footer-dropdown-toggle span {
+      padding: 0.3rem 0;
+    }
+    
+    .footer-dropdown-container:hover .footer-dropdown-toggle {
+      color: var(--grey-clouds);
+    }
+    
+    @media (min-width: 769px) {
+      .footer-dropdown-container:hover .footer-dropdown {
+        display: block;
+      }
+    }
 
-        /* For mobile dropdowns */
-        .footer-dropdown {
-            display: none;
-        }
+    /* For mobile */
+/* Base dropdown styles - hidden by default */
+.footer-dropdown {
+    display: none;
+    position: relative;
+    /* Add your positioning styles */
+}
 
-        .footer-dropdown-container.active .footer-dropdown {
-            display: block;
-        }
+/* Hover behavior - works on all devices that support hover */
+.footer-dropdown-container:hover .footer-dropdown {
+    display: block;
+}
+
+/* Mobile fallback - ensures dropdown is visible when active */
+.footer-dropdown-container.active .footer-dropdown {
+    display: block;
+} 
     </style>
 </head>
 <body>
@@ -761,9 +887,8 @@
                 <div class="bg-grey-clouds bg-opacity-10 border border-grey-tote p-8 lg:p-12">
                     <h2 class="text-blackadder text-4xl font-semibold mb-8">Send Us A Message</h2>
                     
-                    <form action="https://formspree.io/f/xpwldynz" method="POST" class="space-y-4">
-                        <input type="hidden" name="_next" value="https://haniaatta.github.io/ProEquipmentCenter/">
-                    
+                    <form id="contactForm" action="https://formsubmit.co/attahania193@gmail.com" method="POST" class="space-y-4">
+                        <input type="hidden" name="_fab_form" value="true">
                         <div>
                             <input name="name" type="text" required placeholder="Name" 
                                    class="form-control w-full h-12 bg-transparent border border-grey-tote text-blackadder placeholder-grey-tote rounded-full px-4 focus:outline-none" />
@@ -889,12 +1014,12 @@
         const navbar = document.querySelector(".navbar");
         const searchBox = document.querySelector(".search-box .bx-search");
         if (searchBox) {
-            searchBox.addEventListener("click", (e) => {
-                e.stopPropagation();
-                navbar.classList.toggle("showInput");
-                searchBox.classList.toggle("bx-search");
-                searchBox.classList.toggle("bx-x");
-            });
+          searchBox.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navbar.classList.toggle("showInput");
+            searchBox.classList.toggle("bx-search");
+            searchBox.classList.toggle("bx-x");
+          });
         }
         
         // Sidebar open/close functionality
@@ -903,28 +1028,28 @@
         const menuCloseBtn = document.querySelector(".nav-links .bx-x");
         
         if (menuOpenBtn && navLinks) {
-            menuOpenBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                navLinks.style.left = "0";
-            });
+          menuOpenBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navLinks.style.left = "0";
+          });
         }
         
         if (menuCloseBtn && navLinks) {
-            menuCloseBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                navLinks.style.left = "-100%";
-            });
+          menuCloseBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navLinks.style.left = "-100%";
+          });
         }
         
         // Sidebar submenu functionality
         const setupSubmenu = (arrowClass, showClass) => {
-            const arrow = document.querySelector(arrowClass);
-            if (arrow) {
-                arrow.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    document.querySelector(".nav-links").classList.toggle(showClass);
-                });
-            }
+          const arrow = document.querySelector(arrowClass);
+          if (arrow) {
+            arrow.addEventListener("click", (e) => {
+              e.stopPropagation();
+              document.querySelector(".nav-links").classList.toggle(showClass);
+            });
+          }
         };
         
         setupSubmenu(".htmlcss-arrow", "show1");
@@ -933,10 +1058,10 @@
         
         // Footer dropdown functionality
         document.addEventListener("DOMContentLoaded", function() {
-            const footerDropdownContainers = document.querySelectorAll(".footer-dropdown-container");
-            
-            footerDropdownContainers.forEach(container => {
-                const toggle = container.querySelector(".footer-dropdown-toggle");
+          const footerDropdownContainers = document.querySelectorAll(".footer-dropdown-container");
+          
+          footerDropdownContainers.forEach(container => {
+            const toggle = container.querySelector(".footer-dropdown-toggle");
             if (toggle) {
               const text = toggle.querySelector("span");
               const icon = toggle.querySelector(".arrow");
@@ -971,35 +1096,7 @@
         });
         
         // Form handling
-        document.addEventListener("DOMContentLoaded", function() {
-          // Contact form inputs
-          const formInputs = document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select');
-          
-          formInputs.forEach(input => {
-            input.addEventListener('click', function(e) {
-              e.stopPropagation();
-            });
-            
-            input.addEventListener('focus', function(e) {
-              e.stopPropagation();
-            });
-            
-            input.addEventListener('mousedown', function(e) {
-              e.stopPropagation();
-            });
-          });
-        
-          // Contact form submission
-          const contactForm = document.getElementById('contactForm');
-          if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-              e.preventDefault();
-              // Form handling logic here
-              console.log('Form would submit now');
-              alert('Form submission handled (demo)');
-            });
-          }
-        
+       
           // Newsletter form
           const newsletterForm = document.getElementById('newsletterForm');
           if (newsletterForm) {
@@ -1013,14 +1110,9 @@
               emailInput.value = '';
             });
           }
-        });
         
-        // Additional protection against rogue click handlers
-        document.addEventListener('click', function(e) {
-          if (e.target.closest('#contactForm input, #contactForm textarea, #contactForm select')) {
-            e.stopImmediatePropagation();
-          }
-        }, true);
+        
+
         </script>
 </body>
 </html>
