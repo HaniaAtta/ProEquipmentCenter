@@ -1366,6 +1366,265 @@
         font-size: 0.9rem;
       }
     }
+
+
+
+
+
+
+
+    /* Featured Products Section */
+.featured-products {
+  background-color: var(--blackadder);
+  padding: 5rem 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.product-card {
+  background: var(--light-cipollino);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--accent);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.product-img {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.product-info h3 {
+  color: var(--fifty-grey);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.product-desc {
+  color: var(--fifty-grey);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.product-rating {
+  color: #ffc107;
+  font-size: 0.9rem;
+}
+
+.product-rating span {
+  color: var(--fifty-grey);
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+
+.product-stock {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+}
+
+.in-stock {
+  background: rgba(40, 167, 69, 0.2);
+  color: #28a745;
+}
+
+.low-stock {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.product-footer {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price {
+  color: var(--fifty-grey);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.product-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.view-all {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn-outline {
+  border-color: var(--light-cipollino);
+  color: var(--light-cipollino);
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .product-img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-info h3 {
+    font-size: 1.1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* Trusted Brands Marquee Section */
+.trusted-brands {
+  background-color: var(--light-cipollino);
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.brands-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 3rem;
+}
+
+.brands-track {
+  display: flex;
+  width: calc(150px * 12); /* Double the width for seamless looping */
+  animation: scroll 30s linear infinite;
+}
+
+.brand-item {
+  width: 150px;
+  flex-shrink: 0;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.brand-item:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.brand-item img {
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-150px * 6)); /* Move by half the width */
+  }
+}
+
+/* Pause animation on hover */
+.brands-marquee:hover .brands-track {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .brands-track {
+    animation-duration: 20s;
+  }
+  
+  .brand-item {
+    width: 120px;
+    padding: 0 1rem;
+  }
+  
+  .brand-item img {
+    max-height: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brands-track {
+    animation-duration: 15s;
+  }
+  
+  .brand-item {
+    width: 100px;
+    padding: 0 0.75rem;
+  }
+}
+
+
   </style>
 
 </head>
@@ -1471,7 +1730,7 @@
   <section class="categories" id="product-categories">
     <div class="container">
       <div class="section-title">
-        <h2>Our Products Categories</h2>
+        <h2> Our Products Categories</h2>
         <p>Reliable, high-performance tools tailored for automotive, industrial, and commercial use</p>
       </div>
   
@@ -1514,8 +1773,182 @@
       </div>
     </div>
   </section>
-  
-
+  <!-- Trusted Brands Marquee Section -->
+<section class="trusted-brands">
+  <div class="container">
+    <div class="section-title2">
+      <h2>Our Trusted Brands</h2>
+      <p>Partnering with industry leaders to bring you premium equipment solutions</p>
+    </div>
+    
+    <div class="brands-marquee">
+      <div class="brands-track">
+        <!-- Brand logos - first set -->
+        <div class="brand-item">
+          <img src="part.png" alt="Brand 1" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="spare-parts.png" alt="Brand 2" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="car-parts.png" alt="Brand 3" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="mechanic.png" alt="Brand 4" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="brake.png" alt="Brand 5" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="speedometer.png" alt="Brand 6" loading="lazy">
+        </div>
+        
+        <!-- Duplicate brand logos - second set (for seamless looping) -->
+        <div class="brand-item">
+          <img src="part.png" alt="Brand 1" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="spare-parts.png" alt="Brand 2" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="car-parts.png" alt="Brand 3" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="mechanic.png" alt="Brand 4" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="brake.png" alt="Brand 5" loading="lazy">
+        </div>
+        <div class="brand-item">
+          <img src="speedometer.png" alt="Brand 6" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Featured Products Section -->
+<section class="featured-products">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured Products</h2>
+      <p>Top-performing equipment trusted by professionals</p>
+    </div>
+    
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-badge">Bestseller</div>
+        <div class="product-img">
+          <img src="a-full-screen-background-image-for-an-au_l_ZOgvaPT0CRB8PN-OA2SA_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="2-Post Lift" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>ProLift 9000 2-Post</h3>
+          <p class="product-desc">Heavy-duty 9,000 lb capacity lift with asymmetric arms</p>
+          <div class="product-meta">
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(42)</span>
+            </div>
+            <div class="product-stock in-stock">In Stock</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$3,499.00</div>
+          <button class="btn product-btn">View Details</button>
+        </div>
+      </div>
+      
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-badge">New</div>
+        <div class="product-img">
+          <img src="a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg" alt="Wheel Balancer" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>SpinMaster Pro Balancer</h3>
+          <p class="product-desc">Precision wheel balancer with laser alignment</p>
+          <div class="product-meta">
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span>(28)</span>
+            </div>
+            <div class="product-stock in-stock">In Stock</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$2,899.00</div>
+          <button class="btn product-btn">View Details</button>
+        </div>
+      </div>
+      
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-badge">Limited</div>
+        <div class="product-img">
+          <img src="a-website-header-image-for-an-automotive_QkFwqvV-SS6n4ggpE6deCw_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Oil Drain System" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>EcoDrain 5000</h3>
+          <p class="product-desc">Closed-loop oil drainage with 50-gallon capacity</p>
+          <div class="product-meta">
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>(65)</span>
+            </div>
+            <div class="product-stock low-stock">Low Stock</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$1,750.00</div>
+          <button class="btn product-btn">View Details</button>
+        </div>
+      </div>
+      
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-img">
+          <img src="a-full-screen-background-image-for-an-au_l_ZOgvaPT0CRB8PN-OA2SA_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Tire Changer" loading="lazy">
+        </div>
+        <div class="product-info">
+          <h3>TorqueMaster TC-450</h3>
+          <p class="product-desc">Heavy-duty tire changer for trucks and SUVs</p>
+          <div class="product-meta">
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(37)</span>
+            </div>
+            <div class="product-stock in-stock">In Stock</div>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">$4,250.00</div>
+          <button class="btn product-btn">View Details</button>
+        </div>
+      </div>
+    </div>
+    
+<!-- In your Featured Products section, replace the view-all div with this: -->
+<div class="view-all">
+  <a href="#product-categories" class="btn btn-outline">View All Product Categories</a>
+</div>
+  </div>
+</section>
   <!-- REVIEWS -->
 <!-- Reviews Section -->
 <section class="reviews-section">
