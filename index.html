@@ -127,46 +127,158 @@
 
 
     /* Hero Section */
-    .hero {
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(rgba(11,11,11,0.7), rgba(11,11,11,0.7)),
-      url('a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg') no-repeat center center/cover;
-        color: var(--light-cipollino);
-      text-align: center;
-      position: relative;
-      margin-top: 70px;
-    }
+/* Hero Section */
+.hero {
+  height: 100vh;
+  min-height: 500px;
+  position: relative;
+  background: var(--blackadder);
+  color: var(--light-cipollino);
+  overflow: hidden;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+.hero-slideshow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+}
 
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
+.hero-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+}
 
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
+.hero-slide.active {
+  opacity: 1;
+}
 
-    .hero-btns {
-      color: var(--light-cipollino);
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-slide-1 {
+  background-image: url('a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg');
+}
+
+.hero-slide-2 {
+  background-image: url('a-full-screen-background-image-for-an-au_l_ZOgvaPT0CRB8PN-OA2SA_EY_hQT9GQxWQAgvhufGrtA.jpeg');
+}
+
+.hero-slide-3 {
+  background-image: url('a-website-header-image-for-an-automotive_QkFwqvV-SS6n4ggpE6deCw_EY_hQT9GQxWQAgvhufGrtA.jpeg');
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 48%;
+  transform: translateY(-80%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-arrow:hover {
+  background: var(--accent);
+}
+
+.hero-arrow-left {
+  left: 20px;
+}
+
+.hero-arrow-right {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    min-height: 600px;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-btns {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+
+  .hero-arrow {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9rem;
+  }
+}
 
     /* Categories Section */
     .categories {
@@ -218,6 +330,171 @@
       color: var(--fifty-grey);
       margin-bottom: 1rem;
     }
+    /* reVIEWS */
+  /* Reviews Section Styles */
+  .reviews-section {
+    background-color: var(--light-cipollino);
+    padding: 5rem 0;
+  }
+
+  .reviews-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .reviews-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .reviews-title h2 {
+    color: var(--blackadder);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .reviews-title p {
+    color: var(--blackadder);
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.8;
+  }
+
+  .reviews-carousel {
+    position: relative;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .review-cards {
+    position: relative;
+    height: 350px;
+  }
+
+  .review-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .review-card.active {
+    opacity: 1;
+  }
+
+  .review-content {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  .review-content::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: var(--accent);
+    opacity: 0.1;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .review-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: var(--fifty-grey);
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 3px solid var(--accent);
+  }
+
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .author-info h4 {
+    color: var(--blackadder);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+  }
+
+  .author-info p {
+    color: var(--grey-tote);
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .review-rating {
+    color: #ffc107;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+
+  .review-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 10px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--grey-clouds);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    .review-content {
+      padding: 30px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .review-content {
+      padding: 25px 20px;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .review-text {
+      font-size: 1rem;
+    }
+  }
 
     /* Slideshow Section */
     .slideshow {
@@ -513,7 +790,9 @@
       display: flex;
       align-items: flex-start;
     }
-
+    .footer-contact a:hover{
+      color: var(--accent);
+    }
     .footer-contact i {
       margin-right: 10px;
       color: var(--accent);
@@ -1090,9 +1369,9 @@
                   <a href="#">PRODUCTS</a>
                   <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
                   <ul class="htmlCss-sub-menu sub-menu">
-                    <li><a href="newproducts.html">P1</a></li>
-                    <li><a href="products.html">P2</a></li>
-                    <li><a href="products1.html">P3</a></li>
+                    <li><a href="Lifts.html">Lifts</a></li>
+                    <li><a href="Tire&Wheel_Equipment.html">Tire&Wheel Equipment</a></li>
+                    <li><a href="Shop_Equipment.html">Shop Equipment</a></li>
               
                   </ul>
                 </li>
@@ -1109,17 +1388,49 @@
           </div>
         </nav>
       <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Premium Industrial Equipment Solutions</h1>
-      <p>Your trusted partner for high-quality machinery and tools with unmatched reliability and performance</p>
-      <div class="hero-btns">
-        <a href="#product-categories" class="btn">Explore Products</a> <!-- Updated href -->
-        <a href="contactus.html" class="btn btn-outline">Contact Us</a>
-      </div>
-      
-    </div>
-  </section>
+      <section class="hero">
+        <div class="hero-slideshow">
+          <div class="hero-slide hero-slide-1 active">
+            <div class="hero-content">
+              <h1>Premium Commercial Equipment Solutions</h1>
+              <p>Your trusted partner for high-quality machinery and tools with unmatched reliability and performance</p>
+              <div class="hero-btns">
+                <a href="#product-categories" class="btn">Explore Products</a>
+                <a href="contactus.html" class="btn btn-outline">Contact Us</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-slide hero-slide-2">
+            <div class="hero-content">
+              <h1>Industry-Leading Equipment</h1>
+              <p>Discover our range of professional tools designed for durability and efficiency in demanding environments</p>
+              <div class="hero-btns">
+                <a href="#product-categories" class="btn">Explore Products</a>
+                <a href="contactus.html" class="btn btn-outline">Contact Us</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-slide hero-slide-3">
+            <div class="hero-content">
+              <h1>Expert Support & Service</h1>
+              <p>We don't just sell equipment - we provide complete solutions with training and ongoing support</p>
+              <div class="hero-btns">
+                <a href="#product-categories" class="btn">Explore Products</a>
+                <a href="contactus.html" class="btn btn-outline">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-arrow hero-arrow-left">
+          <i class="fas fa-arrow-circle-left"></i> <!-- Alternative icon -->
+        </div>
+        <div class="hero-arrow hero-arrow-right">
+          <i class="fas fa-arrow-circle-right"></i> <!-- Alternative icon -->
+        </div>
+      </section>
   <!--our mission-->
   <section class="our-mission" >
     <div class="container">
@@ -1146,9 +1457,9 @@
             <img src="a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg" alt="Heavy Machinery">
           </div>
           <div class="category-content">
-            <h3>Heavy Machinery</h3>
+            <h3>Lifts</h3>
             <p>Powerful equipment for construction and industrial applications</p>
-            <a href="newproducts.html" class="btn">View Products</a>
+            <a href="Lifts.html" class="btn">View Products</a>
           </div>
         </div>
         
@@ -1157,9 +1468,9 @@
             <img src="a-full-screen-background-image-for-an-au_l_ZOgvaPT0CRB8PN-OA2SA_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Industrial Tools">
           </div>
           <div class="category-content">
-            <h3>Industrial Tools</h3>
+            <h3>Tire and Wheel Equipment</h3>
             <p>Professional grade tools for precision and durability</p>
-            <a href="products.html" class="btn">View Products</a>
+            <a href="Tire&Wheel_Equipment.html" class="btn">View Products</a>
           </div>
         </div>
         
@@ -1168,68 +1479,132 @@
             <img src="a-website-header-image-for-an-automotive_QkFwqvV-SS6n4ggpE6deCw_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Safety Equipment">
           </div>
           <div class="category-content">
-            <h3>Safety Equipment</h3>
+            <h3>Shop Equipment</h3>
             <p>Protective gear to ensure workplace safety</p>
-            <a href="products1.html" class="btn">View Products</a>
+            <a href="Shop_Equipment.html" class="btn">View Products</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Slideshow Section -->
-  <section class="slideshow-section">
-    <div class="container">
-      <div class="section-title">
-        <h2 style="color: var(--blackadder);">Reviews</h2>
-        <p style="color: var(--blackadder);">Discover our top-rated equipment trusted by professionals worldwide</p>
+  <!-- REVIEWS -->
+<!-- Reviews Section -->
+<section class="reviews-section">
+  <div class="reviews-container">
+    <div class="reviews-title">
+      <h2>Customer Reviews</h2>
+      <p>What our clients say about our products and services</p>
+    </div>
+    
+    <div class="reviews-carousel">
+      <!-- Review Cards -->
+      <div class="review-cards">
+        <!-- Review 1 -->
+        <div class="review-card active">
+          <div class="review-content">
+            <div class="review-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"The equipment we purchased has transformed our workshop operations. The quality is outstanding and their customer service is exceptional. Highly recommended!"</p>
+            <div class="review-author">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
+              </div>
+              <div class="author-info">
+                <h4>John Smith</h4>
+                <p>Workshop Manager, AutoPro Services</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div class="review-content">
+            <div class="review-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="review-text">"We've been using these lifts for over 3 years with zero issues. The durability is impressive and their technical support team is always available when needed."</p>
+            <div class="review-author">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+              </div>
+              <div class="author-info">
+                <h4>Sarah Johnson</h4>
+                <p>Owner, Johnson Auto Care</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!--review 4-->
+        <div class="review-card">
+          <div class="review-content">
+            <div class="review-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="review-text">"We've been using these lifts for over 3 years with zero issues. The durability is impressive and their technical support team is always available when needed."</p>
+            <div class="review-author">
+              <div class="author-avatar">
+                <img src="user.png" alt="Sarah Johnson">
+              </div>
+              <div class="author-info">
+                <h4>Sarah Johnson</h4>
+                <p>Owner, Johnson Auto Care</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div class="review-content">
+            <div class="review-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"The tire changing equipment increased our productivity by 40%. Installation was smooth and the training was comprehensive. Will definitely purchase again."</p>
+            <div class="review-author">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael Chen">
+              </div>
+              <div class="author-info">
+                <h4>Michael Chen</h4>
+                <p>Service Director, QuickTire Chain</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <div class="slideshow">
-        <div class="slide active">
-          <div class="slide-img">
-            <img src="a-full-screen-background-image-for-an-au_l_ZOgvaPT0CRB8PN-OA2SA_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Industrial Excavator">
-          </div>
-          <div class="slide-content">
-            <h3>Premium Excavators</h3>
-            <p>Our heavy-duty excavators deliver unmatched performance in the most demanding conditions. Built with advanced technology for maximum efficiency and durability.</p>
-            <p>Features include enhanced fuel efficiency, superior digging force, and operator comfort.</p>
-            <!-- <a href="#" class="btn">Learn More</a> -->
-          </div>
-        </div>
-        
-        <div class="slide">
-          <div class="slide-img">
-            <img src="a-full-width-landing-page-background-ima_BqG2LSyPQPCZrBz4cCrX2w_-h3OLVWmRBahSDi4E9ePsw.jpeg" alt="Power Tools">
-          </div>
-          <div class="slide-content">
-            <h3>Professional Power Tools</h3>
-            <p>The most reliable power tools for industrial applications. Engineered for precision and long-lasting performance.</p>
-            <p>Our tools feature brushless motors, advanced battery technology, and ergonomic designs.</p>
-            <!-- <a href="#" class="btn">Learn More</a> -->
-          </div>
-        </div>
-        
-        <div class="slide">
-          <div class="slide-img">
-            <img src="a-website-header-image-for-an-automotive_QkFwqvV-SS6n4ggpE6deCw_EY_hQT9GQxWQAgvhufGrtA.jpeg" alt="Safety Gear">
-          </div>
-          <div class="slide-content">
-            <h3>Advanced Safety Equipment</h3>
-            <p>Protect your workforce with our certified safety gear. Comfortable, durable, and compliant with all safety standards.</p>
-            <p>Includes helmets, protective eyewear, high-visibility clothing, and respiratory protection.</p>
-            <!-- <a href="#" class="btn">Learn More</a> -->
-          </div>
-        </div>
-        
-        <div class="slide-indicators">
-          <div class="indicator active" data-slide="0"></div>
-          <div class="indicator" data-slide="1"></div>
-          <div class="indicator" data-slide="2"></div>
-        </div>
+      <!-- Navigation Dots -->
+      <div class="review-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+  <!--Footer-->
   <footer>
     <div class="footer-container">
       <div class="footer-about">
@@ -1238,13 +1613,13 @@
           <span class="footer-logo-text">ProEquipment Center</span>
         </div>
         <p>Providing high-quality professional equipment since 2010. We're committed to excellence in every product we offer.</p>
-        <div class="footer-social">
+        <!-- <div class="footer-social">
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
           <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
+        </div> -->
       </div>
 
       <div class="footer-links">
@@ -1257,9 +1632,9 @@
               <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
             </div>
             <ul class="footer-dropdown">
-              <li><a href="newproducts.html">Product Category 1</a></li>
-              <li><a href="products.html">Product Category 2</a></li>
-              <li><a href="products1.html">Product Category 3</a></li>
+              <li><a href="Lifts.html">Lifts</a></li>
+              <li><a href="Tire&Wheel_Equipment.html">Tire&Wheel Equipment</a></li>
+              <li><a href="Shop_Equipment.html">Shop Equipment</a></li>
             </ul>
           </li>
           <li><a href="contactus.html">Contact Us</a></li>
@@ -1269,19 +1644,28 @@
       <div class="footer-contact">
         <h3>Contact Us</h3>
         <p><i class="fas fa-map-marker-alt"></i> 123 Equipment Street, Industrial Area, City, Country 12345</p>
-        <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
-        <p><i class="fas fa-envelope"></i> info@proequipment.com</p>
-        <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
+        <p>
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+16477690241">+1 647 769 0241</a>
+        </p>
+        <p>
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:Info@proequipmentcentre.com">
+            Info@proequipmentcentre.com
+          </a>
+        </p>
+        
+        <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 5:00 PM</p>
       </div>
 
-      <div class="footer-newsletter">
+      <!-- <div class="footer-newsletter">
         <h3>Newsletter</h3>
         <p>Subscribe to our newsletter for the latest products, offers, and industry news.</p>
         <form class="newsletter-form" id="newsletterForm">
           <input type="email" placeholder="Your email address" required>
           <button type="submit">Subscribe</button>
         </form>
-      </div>
+      </div> -->
     </div>
 
     <div class="footer-bottom">
@@ -1289,63 +1673,119 @@
     </div>
   </footer>
   <script>
-    // Slideshow functionality - Corrected version
+
+  
     document.addEventListener('DOMContentLoaded', function() {
-      const slides = document.querySelectorAll('.slide');
-      const indicators = document.querySelectorAll('.indicator');
-      let currentSlide = 0;
-      let slideInterval;
-      
-      function showSlide(index) {
-          // Reset all slides and indicators
-          slides.forEach(slide => slide.classList.remove('active'));
-          indicators.forEach(indicator => indicator.classList.remove('active'));
-          
-          // Show the selected slide
-          slides[index].classList.add('active');
-          indicators[index].classList.add('active');
-          currentSlide = index;
+      const cards = document.querySelectorAll('.review-card');
+      const dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+      let interval;
+  
+      // Function to show specific card
+      function showCard(index) {
+        // Hide all cards
+        cards.forEach(card => card.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Show selected card
+        cards[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
       }
-      
-      function nextSlide() {
-          currentSlide = (currentSlide + 1) % slides.length;
-          showSlide(currentSlide);
+  
+      // Function to show next card
+      function nextCard() {
+        const nextIndex = (currentIndex + 1) % cards.length;
+        showCard(nextIndex);
       }
-      
-      // Initialize the slideshow
-      function startSlideshow() {
-          showSlide(0); // Show first slide initially
-          slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  
+      // Auto-rotate cards every 5 seconds
+      function startCarousel() {
+        interval = setInterval(nextCard, 5000);
       }
-      
-      // Click event for indicators
-      indicators.forEach(indicator => {
-          indicator.addEventListener('click', function() {
-              const slideIndex = parseInt(this.getAttribute('data-slide'));
-              showSlide(slideIndex);
-              // Reset the timer when manually changing slides
-              clearInterval(slideInterval);
-              slideInterval = setInterval(nextSlide, 5000);
-          });
+  
+      // Dot navigation
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          clearInterval(interval);
+          const index = parseInt(this.getAttribute('data-index'));
+          showCard(index);
+          startCarousel();
+        });
       });
-      
+  
       // Pause on hover
-      const slideshow = document.querySelector('.slideshow');
-      if (slideshow) {
-          slideshow.addEventListener('mouseenter', () => {
-              clearInterval(slideInterval);
-          });
-          
-          slideshow.addEventListener('mouseleave', () => {
-              clearInterval(slideInterval);
-              slideInterval = setInterval(nextSlide, 5000);
-          });
-      }
-      
-      // Start the slideshow
-      startSlideshow();
+      const carousel = document.querySelector('.reviews-carousel');
+      carousel.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+      });
+  
+      carousel.addEventListener('mouseleave', () => {
+        startCarousel();
+      });
+  
+      // Initialize
+      showCard(0);
+      startCarousel();
+    });
+
+
+
+
+
+// Hero Slideshow
+document.addEventListener('DOMContentLoaded', function() {
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroPrevBtn = document.querySelector('.hero-arrow-left');
+  const heroNextBtn = document.querySelector('.hero-arrow-right');
+  let heroCurrentIndex = 0;
+  let heroSlideInterval;
+
+  function showHeroSlide(index) {
+    heroSlides.forEach(slide => slide.classList.remove('active'));
+    heroSlides[index].classList.add('active');
+    heroCurrentIndex = index;
+  }
+
+  function nextHeroSlide() {
+    heroCurrentIndex = (heroCurrentIndex + 1) % heroSlides.length;
+    showHeroSlide(heroCurrentIndex);
+  }
+
+  function prevHeroSlide() {
+    heroCurrentIndex = (heroCurrentIndex - 1 + heroSlides.length) % heroSlides.length;
+    showHeroSlide(heroCurrentIndex);
+  }
+
+  function startHeroSlideshow() {
+    heroSlideInterval = setInterval(nextHeroSlide, 5000);
+  }
+
+  heroNextBtn.addEventListener('click', () => {
+    clearInterval(heroSlideInterval);
+    nextHeroSlide();
+    heroSlideInterval = setInterval(nextHeroSlide, 5000);
   });
 
+  heroPrevBtn.addEventListener('click', () => {
+    clearInterval(heroSlideInterval);
+    prevHeroSlide();
+    heroSlideInterval = setInterval(nextHeroSlide, 5000);
+  });
+
+  // Pause on hover
+  const heroSection = document.querySelector('.hero');
+  heroSection.addEventListener('mouseenter', () => {
+    clearInterval(heroSlideInterval);
+  });
+
+  heroSection.addEventListener('mouseleave', () => {
+    clearInterval(heroSlideInterval);
+    heroSlideInterval = setInterval(nextHeroSlide, 3000);
+  });
+
+  startHeroSlideshow();
+});
     // search-box open close js code
     let navbar = document.querySelector(".navbar");
     let searchBox = document.querySelector(".search-box .bx-search");
