@@ -225,156 +225,207 @@
       border-color: var(--fifty-grey);
     }
 
-    /* Product Detail Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
+   /* Product Detail Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
 
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
 
-    .product-modal {
-      background: #f7f7ee;
-      width: 90%;
-      max-width: 800px;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      transform: translateY(-20px);
-      transition: transform 0.3s ease;
-    }
+.product-modal {
+  background: #f7f7ee;
+  width: 90%;
+  max-width: 1000px; /* Increased max-width for better horizontal layout */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
 
-    .modal-overlay.active .product-modal {
-      transform: translateY(0);
-    }
+.modal-overlay.active .product-modal {
+  transform: translateY(0);
+}
 
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--fifty-grey);
-      z-index: 10;
-    }
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--fifty-grey);
+  z-index: 10;
+}
 
-    .modal-content {
-      display: flex;
-      flex-direction: column;
-    }
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
 
-    @media (min-width: 768px) {
-      .modal-content {
-        flex-direction: row;
-      }
-    }
+@media (min-width: 992px) {
+  .modal-content {
+    flex-direction: row;
+  }
+}
 
-    .modal-image {
-      flex: 1;
-      min-height: 300px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px 10px 0 0;
-    }
+.modal-image {
+  flex: 1;
+  min-height: 300px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f7f7ee;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .modal-details {
-      flex: 1;
-      padding: 2rem;
-    }
+@media (min-width: 992px) {
+  .modal-image {
+    min-height: 400px;
+    border-right: 1px solid var(--grey-clouds);
+  }
+}
 
-    .modal-category {
-      color: var(--accent-blue);
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.modal-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 
-    .modal-name {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--blackadder);
-    }
+.modal-details {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 40px);
+}
 
-    .modal-price {
-      font-weight: 700;
-      color: var(--fifty-grey);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
+.modal-category {
+  color: var(--accent-blue);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .modal-description {
-      color: var(--grey-tote);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
+.modal-name {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--blackadder);
+}
 
-    .modal-specs {
-      margin-bottom: 1.5rem;
-    }
+.modal-price {
+  font-weight: 700;
+  color: var(--fifty-grey);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 
-    .specs-title {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: var(--chaos-black);
-      border-bottom: 1px solid var(--grey-clouds);
-      padding-bottom: 0.5rem;
-    }
+.modal-description {
+  color: var(--grey-tote);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
 
-    .specs-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-    }
+.modal-specs {
+  margin-bottom: 1.5rem;
+}
 
-    .spec-item {
-      display: flex;
-      gap: 0.5rem;
-    }
+.specs-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--chaos-black);
+  border-bottom: 1px solid var(--grey-clouds);
+  padding-bottom: 0.5rem;
+}
 
-    .spec-label {
-      font-weight: 600;
-      color: var(--fifty-grey);
-    }
+.specs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
 
-    .modal-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+.spec-item {
+  display: flex;
+  gap: 0.5rem;
+}
 
-    .contact-btn {
-      background-color: var(--accent-red);
-      color: var(--light-cipollino);
-      border: none;
-      padding: 0.8rem 1.5rem;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+.spec-label {
+  font-weight: 600;
+  color: var(--fifty-grey);
+}
 
-    .contact-btn:hover {
-      background-color: #2b2e2c;
-    }
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  background-color: var(--accent-red);
+  color: var(--light-cipollino);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 50px;
+  justify-content: center;
+}
+
+.contact-btn a {
+  color: var(--light-cipollino);
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  background-color: #2b2e2c;
+}
+
+.view-btn {
+  background-color: var(--accent-blue);
+  color: var(--light-cipollino);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.view-btn:hover {
+  background-color: #861237;
+}
 
     /* Existing Navbar Styles */
     nav{
@@ -1071,13 +1122,13 @@ color: var(--grey-clouds);
           </div>
           
           <div class="modal-actions">
-         <button class="contact-btn">
-              <i class='bx bx-phone'></i> Contact Us
-            </button>
-            <a href="contactus.html" style="text-decoration: none;">  <button class="view-btn" id="requestQuote">
-              <i class='bx bx-file'></i> Request Quote
-            </button></a>
-          </div>
+            <button class="contact-btn">
+                 <i class='bx bx-phone'></i> <a href="tel:+16477690241">Call Us</a>
+               </button>
+               <a href="contactus.html" style="text-decoration: none;">  <button class="view-btn" id="requestQuote">
+                 <i class='bx bx-file'></i> Contact Us
+               </button></a>
+             </div>
         </div>
       </div>
     </div>
@@ -1154,246 +1205,995 @@ color: var(--grey-clouds);
     // Product Data - 15 products for pagination demo
     const products = [
       {
-        id: 1,
-        name: "ProScan X9000 Diagnostic Scanner",
-        category: "Diagnostic Tools",
-        price: 1299.99,
-        image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Advanced OBD2 scanner with full system diagnostics for all makes and models. Features include live data streaming, module coding, and advanced diagnostics.",
-        specs: [
-          { label: "Compatibility", value: "All makes & models" },
-          { label: "Screen", value: "7-inch touchscreen" },
-          { label: "Connectivity", value: "Wi-Fi, Bluetooth" },
-          { label: "Battery", value: "8 hours" },
-          { label: "Weight", value: "2.5 lbs" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 2,
-        name: "10,000 lb Hydraulic Lift",
-        category: "Lifting Equipment",
-        price: 3499.99,
-        image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Heavy-duty two-post lift with asymmetric design for easy vehicle access. Features include automatic safety locks, low-profile arms, and durable construction.",
-        specs: [
-          { label: "Capacity", value: "10,000 lbs" },
-          { label: "Lift Type", value: "Two-post asymmetric" },
-          { label: "Max Height", value: "78 inches" },
-          { label: "Power", value: "220V/3-phase" },
-          { label: "Installation", value: "Professional required" },
-          { label: "Warranty", value: "5 years" }
-        ]
-      },
-      {
-        id: 3,
-        name: "ProTire 5000 Changer",
-        category: "Tire Service",
-        price: 2199.99,
-        image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Professional tire changer with bead breaker and rim clamp for all wheel types. Designed for high-volume shops with quick change capabilities.",
-        specs: [
-          { label: "Rim Size", value: "10-24 inches" },
-          { label: "Motor Power", value: "1.5 HP" },
-          { label: "Air Pressure", value: "90-120 PSI" },
-          { label: "Weight", value: "550 lbs" },
-          { label: "Dimensions", value: "48x36x48 inches" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 4,
-        name: "Precision Wheel Balancer",
-        category: "Tire Service",
-        price: 1799.99,
-        image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Computerized wheel balancer with dynamic measurement technology. Features include alloy wheel mode, static/dynamic balancing, and quick calibration.",
-        specs: [
-          { label: "Wheel Size", value: "10-24 inches" },
-          { label: "Max Weight", value: "150 lbs" },
-          { label: "Accuracy", value: "±0.01 oz" },
-          { label: "Display", value: "8-inch color LCD" },
-          { label: "Power", value: "110V/220V" },
-          { label: "Warranty", value: "2 years" }
-        ]
-      },
-      {
-        id: 5,
-        name: "ProTool 72\" Roll Cabinet",
-        category: "Shop Equipment",
-        price: 2899.99,
-        image: "https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Heavy-duty tool storage with 16 drawers and stainless steel top. Features include ball-bearing slides, locking system, and reinforced construction.",
-        specs: [
-          { label: "Drawers", value: "16" },
-          { label: "Weight Capacity", value: "3,000 lbs" },
-          { label: "Dimensions", value: "72x24x42 inches" },
-          { label: "Material", value: "18-gauge steel" },
-          { label: "Color", value: "Red/Black" },
-          { label: "Warranty", value: "Lifetime" }
-        ]
-      },
-      {
-        id: 6,
-        name: "Industrial Air Compressor",
-        category: "Shop Equipment",
-        price: 2499.99,
-        image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "80-gallon two-stage compressor with 7.5HP motor for continuous operation. Features include low RPM pump, thermal protection, and automatic drain.",
-        specs: [
-          { label: "Tank Size", value: "80 gallons" },
-          { label: "Motor Power", value: "7.5 HP" },
-          { label: "PSI", value: "175 max" },
-          { label: "CFM", value: "18.1 @ 90 PSI" },
-          { label: "Noise Level", value: "78 dBA" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 7,
-        name: "Laser Wheel Alignment System",
-        category: "Tire Service",
-        price: 5999.99,
-        image: "https://images.unsplash.com/photo-1581093458799-efb7b0c3f5e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Advanced laser alignment system with 3D imaging technology for precise measurements and quick setup.",
-        specs: [
-          { label: "Technology", value: "3D Laser Imaging" },
-          { label: "Accuracy", value: "±0.01°" },
-          { label: "Setup Time", value: "Under 5 minutes" },
-          { label: "Compatibility", value: "All vehicles" },
-          { label: "Display", value: "24-inch HD monitor" },
-          { label: "Warranty", value: "5 years" }
-        ]
-      },
-      {
-        id: 8,
-        name: "Professional Brake Lathe",
-        category: "Shop Equipment",
-        price: 3499.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "On-car brake lathe for precision resurfacing of rotors without removal. Features automatic feed and digital measurements.",
-        specs: [
-          { label: "Max Rotor Size", value: "18 inches" },
-          { label: "Min Rotor Size", value: "8 inches" },
-          { label: "Power", value: "1/2 HP motor" },
-          { label: "Runout Correction", value: "0.0005 inches" },
-          { label: "Weight", value: "85 lbs" },
-          { label: "Warranty", value: "2 years" }
-        ]
-      },
-      {
-        id: 9,
-        name: "Heavy Duty Transmission Jack",
-        category: "Lifting Equipment",
-        price: 1299.99,
-        image: "https://images.unsplash.com/photo-1581092582650-4e0d0a4d4e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Low-profile transmission jack with 1500 lb capacity and adjustable arms for secure transmission handling.",
-        specs: [
-          { label: "Capacity", value: "1500 lbs" },
-          { label: "Min Height", value: "7.5 inches" },
-          { label: "Max Height", value: "48 inches" },
-          { label: "Platform Size", value: "24x18 inches" },
-          { label: "Wheels", value: "4 swivel casters" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 10,
-        name: "Professional Oil Drain System",
-        category: "Shop Equipment",
-        price: 899.99,
-        image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Mobile oil drain system with 30-gallon capacity, drum dolly, and spill containment for efficient oil changes.",
-        specs: [
-          { label: "Capacity", value: "30 gallons" },
-          { label: "Hose Length", value: "15 feet" },
-          { label: "Drum Size", value: "30 gallon" },
-          { label: "Material", value: "Steel construction" },
-          { label: "Wheels", value: "Heavy-duty casters" },
-          { label: "Warranty", value: "2 years" }
-        ]
-      },
-      {
-        id: 11,
-        name: "Engine Hoist Crane",
-        category: "Lifting Equipment",
-        price: 899.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "2-ton folding engine hoist with adjustable boom and hydraulic pump for engine removal and installation.",
-        specs: [
-          { label: "Capacity", value: "2 tons" },
-          { label: "Boom Length", value: "48 inches" },
-          { label: "Min Height", value: "33 inches" },
-          { label: "Max Height", value: "76 inches" },
-          { label: "Foldable", value: "Yes" },
-          { label: "Warranty", value: "2 years" }
-        ]
-      },
-      {
-        id: 12,
-        name: "Digital Battery Tester",
-        category: "Diagnostic Tools",
-        price: 499.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Advanced battery and charging system tester with color display and print capability for comprehensive diagnostics.",
-        specs: [
-          { label: "Compatibility", value: "6V/12V systems" },
-          { label: "Tests", value: "Battery, starter, alternator" },
-          { label: "Display", value: "5-inch color LCD" },
-          { label: "Print Capability", value: "Yes" },
-          { label: "Battery", value: "Rechargeable" },
-          { label: "Warranty", value: "1 year" }
-        ]
-      },
-      {
-        id: 13,
-        name: "Professional Scan Tool",
-        category: "Diagnostic Tools",
-        price: 1999.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "All-system diagnostic tool with bidirectional controls, programming capability, and online updates.",
-        specs: [
-          { label: "Coverage", value: "All systems" },
-          { label: "Display", value: "10-inch touchscreen" },
-          { label: "Connectivity", value: "Wi-Fi, USB" },
-          { label: "Bidirectional", value: "Yes" },
-          { label: "Updates", value: "Lifetime" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 14,
-        name: "Tire Inflator with Gauge",
-        category: "Tire Service",
-        price: 299.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Heavy-duty digital tire inflator with 200 PSI capacity and automatic shutoff for precise inflation.",
-        specs: [
-          { label: "Max PSI", value: "200" },
-          { label: "Gauge Type", value: "Digital" },
-          { label: "Hose Length", value: "24 inches" },
-          { label: "Power", value: "12V DC" },
-          { label: "Auto Shutoff", value: "Yes" },
-          { label: "Warranty", value: "1 year" }
-        ]
-      },
-      {
-        id: 15,
-        name: "Shop Crane with Stand",
-        category: "Shop Equipment",
-        price: 1499.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Adjustable engine stand with 1000 lb capacity and 360-degree rotation for engine rebuilding.",
-        specs: [
-          { label: "Capacity", value: "1000 lbs" },
-          { label: "Rotation", value: "360 degrees" },
-          { label: "Mounting Arms", value: "4 adjustable" },
-          { label: "Base", value: "Tripod design" },
-          { label: "Wheels", value: "4 locking casters" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      }
-    ];
+  "id": 1,
+  "name": "ATLAS 12ASL 12,000 Lbs. Capacity Commercial Grade Alignment Scissor Lift",
+  "category": "Tools",
+  "price": 1299.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS 12ASL 12,000 Lbs. Capacity Commercial Grade Alignment Scissor Lift.jpg",
+  "description": "Heavy-duty alignment scissor lift with precision leveling and dual mounting options. Features air-locks, overload protection, and safety systems.",
+  "specs": [
+    { "label": "Capacity", "value": "12,000 lbs" },
+    { "label": "Mounting Options", "value": "Surface or flush mount" },
+    { "label": "Leveling Accuracy", "value": "Very precise platform leveling" },
+    { "label": "Safety Lock", "value": "Mechanical with air-operated control" },
+    { "label": "Manual Lowering", "value": "Emergency manual pump included" },
+    { "label": "Overload Protection", "value": "Overload valve included" },
+    { "label": "Air Line Kit", "value": "Included" },
+    { "label": "Lowering Control", "value": "Speed control valve included" },
+    { "label": "Turntables", "value": "Recessed with covers (color may vary)" },
+    { "label": "Shipping Dimensions", "value": "(2 boxes) 198\" x 53\" x 29.5\"" }
+  ]
+},
+{
+  "id": 2,
+  "name": "ATLAS 12ASL/12AWFSL Runway Extension Kit",
+  "category": "Tools",
+  "price": 3499.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS 12ASL-12AWFSL Runway Extension Kit.jpg",
+  "description": "Adds 24\" to Atlas 12ASL and 12AWFSL lift runways to support vehicles up to 196\" wheelbase. Bolt-on design with one-hour install time.",
+  "specs": [
+    { "label": "Extension Length", "value": "24 inches" },
+    { "label": "Compatible Models", "value": "Atlas 12ASL, 12AWFSL" },
+    { "label": "Extended Wheelbase Capacity", "value": "Up to 196 inches" },
+    { "label": "Installation Tools", "value": "1/2\" drill, 21/32\" bit" },
+    { "label": "Installation Time", "value": "Approximately 1 hour" },
+    { "label": "Mounting Method", "value": "Bolt-on" },
+    { "label": "Notes", "value": "Rolling jacks won’t pass original runway front" }
+  ]
+},
+{
+  "id": 3,
+  "name": "ATLAS 12AWFSL 12,000 Lbs. Capacity Alignment Scissor Lift with Wheels-Free System",
+  "category": "Tools",
+  "price": 2199.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS 12AWFSL 12,000 Lbs. Capacity Alignment Scissor Lift with Wheels-Free System.jpg",
+  "description": "Heavy-duty 12K lb scissor lift with wheels-free system, surface or flush mount, and extra-long ramps for low vehicles.",
+  "specs": [
+    { "label": "Lifting Capacity", "value": "12,000 lbs" },
+    { "label": "Lifting Height", "value": "84 1/4 inches" },
+    { "label": "Overall Width", "value": "86 3/8 inches" },
+    { "label": "Overall Length", "value": "250 inches with ramps" },
+    { "label": "Alignment Wheelbase", "value": "86–172 inches" },
+    { "label": "Electrical", "value": "220V, single phase, 30A" },
+    { "label": "Mount Type", "value": "Surface or flush mount" },
+    { "label": "Wheels-Free Jack Height", "value": "17 inches" },
+    { "label": "Runway Width", "value": "23 3/4 inches" },
+    { "label": "Lowered Height", "value": "11 1/2 inches" },
+    { "label": "Warranty", "value": "2 years structural, 1 year parts/electrical" }
+  ]
+},
+{
+  "id": 4,
+  "name": "Alignment/ATLAS 14,000lbs Capacity Lift with Bolt-on Alignment Kit and Two Rolling Jacks",
+  "category": "Tire Service",
+  "price": 1799.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS 14,000lbs Capacity Lift with Bolt-on Alignment Kit and Two Rolling Jacks.jpg",
+  "description": "14,000 lb lift with bolt-on kit and rolling jacks for alignments.",
+  "specs": []
+},
+{
+  "id": 5,
+  "name": "ATLAS Alignment Calibration Bar (801)",
+  "category": "Shop Equipment",
+  "price": 2899.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Alignment Calibration Bar (801).jpg",
+  "description": "Fixture system for in-shop sensor calibration of Atlas Edge 801.",
+  "specs": [
+    { "label": "Drawers", "value": "16" },
+    { "label": "Weight Capacity", "value": "3,000 lbs" },
+    { "label": "Dimensions", "value": "72x24x42 inches" },
+    { "label": "Material", "value": "18-gauge steel" },
+    { "label": "Color", "value": "Red/Black" },
+    { "label": "Warranty", "value": "Lifetime" }
+  ]
+},
+{
+  "id": 6,
+  "name": "ATLAS Alignment Machine Vehicle Specification Data Update",
+  "category": "Shop Equipment",
+  "price": 2499.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Alignment Machine Vehicle Specification Data Update.jpg",
+  "description": "Vehicle Specification Data Update for all Atlas EDGE Alignment Machines.",
+  "specs": [
+    { "label": "Compatibility", "value": "Atlas EDGE Alignment Machines" }
+  ]
+}
+,
+{
+  "id": 7,
+  "name": "ATLAS Alignment Turntables (Pair)",
+  "category": "Tire Service",
+  "price": 5999.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Alignment Turntables (Pair).jpg",
+  "description": "High-precision alignment turntables built for use with passenger cars and light trucks. Designed for use in alignment bays or with four-post lifts to ensure smooth and accurate wheel measurements.",
+  "specs": [
+    { "label": "Vehicle Type", "value": "Passenger cars and light trucks" },
+    { "label": "Turntable Count", "value": "2 (Pair)" },
+    { "label": "Surface Finish", "value": "Color may vary" },
+    { "label": "Shipping Weight", "value": "120 lbs" },
+    { "label": "Mounting", "value": "Surface or recessed" },
+    { "label": "Construction", "value": "Heavy-duty steel" },
+    { "label": "Warranty", "value": "5 years" }
+  ]
+}
+,
+{
+  "id": 8,
+  "name": "ATLAS Bolt-On Alignment Kit",
+  "category": "Shop Equipment",
+  "price": 3499.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Bolt on Alignment Kit.jpg",
+  "description": "The Atlas Bolt-On Alignment Kit converts most four-post lifts into fully capable alignment systems. Includes turntables, slip plates, wheel stops, and ramps — ideal for both permanent or temporary installations.",
+  "specs": [
+    { "label": "Compatible With", "value": "Most 4-post above-ground lifts" },
+    { "label": "Turntables Included", "value": "2" },
+    { "label": "Slip Plates Included", "value": "2" },
+    { "label": "Wheel Stops", "value": "2 included" },
+    { "label": "Ramps", "value": "6 included" },
+    { "label": "Shipping Weight", "value": "686 lbs" },
+    { "label": "Overall Length", "value": "199 1/3 inches (5062mm)" },
+    { "label": "Overall Width", "value": "20 5/8 inches (524mm)" },
+    { "label": "Min. Wheelbase", "value": "75 2/5 inches (1915mm)" },
+    { "label": "Max. Wheelbase", "value": "148 2/3 inches (3776mm)" },
+    { "label": "Min. Turntable Recess", "value": "1.5 inches (40mm)" },
+    { "label": "Max. Turntable Recess", "value": "2 inches (50mm)" },
+    { "label": "Turntable Size", "value": "17 ¾ x 17 ¾ inches" },
+    { "label": "Mounting", "value": "Bolt-on or temporary" },
+    { "label": "Warranty", "value": "2 years" }
+  ]
+},
+{
+  "id": 9,
+  "name": "ATLAS EDGE 3-Point FastClamp 30 Extension Kit",
+  "category": "Alignment Tools",
+  "price": 1299.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS EDGE 3-Point FastClamp 30 Extension Kit.jpg",
+  "description": "The Atlas EDGE FastClamp Extension Kit increases the clamping range of Atlas EDGE 3-Point FastClamp wheel clamps from 24\" up to 30\". Ideal for larger wheels and commercial vehicles.",
+  "specs": [
+    { "label": "Extension Range", "value": "24\" to 30\"" },
+    { "label": "Includes", "value": "12 steel extension bars, 12 nuts, 24 bolts" },
+    { "label": "Compatibility", "value": "ATLAS EDGE 3-Point FastClamp Wheel Clamps" },
+    { "label": "Material", "value": "Heavy-duty steel" },
+    { "label": "Installation", "value": "Bolt-on" },
+    { "label": "Warranty", "value": "1 year" }
+  ]
+},
+{
+  "id": 10,
+  "name": "ATLAS Edge Trailer Alignment Fixture for 801 Alignment Machine",
+  "category": "Alignment Tools",
+  "price": 899.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Edge Trailer Alignment Fixture for 801 Alignment Machine.jpg",
+  "description": "The ATLAS Edge Trailer Alignment Fixture is designed to mount securely onto the 5th wheel of standard truck trailers, allowing easy and precise attachment of the Atlas Edge 801 Alignment Machine sensors.",
+  "specs": [
+    { "label": "Compatibility", "value": "Atlas Edge 801 Alignment Machine" },
+    { "label": "Mounting Location", "value": "5th Wheel of standard truck trailers" },
+    { "label": "Material", "value": "Heavy-duty steel" },
+    { "label": "Usage", "value": "Trailer sensor mounting for alignment" },
+    { "label": "Shipping Weight", "value": "45 lbs" },
+    { "label": "Warranty", "value": "1 year" }
+  ]
+},
+{
+  "id": 11,
+  "name": "ATLAS Fast Clamp Three Point 10-24 Non-Runout Wheel Clamps (Set Of 4)",
+  "category": "Alignment Tools",
+  "price": 899.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Fast Clamp Three Point 10-24 Non-Runout Wheel Clamps (Set Of 4).jpg",
+  "description": "The ATLAS Fast Clamp Three Point system provides a non-runout, tire-gripping solution for accurate and quick wheel alignment. Designed for fast setup without compromising precision, it eliminates the need for rollback compensation and ensures immediate zero runout.",
+  "specs": [
+    { "label": "Clamp Type", "value": "Three-point, non-runout" },
+    { "label": "Wheel Size Compatibility", "value": "10\" - 24\"" },
+    { "label": "Mounting", "value": "Tire grip (no rim contact)" },
+    { "label": "Runout Compensation", "value": "Not required (zero runout by design)" },
+    { "label": "Included Accessories", "value": "Tire grabbers (2 sets), pins for lipped wheels" },
+    { "label": "Quantity", "value": "Set of 4 clamps" },
+    { "label": "Warranty", "value": "1 year" }
+  ]
+}
+,
+{
+  "id": 12,
+  "name": "ATLAS Heavy Duty Truck Turntables (Pair)",
+  "category": "Alignment Tools",
+  "price": 499.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Heavy Duty Truck Turntables (Pair).jpg",
+  "description": "The Atlas Heavy Duty Truck Turntables are designed for use with commercial and heavy-duty vehicles during alignment procedures. Each pair supports up to 15,000 lbs (7,500 lbs per plate), providing stable and accurate rotational movement for front wheels during alignment adjustments.",
+  "specs": [
+    { "label": "Capacity (Per Plate)", "value": "7,500 lbs" },
+    { "label": "Total Capacity (Pair)", "value": "15,000 lbs" },
+    { "label": "Use", "value": "Front-end alignment for heavy-duty trucks" },
+    { "label": "Material", "value": "Heavy-duty steel construction" },
+    { "label": "Shipping Weight", "value": "100 lbs (pair)" }
+  ]
+}
+,
+{
+  "id": 13,
+  "name": "ATLAS Platinum PVL14OF-EXT ALI Certified Open Front Alignment Lift",
+  "category": "Lifts & Alignment",
+  "price": 1999.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Platinum PVL14OF-EXT ALI Certified Open Front Alignment Lift.jpg",
+  "description": "The Atlas Platinum PVL14OF-EXT is a heavy-duty, commercial-grade four-post open-front alignment lift with a 14,000 lb. capacity. ALI certified and equipped with built-in slip plates and turntables, this lift features extra-long runways, superior access, and a high-quality powder coat finish. Designed for professional shops, it includes a premium ALLY Hydraulic power unit and supports rolling bridge jacks for increased versatility.",
+  "specs": [
+    { "label": "Certification", "value": "ALI Certified" },
+    { "label": "Lift Capacity", "value": "14,000 lbs" },
+    { "label": "Lifting Height", "value": "73.25 inches (on locks)" },
+    { "label": "Clearance Under Runways", "value": "66.25 inches" },
+    { "label": "Runway Length", "value": "223.5 inches" },
+    { "label": "Runway Width", "value": "20 inches" },
+    { "label": "Width Between Runways", "value": "42.75 inches" },
+    { "label": "Overall Length (w/ ramps)", "value": "272.125 inches" },
+    { "label": "Overall Width (w/o motor)", "value": "140.125 inches" },
+    { "label": "Motor / Electrical", "value": "220V Single Phase, 30A Breaker Required" },
+    { "label": "Air Requirement", "value": "85–115 PSI (external air supply)" },
+    { "label": "Operation Type", "value": "Electric-Hydraulic with ALLY AL3000 Power Unit" },
+    { "label": "Approach Ramp Length", "value": "47 inches" },
+    { "label": "Drive-Thru Width", "value": "94.5 inches" },
+    { "label": "Maximum Wheelbase", "value": "203 inches" },
+    { "label": "Finish", "value": "High Quality Powder Coat" },
+    { "label": "Safety Features", "value": "Air-operated single point lock release, Double Lock Safety System" },
+    { "label": "Extras Included", "value": "Built-in Slip Plates, Turntables, Steel Ramps, Mounting Hardware" },
+    { "label": "Rolling Jack Compatibility", "value": "Yes, with Atlas® Platinum RJ7000 (sold separately)" },
+    { "label": "Shipping Weight", "value": "4,462 lbs" }
+  ]
+}
+,
+{
+  "id": 14,
+  "name": "ATLAS Scissor Lift Support Bars",
+  "category": "Tire Service",
+  "price": 299.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Scissor Lift Support Bars.jpg",
+  "description": "The Atlas Scissor Lift Support Bar System is designed to help distribute vehicle weight evenly on scissor lifts, especially for narrow frame vehicles like pickup trucks and SUVs. With adjustable lift pads and included short and tall adapters, the system ensures optimal support and easy access during service. Ideal for use with any scissor lift.",
+  "specs": [
+    { "label": "Support Capacity", "value": "8,000 lbs (when used in pairs)" },
+    { "label": "Length", "value": "88.5 inches" },
+    { "label": "Width", "value": "4 inches" },
+    { "label": "Height Without Adapters", "value": "2.75 inches" },
+    { "label": "Short Adapter Height", "value": "4 inches" },
+    { "label": "Tall Adapter Height", "value": "6 inches" },
+    { "label": "Includes", "value": "4 Short Adapters and 4 Tall Adapters" },
+    { "label": "Shipping Dimensions", "value": "97\" x 27\" x 10.5\"" },
+    { "label": "Shipping Weight", "value": "250 lbs" },
+    { "label": "Compatibility", "value": "For use with any scissor lift" }
+  ]
+},
+{
+  "id": 15,
+  "name": "ATLAS Vehicle Wheel Stands 6,000 Lbs. Capacity",
+  "category": "Shop Equipment",
+  "price": 1499.99,
+  "image": "Tire and wheel equipment/Alignment/ATLAS Vehicle Wheel Stands 6,000 Lbs. Capacity.jpg",
+  "description": "The Atlas Wheel Stands are ideal for shops with limited space, offering a 6,000 lb. capacity and perfect height for wheel alignment sensors. These stands transform your two-post or mid-rise lift into a four-post alignment setup when combined with turntables and slip plates.",
+  "specs": [
+    { "label": "Set Includes", "value": "4 Steel Wheel Stands" },
+    { "label": "Total Capacity", "value": "6,000 lbs (1,500 lbs per stand)" },
+    { "label": "Top Surface Dimensions", "value": "19.5\" x 19.5\"" },
+    { "label": "Top Steel Plating", "value": "0.38 inches thick" },
+    { "label": "Stand Height", "value": "36.5 inches" },
+    { "label": "Shipping Weight", "value": "440 lbs" }
+  ]
+},
+{
+  "id": 16,
+  "name": "Edge Express Heavy Duty Truck Alignment System",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Edge Express Heavy Duty Truck Alignment System.jpg",
+  "description": "The Ravaglioli® ‘Express’ Heavy Duty Truck Alignment System offers advanced alignment solutions for trucks, trailers, coaches, buses, and multi-axle vehicles without roll-back. Featuring a full-sized modular cabinet with a standard PC, monitor, keyboard, and printer onboard, it also supports wireless operation via a smart tablet using WiFi and Bluetooth for remote control.",
+  "specs": [
+    "Ravaglioli® Express Heavy Duty Truck Alignment System",
+    "No roll-back required for truck and trailer alignment",
+    "Full-sized modular cabinet with 24\" monitor",
+    "Easily portable between bays",
+    "PC included running Windows 10 OS with mouse, keypad, and printer",
+    "Smart tablet included for wireless operation",
+    "Wheel clamps included",
+    "WiFi operation and Bluetooth data transmission",
+    "TEQ-LINK app included",
+    "Pair of superlight alloy alignment turntables included",
+    "Calibration package included",
+    "Trailer alignment package included",
+    "1 brake pedal depressor included",
+    "1 steering wheel lock included",
+    "Vast vehicle database",
+    "Free software updates (specifications not included)",
+    "2-year limited parts warranty (excludes damage from abuse, neglect, or on-site visits)",
+    "Remote technical support available",
+    "Made in Europe",
+    "Backed by American service and support"
+  ]
+}
+,
+{
+  "id": 17,
+  "name": "Edge Mobile 1 Heavy Duty Truck Alignment System",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Edge Mobile 1 Heavy Duty Truck Alignment System.jpg",
+  "description": "The Ravaglioli® Mobile 1 Heavy Duty Truck Alignment System delivers cutting-edge wireless alignment capabilities in a single, rugged, portable case. Designed for trucks, trailers, coaches, buses, and multi-axle vehicles, this system eliminates the need for roll-back, allowing for faster, more precise alignments. Housed in a durable industrial case with built-in calibration plates, the Mobile 1 includes a rugged smart tablet and powerful wireless sensors for effortless alignment from anywhere.",
+  "specs": [
+    "Ravaglioli® Mobile 1 Heavy Duty Truck Alignment System",
+    "No roll-back required for alignments",
+    "Supports all truck and trailer axle configurations (2 to 5 axles)",
+    "Single industrial-grade custom case with casters and built-in calibration plates",
+    "Heavy-duty protective case ideal for mobile use and storage",
+    "Ruggedly designed smart tablet with Windows 10 OS included",
+    "4 Touchless wheel clamps included",
+    "WiFi and Bluetooth data transmission for wireless operation",
+    "TEQ-LINK app included",
+    "8CCD Bluetooth wireless sensor heads (each functions as a remote control)",
+    "Pair of superlight alloy alignment turntables included",
+    "Calibration package included",
+    "Trailer alignment package included",
+    "1 brake pedal depressor included",
+    "1 steering wheel lock included",
+    "Vast vehicle database included",
+    "Free software updates (specifications not included)",
+    "2-year limited parts warranty (excludes wear, damage, and on-site service)",
+    "Remote technical support available",
+    "Made in Europe",
+    "Backed by American service and support"
+  ]
+}
+,
+{
+  "id": 18,
+  "name": "Edge Mobile 2 Heavy Duty Truck Alignment System",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Edge Mobile 2 Heavy Duty Truck Alignment System.jpg",
+  "description": "The Ravaglioli® Mobile 2 Heavy Duty Truck Alignment System brings advanced wireless alignment technology to a highly portable format. Designed for trucks, trailers, buses, and multi-axle vehicles, the Mobile 2 eliminates the need for roll-back, allowing accurate alignments on the go. Housed in durable custom travel cases with built-in calibration plates, this system includes a rugged smart tablet and fast wireless sensors for easy control and fast performance—anywhere you need it.",
+  "specs": [
+    "Ravaglioli® Mobile 2 Heavy Duty Truck Alignment System",
+    "No roll-back required for alignment",
+    "Works on trucks, trailers, buses, coaches, and multi-axle configurations (2–5 axles)",
+    "Includes two custom industrial-grade cases with casters and calibrat",
+]},
+{
+  "id": 19,
+  "name": "Edge Spirit Heavy Duty Truck Alignment System",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Edge Spirit Heavy Duty Truck Alignment System.jpg",
+  "description": "The Ravaglioli® Spirit Heavy Duty Truck Alignment System delivers cutting-edge alignment capabilities for trucks, trailers, buses, coaches, and multi-axle vehicles—without the need for roll-back. Designed for high efficiency, this system features a portable trolley cart, magnetic smart tablet, wireless sensors, and full vehicle database support. Backed by U.S. service and built in Europe, it is ideal for heavy-duty shops requiring precision, speed, and flexibility.",
+  "specs": [
+    "Ravaglioli® Spirit Heavy Duty Truck Alignment System",
+    "No roll-back required for alignment",
+    "Works on trucks, trailers, buses, coaches, and multi-axle configurations (2–5 axles)",
+    "Portable trolley cart included",
+    "Magnetically backed smart tablet included",
+    "WiFi operation and Bluetooth data transmission",
+    "TEQ-LINK app included",
+    "8CCD Bluetooth wireless sensor heads (each is a full remote control)",
+    "Heavy-duty wheel clamps included",
+    "Pair of superlight alloy alignment turntables included",
+    "Calibration package included",
+    "Trailer alignment package included",
+    "1 brake pedal depressor included",
+    "1 steering wheel lock included",
+    "Vast vehicle database",
+    "Free software updates (specs not included)",
+    "Remote technical support available",
+    "2-year limited parts warranty (excludes abuse, neglect, consumables, or on-site service)",
+    "Made in Europe",
+    "Backed by American service and support"
+  ]
+},
+{
+  "id": 20,
+  "name": "Edge TD2.0 WiFi Alignment System With Deluxe Package",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Edge TD2.0 WiFi Alignment System With Deluxe Package.jpg",
+  "description": "The Ravaglioli® Edge TD2.0 WiFi Alignment System with Deluxe Package is a powerful, wireless alignment solution for any type of lift. With PC-free operation, wall-mounted storage, and robust 8CCD Bluetooth sensors, this system is accurate, compact, and ideal for modern workshops. The deluxe package includes 4-point non-runout clamps and essential accessories for full-service alignment capabilities.",
+  "specs": [
+    "Ravaglioli® TD2.0 WiFi Alignment System",
+    "Works with 2-post, scissor, 4-post (standard and non-alignment), and pit lifts",
+    "Portable and lightweight",
+    "Includes 2 storage boards for instruments and 4 wall pegs for clamps",
+    "Tablet included for wireless operation",
+    "Includes 4-point non-runout technology wheel clamps",
+    "WiFi and Bluetooth data transmission",
+    "TEQ-LINK app included",
+    "8-camera Bluetooth optical system (8CCD heads)",
+    "Pair of alignment turntables included",
+    "Two-post lift adapters included",
+    "1 brake pedal depressor included",
+    "1 steering wheel lock included",
+    "Vast vehicle database",
+    "Free software updates (does not include specifications)",
+    "Remote technical support",
+    "2-year limited parts warranty (excluding wear, abuse, or on-site visits)",
+    "Made in Europe",
+    "Backed by American service and support"
+  ]
+}
+,
+{
+  "id": 21,
+  "name": "EDGE TD2.0 WiFi Alignment System With Premium Package",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/EDGE TD2.0 WiFi Alignment System With Premium Package.jpg",
+  "description": "The Ravaglioli® EDGE TD2.0 WiFi Alignment System with Premium Package is a high-end, wireless, PC-free alignment solution designed for versatility and efficiency. Compatible with all types of lifts, it features 3-point fast clamps, wall-mounted charging panels, and advanced Bluetooth sensor technology. Built in Europe and supported in the USA, it's the ultimate alignment system for modern workshops.",
+  "specs": [
+    "WiFi and Bluetooth wireless operation",
+    "Tablet included for full control",
+    "Stores on wall with charging plugs (wall panels included)",
+    "Includes 3-point non-runout fast clamps (no roll-back or compensation needed)",
+    "8-camera Bluetooth optical system (8CCD heads)",
+    "Compatible with 2-post, 4-post, scissor, pit, and non-alignment lifts",
+    "Includes pair of alignment turntables",
+    "Includes two-post lift adapters",
+    "1 brake pedal depressor included",
+    "1 steering wheel lock included",
+    "VIN code scanner included",
+    "TEQ-LINK app included",
+    "Vast vehicle database",
+    "Free software updates (specifications not included)",
+    "Portable and lightweight design",
+    "Made in Europe",
+    "Backed by American support and service"
+  ]
+}
+,
+{
+  "id": 22,
+  "name": "Edge TD2.0 WiFi Alignment System With Select Package",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Edge TD2.0 WiFi Alignment System With Select Package.jpg",
+  "description": "The Ravaglioli® TD2.0 WiFi Alignment System offers high-precision wireless alignment without the need for a dedicated alignment lift. It operates entirely PC-free, using WiFi and a handheld device. The system mounts on a wall to save space and includes a Select Package with all necessary accessories for professional alignment work.",
+  "specs": [
+    "WiFi and Bluetooth wireless operation",
+    "Fully functional via handheld tablet (included)",
+    "Includes 4-point standard wheel clamps",
+    "Includes 8-camera optical sensor system (Bluetooth 8CCD heads)",
+    "Compatible with 2-post, 4-post, scissor, pit, and non-alignment lifts",
+    "Comes with 2-post lift adapters",
+    "1 brake pedal depressor included",
+    "1 steering wheel lock included",
+    "Portable and wall-mounted storage system",
+    "Includes 2 storage boards and 4 wall pegs for clamps",
+    "Pair of alignment turntables included",
+    "TEQ-LINK mobile app included",
+    "Large vehicle database included",
+    "Free software updates (specs not included)",
+    "Remote technical support",
+    "2-year limited parts warranty (excludes wear, abuse, and onsite visits)",
+    "Made in Europe",
+    "Backed by American support and service",
+    "Drop ships directly from manufacturer"
+  ]
+}
+,
+{
+  "id": 23,
+  "name": "Honeywell 1902 USB VIN Code Scanner for ATLAS Alignment Machines",
+  "category": "Alignment Machines",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Alignment/Honeywell 1902 USB VIN Code Scanner for ATLAS Alignment Machines.jpg",
+  "description": "The Honeywell 1902 VIN Code Scanner offers fast, accurate barcode decoding for all Atlas Alignment Machines. With Bluetooth® mobility and 1D/2D barcode support, it's a top-tier addition to your alignment setup.",
+  "specs": [
+    "Reads both 1D and 2D barcodes",
+    "Bluetooth® wireless connection with 33 ft range",
+    "Includes lithium-ion battery and charging stand",
+    "Image sensor: Imager",
+    "Barcode symbologies supported: Standard 1D, Stacked, 2D, Postal Symbologies, Limited OCR font",
+    "Depth of field:",
+    " - 1.20\"–3.50\" @ 5 mil – Code 39",
+    " - 0.50\"–12.70\" @ 13 mil – UPC",
+    " - 0.60\"–16.20\" @ 20 mil – Code 39",
+    " - 0.70\"–5.50\" @ 6.70 mil – PDF417",
+    " - 0.70\"–5.50\" @ 10 mil – DM",
+    " - 0\"–10.30\" @ 20 mil – QR",
+    " - 0\"–5 mil @ 5 mil – Resolution ID Code 39",
+    " - 0\"–6 mil @ 6.70 mil – Resolution 2D DM",
+    "Compatible with all Atlas alignment machine models",
+    "Limited warranty: 3 years"
+  ]
+},
+{
+  "id": 24,
+  "name": "ATLAS 180 LB. Capacity Offset Pneumatic Portable Wheel Lift",
+  "category": "Tire and Wheel Equipment",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS 180 LB. Capacity Offset Pneumatic Portable Wheel Lift.jpg",
+  "description": "The Atlas AEZWL-2 pneumatic wheel lift eliminates the strain of lifting heavy wheels onto tire changers or balancers. With 180 lb. capacity, it’s ideal for modern large wheel assemblies.",
+  "specs": [
+    "Lifting capacity: 180 lbs",
+    "Max lifting height: 40 1/2\"",
+    "Min lifting height: 5 1/2\"",
+    "Arm length: 12\"",
+    "Distance between arms: 10\"",
+    "Overall height: 67 3/4\"",
+    "Overall width: 29\"",
+    "Overall depth: 34 1/2\"",
+    "3\" poly casters for portability",
+    "Operates on air pressure: 116–145 PSI",
+    "Ideal for use with wheel balancers and tire changers",
+    "Prevents back strain and minimizes risk of wheel damage",
+    "Shipping dimensions: 58\" x 14\" x 15 1/2\"",
+    "Shipping weight: 175 lbs"
+  ]
+},
+{
+  "id": 25,
+  "name": "ATLAS TC221 Electric or Pneumatic Wheel Clamp Tire Changer",
+  "category": "Tire and Wheel Equipment",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS TC221 Electric or Pneumatic Wheel Clamp Tire Changer.webp",
+  "description": "The Atlas TC221 is a compact, reliable tire changer designed for small garages and motorcycle dealers. It supports steel and alloy wheels, and features a powerful bead breaker for stubborn tires.",
+  "specs": [
+    "Tire inflator included (no bead blaster)",
+    "Oiler, filter, and regulator included",
+    "Swing-arm design with 3-position clamping jaws",
+    "Outer clamp range: 9 3/4\" – 23 1/4\"",
+    "Inner clamp range: 11 5/8\" – 25 1/4\"",
+    "Max tire diameter: 39\"",
+    "Max wheel width: 13\"",
+    "Air pressure: 90 – 110 PSI (max inlet: 140 PSI)",
+    "Operating voltage: 110V, single phase, 20 amps (requires 20A receptacle)",
+    "Table motor: 1 HP",
+    "Turntable rotating torque: 885 ft/lbs",
+    "Wheel clamping: 4 jaws (internal/external)",
+    "Bead breaker force: 5,500 lbs (pneumatic)",
+    "External clamping range (positions 1–3): 9 3/4\" – 23 1/4\"",
+    "Internal clamping range (positions 1–3): 11 5/8\" – 25 1/4\"",
+    "ATV adapter clamping range: 2 7/8\" – 16 5/8\"",
+    "Motorcycle adapter clamping range: 12 5/8\" – 26 3/8\"",
+    "Rim types supported: Steel, Aluminum, Alloy",
+    "Soap reservoir: Included",
+    "4 black plastic rim protectors: Included",
+    "Shipping weight: 500 lbs",
+    "Warranty: 1-year limited"
+  ]
+},
+{
+  "id": 26,
+  "name": "ATLAS TC229 Electric or Pneumatic Wheel Clamp Tire Changer w-Bead Blaster",
+  "category": "Tire and Wheel Equipment",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS TC229 Electric or Pneumatic Wheel Clamp Tire Changer w-Bead Blaster.webp",
+  "description": "The Atlas TC229 is a compact swing-arm tire changer equipped with a powerful bead blaster for hard-to-inflate tires. It’s ideal for general service shops handling steel, alloy, and aluminum wheels.",
+  "specs": [
+    "Tire inflator and pressure gauge included",
+    "Bead Blaster system for inflating stiff sidewall tires",
+    "Swing-arm design with 3-position adjustable clamping jaws",
+    "Outer clamp range: 9 3/4\" – 23 1/4\"",
+    "Inner clamp range: 11 5/8\" – 25 1/4\"",
+    "Max tire diameter: 39\"",
+    "Max wheel width: 13\"",
+    "Air pressure: 90 – 110 PSI (max inlet: 140 PSI)",
+    "Operating voltage: 110V, single phase, 20 amps (requires 20A receptacle)",
+    "Table motor: 1 HP",
+    "Turntable rotating torque: 885 ft/lbs",
+    "Wheel clamping: 4 jaws (internal/external)",
+    "Bead breaker force: 5,500 lbs (pneumatic)",
+    "External clamping range (positions 1–3): 9 3/4\" – 23 1/4\"",
+    "Internal clamping range (positions 1–3): 11 5/8\" – 25 1/4\"",
+    "ATV adapter clamping range: 2 7/8\" – 16 5/8\"",
+    "Motorcycle adapter clamping range: 12 5/8\" – 26 3/8\"",
+    "Rim types supported: Steel, Aluminum, Alloy",
+    "Soap reservoir: Included",
+    "Oiler"]
+},
+{
+  "id": 27,
+  "name": "ATLAS TC289 Electric/Pneumatic Wheel Clamp Tire Changer w-Bead Blaster",
+  "category": "Tire and Wheel Equipment",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS TC289 Electric  or Pneumatic Wheel Clamp Tire Changer w-Bead Blaster.jpg",
+  "description": "The Atlas TC289 is a powerful and versatile wheel clamp tire changer ideal for general automotive service and SUV/light truck tires. It features adjustable clamping jaws, an advanced Bead Blaster, and durable build quality.",
+  "specs": [
+    "Tire inflator and pressure gauge included",
+    "Bead Blaster system for fast bead seating",
+    "Adjustable bead breaker for stubborn tire beads",
+    "Three-position clamping jaw adjustment",
+    "Outer clamp range: 12\" – 28\"",
+    "Inner clamp range: 14\" – 30\"",
+    "Max tire diameter: 47.5\"",
+    "Max wheel width (bead breaker): 18.5\"",
+    "External clamping range (position 1): 11 7/8\" – 26\"",
+    "External clamping range (position 2): 12 7/8\" – 27\"",
+    "External clamping range (position 3): 13 3/4\" – 28\"",
+    "Internal clamping range (position 1): 13 7/8\" – 27 7/8\"",
+    "Internal clamping range (position 2): 14 5/8\" – 28 7/8\"",
+    "Internal clamping range (position 3): 15 5/8\" – 29 7/8\"",
+    "ATV adapter clamping range: 5\" – 21 1/8\"",
+    "Motorcycle adapter clamping range: 15\" – 31\"",]
+},
+{
+  "id": 28,
+  "name": "ATLAS TC755 Tilt-Back Electric/Pneumatic Tire Changer w-Bead Blaster",
+  "category": "Tire and Wheel Equipment",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS TC755 Tilt-Back Electric or Pneumatic Tire Changer w-Bead Blaster.jpg",
+  "description": "The Atlas TC755 is a professional-grade tilt-back tire changer ideal for high-volume and dealership use. It supports up to 47.5\" tire diameters and comes equipped with a powerful Bead Blaster system.",
+  "specs": [
+    "Tilt-back column with wide work area",
+    "Outer clamp: 12\" – 28\" | Inner clamp: 14\" – 30\"",
+    "Max tire diameter: 47.5\"",
+    "Max wheel width (bead breaker): 13.5\"",
+    "Bead Blaster included for easy bead seating",
+    "Air pressure: 90–110 PSI",
+    "110V single-phase operation",
+    "Bead breaker force: 5,500 lbs (pneumatic)",
+    "3 clamping jaw positions",
+    "Inflator hose and gauge included",
+    "Oiler, filter, regulator: Included",
+    "Soap reservoir: Included",
+    "4 black plastic rim protectors: Included",
+    "Compatible with optional Motorcycle/ATV Flip Adapters",
+    "Minimum recommended compressor: 20 gallon with 14 CFM",
+    "Wheel clamping: 4 jaws (internal/external)",
+    "Rim types: Steel, Aluminum, Alloy",
+    "External locking rim dimensions: 11 7/8\" – 28\"",
+    "Internal locking rim dimensions: 13 7/8\" – 29 7/8\"",
+    "Shipping weight: 650 lbs",
+    "Warranty: 1-year limited"
+  ]
+}
+,
+{
+  "id": 29,
+  "name": "ATLAS TTC301 Heavy Duty Truck Tire Changer",
+  "category": "Tire and Wheel Equipment",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS TTC301  Heavy Duty Truck Tire Changer.jpg",
+  "description": "The Atlas TTC301 is a robust, heavy-duty truck tire changer ideal for high-volume shops. It handles rims up to 27\" and tires over 63\" in diameter with ease.",
+  "specs": [
+    "Handles rim sizes from 13\" to 27\"",
+    "Supports tire diameters over 63\"",
+    "Maximum tire width: 30.5\"",
+    "Electric/Hydraulic Self-Centering Four Jaw Chuck",
+    "Portable control unit for safe operation",
+    "Bead breaker and mount/demount head combo assembly",
+    "Powerful 220V, 1 or 3 phase motor (2 HP)",
+    "Maximum wheel weight: 3,300 lbs",
+    "Clamping power: 6,614 lbs",
+    "Bead breaker force: 4,112 lbs",
+    "Operating pressure: 0 - 1,885 PSI",
+    "Acoustic pressure: <70 dBA",
+    "Manual tool arm and head positioning",
+    "Includes pliers, alloy rim protectors, and plastic covers",
+    "5 rim locking positions",
+    "Mobile cable control",
+    "Single-piece frame with solid floor-plate",
+    "Packaging size: 60\" L x 63\" W x 41\" H",
+    "Shipping weight: 1,390 lbs"
+  ]
+},
+{
+  id: 30,
+  name: "ATLAS TTC303",
+  category: "Tire Changers",
+  price: 0.00,
+  image: "Tire and wheel equipment/Tire changers/ATLAS TTC303.jpg",
+  description: "Super-duty tire changer for large off-road and truck tires. Handles up to 56” rims and 90” tire diameters.",
+  specs: [
+    { key: "Center Hole Diameter", value: "4 1/4\" – 46\" (47\"–56\" with extensions)" },
+    { key: "Max. Wheel Weight", value: "3,307 lbs" },
+    { key: "Max. Tire Diameter", value: "90 ½\"" },
+    { key: "Max. Tire Width", value: "42\"" },
+    { key: "Clamping Power", value: "13,173 lbs" },
+    { key: "Electric Motor Power", value: "1.5 HP / 220V / 3ph" },
+    { key: "Chuck Motor Power", value: "2 HP / 220V / 3ph" },
+    { key: "Operating Pressure", value: "0 – 1,885 PSI" },
+    { key: "Acoustic Pressure", value: "<70 dBA" },
+    { key: "Bead Breaker Force", value: "5,930 lbs" },
+    { key: "Frame", value: "Single piece with solid floor-plate" },
+    { key: "Tool Arm Positioning", value: "Manual" },
+    { key: "Tool Head Positioning", value: "Manual" },
+    { key: "Packaging Size", value: "79 ½\" L x 67\" W x 40\" H" },
+    { key: "Shipping Weight", value: "1,800 lbs" }
+  ]
+},
+{
+  "id": 31,
+  "name": "ATLAS TTC305",
+  "category": "Tire Changers",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/ATLAS TTC305.webp",
+  "description": "The Atlas TTC305 is a fully automatic heavy-duty truck tire changer, engineered for high-volume truck tire shops. It handles rim bore sizes from 8\" to 26\", tire diameters over 55\", and widths up to 30.5\". With a 1-phase electric/hydraulic system, ergonomic toggle controls, automatic tool positioning, and a powerful self-centering chuck, the TTC305 is built to deliver efficiency, safety, and durability. Ideal for semi-truck, 19.5, and forklift tires, this changer eliminates the need for manual tire irons and physical strain, making it perfect for commercial tire service centers.",
+  "specs": [
+    "Handles rim bores from 8\" to 26\" (up to 11\" - 26\" with adapters)",
+    "Maximum tire diameter: 55\"",
+    "Maximum tire width: 30.5\"",
+    "Maximum wheel weight: 838 lbs.",
+    "Clamping power: 6,600 lbs.",
+    "Bead breaker force: 3,990 lbs.",
+    "Electric/hydraulic self-centering four jaw chuck",
+    "Tool arm and head positioning: Automatic",
+    "5 rim locking positions",
+    "Includes aluminum rim accessories",
+    "Interchangeable mount/demount and roller heads",
+    "Hydraulic motor: 2 HP, 220V ±5%, 1-phase (30 amp breaker required)",
+    "Chuck motor: 2 HP, 220V ±5%, 1-phase (30 amp breaker required)",
+    "Operating pressure: 0 - 1,885 PSI",
+    "Acoustic pressure: <70dBA",
+    "Single-piece frame with solid floor-plate: Yes",
+    "Packaging size: 63\" L x 61\" W x 41\" H",
+    "Shipping weight: 1,490 lbs."
+  ]
+},
+
+  {
+    "id": 32,
+    "name": "ATLAS TTC306",
+    "category": "Tire Changers",
+    "price": 0.00,
+    "image": "Tire and wheel equipment/Tire changers/ATLAS TTC306.jpg",
+    "description": "The Atlas TTC 306 Super Duty Truck Tire Changer is engineered to handle rim sizes from 14 to 56 inches and tire diameters over 97 inches. Its remote-controlled bead breaker and mount/demount head enhance efficiency, making it ideal for high-volume truck tire centers dealing with off-road, agricultural, super single, and skidder tires.",
+    "specs": [
+      "Electric/Hydraulic Self-Centering Four Jaw Chuck",
+      "Handles rim sizes from 14 to 56 inches",
+      "Handles tires with a maximum diameter of 98 inches and width of up to 53 inches",
+      "Remote-controlled, hydraulically operated tool arm",
+      "Bead breaker disc and mount/demount head are combined into one quick-change assembly",
+      "Includes Atlas TT extension kit to extend clamping range to 56 inches",
+      "Includes alloy rim pliers, rim protectors, and plastic protective covers",
+      "2-speed bi-directional chuck motor (220V / 3 Phase)",
+      "Solid, single-piece frame",
+      "Mobile control unit with cable control",
+      "Clamping Power: 13,173 LBS",
+      "Bead Breaker Force: 5,930 LBS",
+      "Max. Wheel Weight: 3,968 LBS",
+      "Hydraulic Unit Motor Power: 3 hp",
+      "Chuck Motor Power: 3.5/4 hp",
+      "Operating Pressure: 0 - 1,885 PSI",
+      "Automatic Tool Arm and Head Positioning",
+      "Packaging Size: 90\" L x 75.5\" W x 44\" H",
+      "Shipping Weight: 2,260 LBS"
+    ]
+  },
+{
+  "id": 33,
+  "name": "Platinum Deluxe Center Post Tire Changer",
+  "category": "Tire Changers",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/Platinum Deluxe Center Post Tire Changer.jpg",
+  "description": "The Atlas Platinum PTC500 center post tire changer is designed for high-volume tire shops that deal with the most challenging wheel and tire combinations. It features a Lever/No-Lever system, Smart Lock center post, integrated wheel lift, and external bead seating system. With Italian-engineered components and a 2-year parts warranty, it’s built for performance and durability.",
+  "specs": [
+    { "label": "Compatible Rim Types", "value": "Steel, Aluminum, Alloy" },
+    { "label": "Clamping Range", "value": "12\" - 30\"" },
+    { "label": "Maximum Tire Diameter", "value": "47\"" },
+    { "label": "Maximum Wheel Width", "value": "15\"" },
+    { "label": "Turntable Rotating Speed", "value": "7 RPM" },
+    { "label": "Bead Breaker Force", "value": "6,924 LB. Force" },
+    { "label": "Air Requirement", "value": "120-145 PSI" },
+    { "label": "Operating Voltage", "value": "110 Volt" },
+    { "label": "Shipping Weight", "value": "885 lbs." }
+  ]
+},
+{
+  "id": 34,
+  "name": "Portable Pneumatic Wheel Lift",
+  "category": "",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/Portable Pneumatic Wheel Lift.jpg",
+  "description": "The Atlas Pneumatic Portable Wheel Lift (AEZWL) is the perfect solution to prevent back injuries when lifting large wheel assemblies onto the shaft of a wheel balancer or onto a tire changer turntable.\n\nToday’s wheels and tires are getting bigger and heavier. Many wheels are expensive and can be easily scratched or damaged. The Atlas air operated wheel lift will lift up to a 180 pound wheel easily and allow the operator to maneuver the wheel into the correct position without fear of wheel damage or back strain. The AEZWL’s smooth air operation requires only 116-145 PSI air pressure and the 4 swivel casters make it easy to move and position where needed.",
+  "specs": [
+    { "label": "Capacity", "value": "180 lbs." },
+    { "label": "Design", "value": "Center Column Design" },
+    { "label": "Arm Adjustability", "value": "Adjustable in width & length to handle a wide range of wheel diameters & widths" },
+    { "label": "Casters", "value": "3″ Poly Casters" },
+    { "label": "Shipping Dimensions", "value": "58″ x 14″ x 15 1/2″" },
+    { "label": "Shipping Weight", "value": "175 lbs." },
+    { "label": "Warranty", "value": "90 Day Parts Only" },
+    { "label": "Max. Lifting Height", "value": "39 1/8″" },
+    { "label": "Min. Lifting Height", "value": "4″" },
+    { "label": "Arm Length", "value": "17 1/2″ - 33 1/4″" },
+    { "label": "Distance Between Arms", "value": "9″ - 22″" },
+    { "label": "Overall Height", "value": "66 7/8″" },
+    { "label": "Required Air Pressure", "value": "120 psi" }
+  ]
+},
+{
+  "id": 35,
+  "name": "Premium Rim-Clamp Tire Changer with Assist Arm",
+  "category": "",
+  "price": 0.00,
+  "image": "Tire and wheel equipment/Tire changers/Premium Rim-Clamp Tire Changer with Assist Arm.jpg",
+  "description": "The Atlas Platinum PTC300 represents the evolution of the most familiar tire changer configuration found in high volume tire shops around the world. The PTC300 is an Italian engineered Swing-Arm Tire Changer that comes standard with a Left-Hand Bead Pressing and Bead Lifting Assist Arm to make changing the most challenging tires a breeze.\n\nThe PTC300 boasts a 26-inch clamping capability, high torque 110V electric turntable, anodized aluminum bead breaker cylinder, integrated bead blast system, and a 2-year warranty. The Atlas Platinum range of wheel service equipment incorporates the highest quality Italian designed components and engineering to assure it is the best value available at its price point.\n\nThe Atlas PTC300 requires some assembly after purchase.",
+  "specs": [
+    { "label": "Rims", "value": "Steel, Aluminum, Alloy" },
+    { "label": "External Locking Rim Dimension", "value": "10\" - 24\"" },
+    { "label": "Internal Locking Rim Dimension", "value": "12\" - 26\"" },
+    { "label": "Maximum Tire Diameter", "value": "43\"" },
+    { "label": "Maximum Wheel Width (Bead Breaker)", "value": "15\"" },
+    { "label": "Turntable Rotating Speed", "value": "7 RPM" },
+    { "label": "Bead Breaker Force", "value": "6,924 LB. Force" },
+    { "label": "Air Requirement", "value": "120-145 PSI" },
+    { "label": "Operating Voltage", "value": "110volt" },
+    { "label": "Shipping Weight", "value": "620 lbs." }
+  ]
+},
+{
+  id: 36,
+  name: "ATLAS WB11 Self-Calibrating Computer Wheel Balancer",
+  category: "",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/ATLAS WB11 Self-Calibrating Computer Wheel Balancer.webp",
+  description: "The Atlas WB-11 is probably the most popular of the Atlas wheel balancer collection. It’s an economical, dependable, and accurate computer wheel balancer. Easy-to-use yet sophisticated, it features plug-and-play components, self-diagnosis with error codes, and does not require an expensive service technician for repairs. Capable of handling wheels up to 130 lbs, it’s a top choice for efficiency and performance.",
+  specs: [
+    "Max Tire Diameter: 39\"",
+    "Rim Sizes (cars and light trucks): 10\"-32\"",
+    "Rim Width: 1 ½\"-20\"",
+    "Shaft Size: 40mm",
+    "Max. Wheel Weight: 150 LBS.",
+    "Balancing Speed: 150 R.P.M",
+    "Automatic Data Entry: No",
+    "Truck Adapter Set: Optional",
+    "Warranty: 1 year limited",
+    "Shipping Weight: 355 Lbs.",
+    "Power Supply: 110V 1Ph",
+    "Motor: ¼ HP",
+    "Display: Standard or Metric",
+    "Accuracy: 1 g",
+    "Weight Position Resolution: 1.4 Degrees",
+    "Self Calibration: Yes"
+  ]
+},
+{
+  id: 37,
+  name: "ATLAS WB41 Self-Calibrating Computer Wheel Balancer",
+  category: "",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/ATLAS WB41 Self-Calibrating Computer Wheel Balancer.webp",
+  description: "The Atlas WB41 is a self-calibrating, user-friendly wheel balancer designed for busy shops. It features advanced software, an elevated LED display, and easy plug-and-play repairability.",
+  specs: [
+    "Max Tire Diameter: 39\"",
+    "Rim Sizes (cars and light trucks): 10\"-32\"",
+    "Rim Width: 1 ½\"-20\"",
+    "Shaft Size: 40mm",
+    "Max. Wheel Weight: 165 LBS.",
+    "Balancing Speed: 150 R.P.M",
+    "Automatic Data Entry: NO",
+    "Truck Adapter Set: Optional",
+    "Shipping Weight: 400 LBS.",
+    "Power Supply: 110V 1Ph",
+    "Motor: ¼ HP",
+    "Display: Standard or Metric",
+    "Accuracy: 1 g",
+    "Weight Position Resolution: 1.4 Degrees",
+    "Self Calibration: Yes",
+    "Warranty: 1 year limited"
+  ]
+},
+{
+  id: 38,
+  name: "ATLAS WB49 Self-Calibrating Computer Wheel Balancer",
+  category: "",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/ATLAS WB49 Self-Calibrating Computer Wheel Balancer.jpg",
+  description: "The Atlas WB49 is a high-performance wheel balancer with self-calibration and advanced automatic data entry. Designed for high-volume tire shops, it offers split-weight functionality and an elevated LED display.",
+  specs: [
+    "Max Tire Diameter: 39\"",
+    "Rim Sizes (cars and light trucks): 10\"-32\" *",
+    "Rim Width: 1 ½\"-20\"",
+    "Shaft Size: 40mm Max.",
+    "Max. Wheel Weight: 150 LBS.",
+    "Balancing Speed: 150 R.P.M",
+    "Automatic Data Entry: YES",
+    "Truck Adapter Set: Optional",
+    "Shipping Weight: 380 LBS.",
+    "Power Supply: 110V 1Ph",
+    "Motor: ¼ HP",
+    "Warranty: 1 year limited",
+    "Display: Standard or Metric",
+    "Accuracy: 1 g",
+    "Weight Position Resolution: 1.4 Degrees",
+    "Self Calibration: Yes",
+    "* Requires manual input of some data from 23\"-32\""
+  ]
+}
+,
+{
+  id: 39,
+  name: "ATLAS WB49-2 Self-Calibrating 2D Computer Wheel Balancer",
+  category: "",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/ATLAS WB49-2 Self-Calibrating 2D Computer Wheel Balancer.jpg",
+  description: "The Atlas WB49-2 is a modern 2D wheel balancer with automatic data entry and a high-mounted LED display. It includes advanced features like split-weight function, automatic positioning, and a self-calibrating system.",
+  specs: [
+    "Max Tire Diameter: 39\"",
+    "Rim Sizes (cars and light trucks): 10\"-32\"",
+    "Rim Width: 1 ½\"-20\"",
+    "Shaft Size: 40mm",
+    "Max. Wheel Weight: 150 LBS.",
+    "Balancing Speed: 150 R.P.M",
+    "Automatic Data Entry: YES",
+    "Truck Adapter Set: Optional",
+    "Warranty: 1 year limited",
+    "Shipping Weight: 380 LBS.",
+    "Power Supply: 110V 1Ph",
+    "Motor: ¼ HP",
+    "Display: Standard or Metric",
+    "Accuracy: 1 g",
+    "Weight Position Resolution: 1.4 Degrees",
+    "Self Calibration: YES"
+  ]
+},
+{
+  id: 40,
+  name: "ATLAS WBT-210 Computer Truck Tire Wheel Balancer with Wheel Lift",
+  category: "",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/ATLAS WBT-210 Computer Truck Tire Wheel Balancer with Wheel Lift.jpg",
+  description: "The Atlas WBT-210 is a versatile truck and car wheel balancer with an integrated pneumatic lift and easy plug-and-play diagnostics. Ideal for high-volume shops handling everything from sedans to semi-trucks.",
+  specs: [
+    "Max Tire Diameter: 47\"",
+    "Rim Sizes (cars and light trucks): 10\"-32\"",
+    "Rim Width: 1 ½\"-20\"",
+    "Shaft Size: 40mm",
+    "Max. Wheel Weight: 440 lbs.",
+    "Balancing Speed: 150 RPM (Car), 90 RPM (Truck)",
+    "Automatic Data Entry: No",
+    "Truck Adapter Set: Included",
+    "Warranty: 1 year limited",
+    "Shipping Weight: 725 lbs.",
+    "Power Supply: 220V 1Ph +/- 5% (209-231V), 30 amp breaker required",
+    "Motor: 1/3 HP",
+    "Display: Standard or Metric",
+    "Accuracy: 1 g (Car Mode), 10 g (Truck Mode)",
+    "Weight Position Resolution: 1.4 Degrees",
+    "Self Calibration: Yes"
+  ]
+},
+{
+  id: 41,
+  name: "Platinum Computer 3D Video Wheel Balancer with Laser Line",
+  category: "",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/Platinum Computer 3D Video Wheel Balancer with Laser Line.jpg",
+  description: "The Platinum PWB90XL features 3D data entry and a precision laser line for flawless weight placement. Designed for premium performance and ease of use.",
+  specs: [
+    "Max Tire Diameter: 43\"",
+    "Rim Sizes (Cars And Light Trucks): 10\"-30\"",
+    "Rim Width: 1 1/2\"-20\"",
+    "Shaft Size: 40mm",
+    "Max. Wheel Weight: 165 lbs.",
+    "Balancing Speed: 130 rpm",
+    "Data Entry: Super Automatic 3D",
+    "Measurements: Standard Or Metric",
+    "Accuracy: 1 gram",
+    "Weight Position Resolution: 1.4 Degrees",
+    "Self Calibration: Yes",
+    "Cycle Time: 7 seconds",
+    "Power Supply: 110volt",
+    "Shipping Weight: 290 lbs."
+  ]
+}
+,
+{
+  id: 42,
+  name: "Platinum Motorized Computer Wheel Balancer with Auto Data Entry",
+  category: "Tire and wheel equipment",
+  price: 0.00,
+  image: "Tire and wheel equipment/wheel balancers/Platinum Motorized Computer Wheel Balancer with Auto Data Entry.jpg",
+  description: "High-performance electronic wheel balancer with Auto 2D Data Entry and LED display for precise and efficient balancing. Ideal for high-volume passenger vehicles with advanced features for accuracy and convenience.",
+  specs: [
+    { label: "Max Tire Diameter", value: "43\"" },
+    { label: "Rim Sizes (Cars And Light Trucks)", value: "10\"-30\"" },
+    { label: "Rim Width", value: "1 1/2\"-20\"" },
+    { label: "Shaft Size", value: "40mm" },
+    { label: "Max. Wheel Weight", value: "165 lbs." },
+    { label: "Balancing Speed", value: "130 rpm" },
+    { label: "Data Entry", value: "Automatic 2D" },
+    { label: "Measurements", value: "Standard Or Metric" },
+    { label: "Accuracy", value: "1 gram" },
+    { label: "Weight Position Resolution", value: "1.4 Degrees" },
+    { label: "Self Calibration", value: "Yes" },
+    { label: "Cycle Time", value: "7 seconds" },
+    { label: "Power Supply", value: "110 volt" },
+    { label: "Shipping Weight", value: "230 lbs." }
+  ]
+}
+
+];
 
     // DOM Elements
     const productsGrid = document.getElementById('productsGrid');
@@ -1498,7 +2298,6 @@ color: var(--grey-clouds);
             <h3 class="product-name">${product.name}</h3>
             <p class="product-description">${product.description.substring(0, 100)}...</p>
             <div class="product-footer">
-              <span class="product-price">$${product.price.toFixed(2)}</span>
               <button class="view-btn" data-id="${product.id}">
                 <i class='bx bx-show'></i> View
               </button>
@@ -1564,23 +2363,27 @@ color: var(--grey-clouds);
 
     // Show product modal
     function showProductModal(product) {
-      modalImage.style.backgroundImage = `url('${product.image}')`;
+      // Update modal content
+      modalImage.innerHTML = `<img src="${product.image}" alt="${product.name}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
       modalCategory.textContent = product.category;
       modalName.textContent = product.name;
-      modalPrice.textContent = `$${product.price.toFixed(2)}`;
       modalDescription.textContent = product.description;
       
       // Render specifications
       specsList.innerHTML = '';
-      product.specs.forEach(spec => {
-        const specItem = document.createElement('div');
-        specItem.className = 'spec-item';
-        specItem.innerHTML = `
-          <span class="spec-label">${spec.label}:</span>
-          <span>${spec.value}</span>
-        `;
-        specsList.appendChild(specItem);
-      });
+      if (product.specs && product.specs.length > 0) {
+        product.specs.forEach(spec => {
+          const specItem = document.createElement('div');
+          specItem.className = 'spec-item';
+          specItem.innerHTML = `
+            <span class="spec-label">${spec.label}:</span>
+            <span>${spec.value}</span>
+          `;
+          specsList.appendChild(specItem);
+        });
+      } else {
+        specsList.innerHTML = '<p>No specifications available.</p>';
+      }
       
       // Set quote button data
       requestQuote.setAttribute('data-id', product.id);
@@ -1738,3 +2541,4 @@ color: var(--grey-clouds);
   </script>
 </body>
 </html>
+

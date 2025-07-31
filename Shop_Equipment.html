@@ -135,7 +135,7 @@
     .product-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.5s ease;
     }
 
@@ -226,156 +226,207 @@
     }
 
     /* Product Detail Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
+/* Product Detail Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
 
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
 
-    .product-modal {
-      background: #f7f7ee;
-      width: 90%;
-      max-width: 800px;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      transform: translateY(-20px);
-      transition: transform 0.3s ease;
-    }
+.product-modal {
+  background: #f7f7ee;
+  width: 90%;
+  max-width: 1000px; /* Increased max-width for better horizontal layout */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
 
-    .modal-overlay.active .product-modal {
-      transform: translateY(0);
-    }
+.modal-overlay.active .product-modal {
+  transform: translateY(0);
+}
 
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--fifty-grey);
-      z-index: 10;
-    }
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--fifty-grey);
+  z-index: 10;
+}
 
-    .modal-content {
-      display: flex;
-      flex-direction: column;
-    }
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
 
-    @media (min-width: 768px) {
-      .modal-content {
-        flex-direction: row;
-      }
-    }
+@media (min-width: 992px) {
+  .modal-content {
+    flex-direction: row;
+  }
+}
 
-    .modal-image {
-      flex: 1;
-      min-height: 300px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px 10px 0 0;
-    }
+.modal-image {
+  flex: 1;
+  min-height: 300px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f7f7ee;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .modal-details {
-      flex: 1;
-      padding: 2rem;
-    }
+@media (min-width: 992px) {
+  .modal-image {
+    min-height: 400px;
+    border-right: 1px solid var(--grey-clouds);
+  }
+}
 
-    .modal-category {
-      color: var(--accent-blue);
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.modal-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 
-    .modal-name {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--blackadder);
-    }
+.modal-details {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 40px);
+}
 
-    .modal-price {
-      font-weight: 700;
-      color: var(--fifty-grey);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
+.modal-category {
+  color: var(--accent-blue);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .modal-description {
-      color: var(--grey-tote);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
+.modal-name {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--blackadder);
+}
 
-    .modal-specs {
-      margin-bottom: 1.5rem;
-    }
+.modal-price {
+  font-weight: 700;
+  color: var(--fifty-grey);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 
-    .specs-title {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: var(--chaos-black);
-      border-bottom: 1px solid var(--grey-clouds);
-      padding-bottom: 0.5rem;
-    }
+.modal-description {
+  color: var(--grey-tote);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
 
-    .specs-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-    }
+.modal-specs {
+  margin-bottom: 1.5rem;
+}
 
-    .spec-item {
-      display: flex;
-      gap: 0.5rem;
-    }
+.specs-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--chaos-black);
+  border-bottom: 1px solid var(--grey-clouds);
+  padding-bottom: 0.5rem;
+}
 
-    .spec-label {
-      font-weight: 600;
-      color: var(--fifty-grey);
-    }
+.specs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
 
-    .modal-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+.spec-item {
+  display: flex;
+  gap: 0.5rem;
+}
 
-    .contact-btn {
-      background-color: var(--accent-red);
-      color: var(--light-cipollino);
-      border: none;
-      padding: 0.8rem 1.5rem;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+.spec-label {
+  font-weight: 600;
+  color: var(--fifty-grey);
+}
 
-    .contact-btn:hover {
-      background-color: #2b2e2c;
-    }
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
 
+.contact-btn {
+  background-color: var(--accent-red);
+  color: var(--light-cipollino);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 50px;
+  justify-content: center;
+}
+
+.contact-btn a {
+  color: var(--light-cipollino);
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  background-color: #2b2e2c;
+}
+
+.view-btn {
+  background-color: var(--accent-blue);
+  color: var(--light-cipollino);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.view-btn:hover {
+  background-color: #861237;
+}
     /* Existing Navbar Styles */
     nav{
         position: fixed;
@@ -1025,9 +1076,13 @@ color: var(--grey-clouds);
         <h2 class="products-title">Our Products</h2>
         <div class="products-filter">
           <span class="filter-label">Filter by:</span>
-          <div class="filter-select1" id="categoryFilter">
-       
-          </div>
+          <select class="filter-select" id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="Air Compressors">Air Compressors</option>
+            <option value="Rotisserie">Rotisserie</option>
+            <option value="Tools">Tools</option>
+      
+          </select>
           <select class="filter-select" id="sortFilter">
             <option value="featured">Featured</option>
             <option value="price-low">Price: Low to High</option>
@@ -1069,13 +1124,13 @@ color: var(--grey-clouds);
           </div>
           
           <div class="modal-actions">
-         <button class="contact-btn">
-              <i class='bx bx-phone'></i> Contact Us
-            </button>
-            <a href="contactus.html" style="text-decoration: none;">  <button class="view-btn" id="requestQuote">
-              <i class='bx bx-file'></i> Request Quote
-            </button></a>
-          </div>
+            <button class="contact-btn">
+                 <i class='bx bx-phone'></i> <a href="tel:+16477690241">Call Us</a>
+               </button>
+               <a href="contactus.html" style="text-decoration: none;">  <button class="view-btn" id="requestQuote">
+                 <i class='bx bx-file'></i> Contact Us
+               </button></a>
+             </div>
         </div>
       </div>
     </div>
@@ -1152,43 +1207,53 @@ color: var(--grey-clouds);
     // Product Data - 15 products for pagination demo
     const products = [
       {
-        id: 1,
-        name: "ProScan X9000 Diagnostic Scanner",
-        category: "Diagnostic Tools",
-        price: 1299.99,
-        image: "https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Advanced OBD2 scanner with full system diagnostics for all makes and models. Features include live data streaming, module coding, and advanced diagnostics.",
-        specs: [
-          { label: "Compatibility", value: "All makes & models" },
-          { label: "Screen", value: "7-inch touchscreen" },
-          { label: "Connectivity", value: "Wi-Fi, Bluetooth" },
-          { label: "Battery", value: "8 hours" },
-          { label: "Weight", value: "2.5 lbs" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
+  id: 1,
+  name: "(2475F14G) 14hp Gas Drive Air Compressor - Kohler",
+  category: "Air Compressors",
+  price: 1299.99,
+  image: "shop/Air compressors/(2475F14G) 14hp Gas Drive Air Compressor - Kohler.jpg",
+  description: "14HP Kohler engine, 30-gallon tank air compressor designed for truck-mounting. Built for reliability with cast-iron pump and electric start.",
+  specs: [
+    { label: "Engine", value: "14HP Kohler, gas-drive" },
+    { label: "Tank Capacity", value: "30 gallons (truck-mountable)" },
+    { label: "Pressure", value: "25 CFM @ 175 PSI" },
+    { label: "Startup", value: "Electric & pull cord" },
+    { label: "Charging", value: "Alternator system included" },
+    { label: "Pump Warranty", value: "2 years (with IR Kit)" },
+    { label: "Build", value: "100% cast-iron T30 pump" },
+    { label: "Dimensions", value: "48\" x 22\" x 41\"" },
+    { label: "Weight", value: "455 lbs" },
+    { label: "Brand Legacy", value: "80+ yrs of IR excellence" }
+  ]
+}
+,
       {
-        id: 2,
-        name: "10,000 lb Hydraulic Lift",
-        category: "Lifting Equipment",
-        price: 3499.99,
-        image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Heavy-duty two-post lift with asymmetric design for easy vehicle access. Features include automatic safety locks, low-profile arms, and durable construction.",
-        specs: [
-          { label: "Capacity", value: "10,000 lbs" },
-          { label: "Lift Type", value: "Two-post asymmetric" },
-          { label: "Max Height", value: "78 inches" },
-          { label: "Power", value: "220V/3-phase" },
-          { label: "Installation", value: "Professional required" },
-          { label: "Warranty", value: "5 years" }
-        ]
-      },
+  id: 2,
+  name: "Atlas Automotive Equipment 5HP 80 Gallon Commercial Air Compressor w/Plus Package",
+  category: "Air Compressors",
+  price: 3499.99,
+  image: "shop/Air compressors/Atlas Automotive Equipment 5HP 80 Gallon Commercial Air Compressor w- Plus Package.jpg",
+  description: "Includes PLUS Package: auto low oil monitor, tank drain, air cooled aftercooler. Ideal for 3-4 man shops, runs 145-175 PSI, built for daily commercial use.",
+  specs: [
+    { label: "Motor", value: "5 Horsepower" },
+    { label: "Pressure Setting", value: "145-175 PSI" },
+    { label: "CFM @ 90 PSI", value: "20" },
+    { label: "CFM @ 175 PSI", value: "19" },
+    { label: "Tank Capacity", value: "80 Gallons" },
+    { label: "Compressor Pump", value: "2 Cylinder, 2-Stage" },
+    { label: "Air Outlet Size", value: "1/2\" NPT" },
+    { label: "Dimensions", value: "40\" x 24\" x 71\"" },
+    { label: "Electrical", value: "220V Single Phase, 30A breaker" },
+    { label: "Shipping Weight", value: "610 lbs" }
+  ]
+}
+,
       {
         id: 3,
-        name: "ProTire 5000 Changer",
-        category: "Tire Service",
+        name: "Atlas Automotive Equipment 7.5HP 80 Gallon Commercial Air Compressor w/Plus Package",
+        category: "Air Compressors",
         price: 2199.99,
-        image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "shop/Air compressors/Atlas Automotive Equipment 7.5HP 80 Gallon Commercial Air Compressor w-Plus Package.jpg",
         description: "Professional tire changer with bead breaker and rim clamp for all wheel types. Designed for high-volume shops with quick change capabilities.",
         specs: [
           { label: "Rim Size", value: "10-24 inches" },
@@ -1200,123 +1265,152 @@ color: var(--grey-clouds);
         ]
       },
       {
-        id: 4,
-        name: "Precision Wheel Balancer",
-        category: "Tire Service",
-        price: 1799.99,
-        image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Computerized wheel balancer with dynamic measurement technology. Features include alloy wheel mode, static/dynamic balancing, and quick calibration.",
-        specs: [
-          { label: "Wheel Size", value: "10-24 inches" },
-          { label: "Max Weight", value: "150 lbs" },
-          { label: "Accuracy", value: "±0.01 oz" },
-          { label: "Display", value: "8-inch color LCD" },
-          { label: "Power", value: "110V/220V" },
-          { label: "Warranty", value: "2 years" }
-        ]
+  id: 4,
+  name: "Atlas Automotive Equipment 7.5HP 80 Gallon Commercial Air Compressor",
+  category: "Air Compressors",
+  price: 1799.99,
+  image: "shop/Air compressors/Atlas Automotive Equipment 7.5HP 80 Gallon Commercial Air Compressor.jpg",
+  description: "The Atlas® Air Force AF9 is a heavy-duty, belt-driven air compressor ideal for auto shops. Built for high performance and durability with a USA-made 80-gallon tank.",
+  specs: [
+    { label: "Motor Running", value: "7.5 Horsepower" },
+    { label: "Motor RPM", value: "1725" },
+    { label: "Pressure Setting", value: "145-175 PSI" },
+    { label: "CFM at 90 PSI", value: "23" },
+    { label: "CFM at 175 PSI", value: "22" },
+    { label: "Tank Capacity", value: "80 Gallons" },
+    { label: "Compressor Pump", value: "3 Cylinder, 2-Stage" },
+    { label: "Air Outlet Size", value: "1/2\" NPT" },
+    { label: "Dimensions", value: "40\" L x 24\" W x 71\" H" },
+    { label: "Electrical", value: "220V Single Phase, 40 Amp Breaker" },
+    { label: "Shipping Weight", value: "627 lbs" },
+  ]
+},
+      
+       {
+  id: 5,
+  name: "Atlas Automotive Equipment 9HP Gas Air Compressor w-Honda Motor & 30 Gallon Tank",
+  category: "Air Compressors",
+  price: 2899.99,
+  image: "shop/Air compressors/Atlas Automotive Equipment 9HP Gas Air Compressor w-Honda Motor & 30 gallon tank.jpg",
+  description: "The Atlas® AF9G is a gas-powered, belt-driven compressor with a 9HP Honda engine and 30-gallon USA-made tank. Ideal for mobile service trucks with high-demand air tools.",
+  specs: [
+    { label: "Motor Running", value: "9 Horsepower" },
+    { label: "Pressure Setting", value: "145-175 PSI" },
+    { label: "Delivered CFM at 90 PSI", value: "18" },
+    { label: "Delivered CFM at 175 PSI", value: "14.5" },
+    { label: "Tank Capacity", value: "30 Gallons" },
+    { label: "Compressor Pump", value: "3 Cylinder, 2-Stage" },
+    { label: "Air Outlet Size", value: "1/2\" NPT" },
+    { label: "Dimensions", value: "46\" L x 19\" W x 37\" H" },
+    { label: "Engine", value: "Honda GX270, Commercial Grade, 4-Cycle OHV, EPA/CARB Compliant" },
+    { label: "Shipping Weight", value: "627 lbs" },
+ ]
       },
+    {
+  id: 6,
+  name: "Atlas Automotive Equipment 13HP Gas Air Compressor w/Honda Motor & 30 gallon tank",
+  category: "Air Compressors",
+  price: 2499.99,
+  image: "shop/Air compressors/Atlas Automotive Equipment 13HP Gas Air Compressor w= Honda Motor & 30 gallon tank.jpg",
+  description: "The Atlas® Air Force AF13G is a gas-powered 13HP air compressor equipped with a Honda GX390 engine. Designed for mobile service trucks, it features a pneumatic throttle control, vibro-isolator pads, a USA-made 30-gallon tank, and operates between 145–175 PSI. Delivers high CFM for heavy-duty tasks like BUDD wheel lug nut removal.",
+  specs: [
+    { label: "Motor Power", value: "13 HP" },
+    { label: "Pressure Range", value: "145–175 PSI" },
+    { label: "CFM @ 90 PSI", value: "25" },
+    { label: "CFM @ 175 PSI", value: "19" },
+    { label: "Tank Capacity", value: "30 Gallons" },
+    { label: "Pump Type", value: "2 Cylinder, 2-Stage" },
+    { label: "Air Outlet Size", value: "1/2\" NPT" },
+    { label: "Engine", value: "Honda GX390, 4 Cycle OHV" },
+    { label: "Dimensions", value: "46\" L x 19\" W x 37\" H" },
+    { label: "Shipping Weight", value: "627 lbs" },
+    { label: "Warranty", value: "3 years" }
+  ]
+},
+
       {
-        id: 5,
-        name: "ProTool 72\" Roll Cabinet",
-        category: "Shop Equipment",
-        price: 2899.99,
-        image: "https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Heavy-duty tool storage with 16 drawers and stainless steel top. Features include ball-bearing slides, locking system, and reinforced construction.",
-        specs: [
-          { label: "Drawers", value: "16" },
-          { label: "Weight Capacity", value: "3,000 lbs" },
-          { label: "Dimensions", value: "72x24x42 inches" },
-          { label: "Material", value: "18-gauge steel" },
-          { label: "Color", value: "Red/Black" },
-          { label: "Warranty", value: "Lifetime" }
-        ]
-      },
+  id: 7,
+  name: "Atlas Equipment 5HP 80 Gallon Vertical Air Compressor (No Mag Starter)",
+  category: "Air Compressors",
+  price: 5999.99,
+  image: "shop/Air compressors/Atlas Equipment 5HP 80 Gallon Vertical Air Compressor (No Mag Starter).jpg",
+  description: "The Atlas® Air Force AF6 is a commercial-grade two-stage vertical air compressor ideal for shop use. Operating between 145–175 PSI, it's compatible with Atlas® sandblast cabinets. With a low-RPM 5HP motor and a heavy-duty 3-cylinder cast iron pump, this unit delivers excellent air volume and pressure, all at a cost-effective price.",
+  specs: [
+    { label: "Motor Running", value: "5 Horsepower" },
+    { label: "Pressure Setting", value: "90–175 PSI" },
+    { label: "CFM @ 90 PSI", value: "18.5" },
+    { label: "CFM @ 175 PSI", value: "14.5" },
+    { label: "Tank Capacity", value: "80 Gallons" },
+    { label: "Compressor Pump", value: "3 Cylinder, 2-Stage" },
+    { label: "Air Outlet Size", value: "1/2\" NPT" },
+    { label: "Dimensions", value: "36\" L x 24\" W x 69\" H" },
+    { label: "Electrical", value: "220V Single Phase, 30 Amp Breaker Required" },
+    { label: "Shipping Weight", value: "485 lbs" }
+  ]
+},
       {
-        id: 6,
-        name: "Industrial Air Compressor",
-        category: "Shop Equipment",
-        price: 2499.99,
-        image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "80-gallon two-stage compressor with 7.5HP motor for continuous operation. Features include low RPM pump, thermal protection, and automatic drain.",
-        specs: [
-          { label: "Tank Size", value: "80 gallons" },
-          { label: "Motor Power", value: "7.5 HP" },
-          { label: "PSI", value: "175 max" },
-          { label: "CFM", value: "18.1 @ 90 PSI" },
-          { label: "Noise Level", value: "78 dBA" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
+  id: 8,
+  name: "COMPRESSOR 7.5HP 80 GAL FULLY PACKAGED",
+  category: "Air Compressors",
+  price: 3499.99,
+  image: "shop/Air compressors/COMPRESSOR 7.5HP 80 GAL FULLY PACKAGED.jpg",
+  description: "The Ingersoll Rand 7.5HP 80 Gallon Fully Packaged 2-stage air compressor is built for efficiency, durability, and superior performance in demanding shop environments. Featuring an 80-gallon vertical tank, high-capacity CFM at 175 PSI, and a design focused on longevity and serviceability, this compressor delivers lower lifecycle costs and excellent return on investment.",
+  specs: [
+    { label: "Motor Power", value: "7.5 Horsepower" },
+    { label: "Tank Capacity", value: "80 Gallons Vertical" },
+    { label: "Compressor Type", value: "2-Stage Reciprocating" },
+    { label: "Max Pressure", value: "175 PSI" },
+    { label: "CFM @ 175 PSI", value: "24.0" },
+    { label: "Tank Outlet", value: "3/4 inch" },
+    { label: "Startup Kit", value: "Compatible with IRT32305880" },
+    { label: "Cooling", value: "Copper-finned Aftercooler" },
+    { label: "Maintenance", value: "Quick Access to Replaceable Parts" },
+    { label: "Design Life", value: "15,000-hour Bearings, Cast-Iron Cylinders" }
+  ]
+},
       {
-        id: 7,
-        name: "Laser Wheel Alignment System",
-        category: "Tire Service",
-        price: 5999.99,
-        image: "https://images.unsplash.com/photo-1581093458799-efb7b0c3f5e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Advanced laser alignment system with 3D imaging technology for precise measurements and quick setup.",
-        specs: [
-          { label: "Technology", value: "3D Laser Imaging" },
-          { label: "Accuracy", value: "±0.01°" },
-          { label: "Setup Time", value: "Under 5 minutes" },
-          { label: "Compatibility", value: "All vehicles" },
-          { label: "Display", value: "24-inch HD monitor" },
-          { label: "Warranty", value: "5 years" }
-        ]
-      },
-      {
-        id: 8,
-        name: "Professional Brake Lathe",
-        category: "Shop Equipment",
-        price: 3499.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "On-car brake lathe for precision resurfacing of rotors without removal. Features automatic feed and digital measurements.",
-        specs: [
-          { label: "Max Rotor Size", value: "18 inches" },
-          { label: "Min Rotor Size", value: "8 inches" },
-          { label: "Power", value: "1/2 HP motor" },
-          { label: "Runout Correction", value: "0.0005 inches" },
-          { label: "Weight", value: "85 lbs" },
-          { label: "Warranty", value: "2 years" }
-        ]
-      },
-      {
-        id: 9,
-        name: "Heavy Duty Transmission Jack",
-        category: "Lifting Equipment",
-        price: 1299.99,
-        image: "https://images.unsplash.com/photo-1581092582650-4e0d0a4d4e5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Low-profile transmission jack with 1500 lb capacity and adjustable arms for secure transmission handling.",
-        specs: [
-          { label: "Capacity", value: "1500 lbs" },
-          { label: "Min Height", value: "7.5 inches" },
-          { label: "Max Height", value: "48 inches" },
-          { label: "Platform Size", value: "24x18 inches" },
-          { label: "Wheels", value: "4 swivel casters" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 10,
-        name: "Professional Oil Drain System",
-        category: "Shop Equipment",
-        price: 899.99,
-        image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Mobile oil drain system with 30-gallon capacity, drum dolly, and spill containment for efficient oil changes.",
-        specs: [
-          { label: "Capacity", value: "30 gallons" },
-          { label: "Hose Length", value: "15 feet" },
-          { label: "Drum Size", value: "30 gallon" },
-          { label: "Material", value: "Steel construction" },
-          { label: "Wheels", value: "Heavy-duty casters" },
-          { label: "Warranty", value: "2 years" }
-        ]
-      },
+  id: 9,
+  name: "COMPRESSOR AIR 3 HP SINGLE STAGE CAST IRON 60 GAL",
+  category: "Air Compressors",
+  price: 1299.99,
+  image: "shop/Air compressors/COMPRESSOR AIR 3 HP SINGLE STAGE CAST IRON 60 GAL.jpg",
+  description: "Ingersoll Rand Single Stage Electric Powered 3 HP Air Compressor with a 60-gallon vertical tank. Designed for durability, reliability, and performance in both professional and home shop environments.",
+  specs: [
+    { label: "Tank Size", value: "60 gallon vertical tank" },
+    { label: "Max Operating Pressure", value: "135 PSI" },
+    { label: "Motor", value: "3 HP, 230V, Single Phase (6.5 amp draw)" },
+    { label: "CFM @ 90 PSI", value: "11.3 CFM" },
+    { label: "CFM @ 135 PSI", value: "10.3 CFM" },
+    { label: "Receiver", value: "ASME rated 60 gallon" }
+  ]
+},
+     {
+  id: 10,
+  name: "Electric Air Compressor 7.5 HP, 80 Gallon Two-Stag",
+  category: "Air Compressors",
+  price: 899.99,
+  image: "shop/Air compressors/Electric Air Compressor 7.5 HP, 80 Gallon Two-Stag.jpg",
+  description: "Industrial-class, two-stage electric air compressor with 7.5 HP motor and 80-gallon tank. Designed for high-demand commercial or automotive service applications, it ensures nonstop performance, efficient cooling, and long-lasting reliability.",
+  specs: [
+    { label: "Motor Power", value: "7.5 HP" },
+    { label: "Tank Capacity", value: "80 gallons" },
+    { label: "Compressor Type", value: "Two-stage, splash-lubricated" },
+    { label: "Max Pressure", value: "175 PSI" },
+    { label: "Pump Design", value: "Cast iron V-block with 360° cooling" },
+    { label: "Cooling", value: "High-efficiency intercooler and directional fins" },
+    { label: "Bearings", value: "Oversized industrial-grade bearings" },
+    { label: "Valves", value: "High-efficiency stainless steel" },
+    { label: "Durability", value: "15,000+ hours of pump life" },
+    { label: "Noise Control", value: "Inlet air filter with sound attenuation baffles" },
+    { label: "Flywheel", value: "Oversized cast iron balanced belt wheel" }
+  ]
+},
       {
         id: 11,
-        name: "Engine Hoist Crane",
-        category: "Lifting Equipment",
+        name: "Atlas Automotive Equipment 60 Gallon Vertical Air Compressor",
+        category: "Air Compressors",
         price: 899.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "shop/Air compressors/f5__90512.jpg",
         description: "2-ton folding engine hoist with adjustable boom and hydraulic pump for engine removal and installation.",
         specs: [
           { label: "Capacity", value: "2 tons" },
@@ -1327,70 +1421,467 @@ color: var(--grey-clouds);
           { label: "Warranty", value: "2 years" }
         ]
       },
+    {
+  id: 12,
+  name: "Auto Rotisserie with jacks",
+  category: " Rotisserie",
+  price: 499.99,
+  image: "shop/Rotisserie/Auto Rotisserie with jacks.jpg",
+  description: "Heavy-duty car rotisserie with pillow block bearings for smooth 360-degree rotation. Supports up to 3000 lbs and includes adjustable height and length for maximum versatility. Ideal for automotive restoration and body work.",
+  specs: [
+    { label: "Weight Capacity", value: "3000 lbs" },
+    { label: "Rotation", value: "360° with 12 positioning stops" },
+    { label: "Telescopic Length", value: "Up to 216 inches" },
+    { label: "Adjustable Height", value: "44\" - 59\"" },
+    { label: "Center Line Adjustment", value: "10\" - 30\"" },
+    { label: "Casters", value: "6-inch heavy-duty casters" },
+    { label: "Bearings", value: "Heavy duty pillow block bearings" },
+    { label: "Made in", value: "USA" }
+  ]
+},
       {
-        id: 12,
-        name: "Digital Battery Tester",
-        category: "Diagnostic Tools",
-        price: 499.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Advanced battery and charging system tester with color display and print capability for comprehensive diagnostics.",
-        specs: [
-          { label: "Compatibility", value: "6V/12V systems" },
-          { label: "Tests", value: "Battery, starter, alternator" },
-          { label: "Display", value: "5-inch color LCD" },
-          { label: "Print Capability", value: "Yes" },
-          { label: "Battery", value: "Rechargeable" },
-          { label: "Warranty", value: "1 year" }
-        ]
-      },
+  id: 13,
+  name: "Auto SPINS ('SIMPLE POSITION IN SECONDS') Rotisserie W/ Balance",
+  category: "Rotisserie",
+  price: 1999.99,
+  image: "shop/Rotisserie/Auto Spins.jpg",
+  description: "The new and improved Auto SPINS Rotisserie is your ultimate restoration partner for car and truck bodies. With 360° rotation via a simple crank system, it offers effortless access to every part of your vehicle. Built for heavy-duty restoration work, it features 2 hydraulic rams, adjustable height, width, and length, and a threaded rod adjuster for precise balance and stability. Powder-coated finish, specialty adapters, and easy mobility via 5\" polyurethane swivel casters make it a must-have for any serious automotive project.",
+  specs: [
+    { label: "Rotation", value: "360° crank-controlled movement" },
+    { label: "Weight Capacity", value: "3000 lbs" },
+    { label: "Width (Mounting Brackets)", value: "14 1/4\" - 48 3/4\"" },
+    { label: "Width Capacity (Car/Truck Body)", value: "Up to 85\"" },
+    { label: "Working Height", value: "20 1/2\" - 48 1/2\"" },
+    { label: "Working Length", value: "Up to 19' (capacity decreases when fully extended)" },
+    { label: "Ceiling Height Required", value: "8 feet" },
+    { label: "Steel Thickness", value: "1/8\" (9 Gauge)" },
+    { label: "Main Structure", value: "3\" x 3\" Square Tubing" },
+    { label: "Hydraulic Rams", value: "2 for greater adjustability" },
+    { label: "Caster Wheels", value: "5\" Polyurethane Swivel Casters (3 per end)" },
+    { label: "Finish", value: "Powder Coat" },
+    { label: "Warranty", value: "1 Year Limited" },
+    { label: "Shipping Weight", value: "600 lbs" }
+  ]
+}
+,{
+  id: 14,
+  name: "3.5 Ton Service Jack",
+  category: "Tools",
+  price: 299.99,
+  image: "shop/tools/3.5 Ton Service Jack.jpg",
+  description: "The LDJ35 is a 3-1/2-ton capacity service jack ideal for both large automotive service centers and one-person shops. Under load, the dual-stage hydraulic unit reaches max height in just 7 pumps. A wide lifting range and padded spring-loaded handle increase speed and ease of use. Heavy-duty rolled edge construction adds strength and reduces twisting, enhancing safety. This jack is cycle tested for long-term professional duty. Perfect for full-size pickups, SUVs, and heavily loaded tradesmen vehicles. Meets all 5 ASME PASE-2019 safety standards. Includes a Limited Lifetime Warranty.",
+  specs: [
+    { label: "Lifting Range", value: "5.2\" to 21.9\"" },
+    { label: "Reach", value: "78.5\"" },
+    { label: "Saddle", value: "6\" dia., flat steel, rubberized, pinned to lifting arm" },
+    { label: "Frame Height", value: "6.25\"" },
+    { label: "Handle Length", value: "50\" spring-loaded padded lower handle" },
+    { label: "Footprint", value: "14.5\" x 28.5\"" },
+    { label: "Casters", value: "4; 3.15\" front fixed (2), 2.5\" rear swivel (2)" },
+    { label: "Warranty", value: "Limited Lifetime" }
+  ]
+},
+     {
+  id: 15,
+  name: "20V 1Dha Hi Torq Imp Wre Ext 6 anvil 4 batt kit",
+  category: "Shop Equipment",
+  price: 1499.99,
+  image: "shop/tools/20V 1Dha Hi Torq Imp Wre Ext 6 anvil 4 batt kit.jpg",
+  description: "World's most powerful 1\" cordless impact wrench with best-in-class power-to-weight ratio. Brushless motor with IQv Power Control System. Great for roadside and industrial use.",
+  specs: [
+    { label: "Nut Busting Torque", value: "3,000 ft/lbs" },
+    { label: "Fastening Torque", value: "2,200 ft/lbs" },
+    { label: "Environmental Rating", value: "IP56" },
+    { label: "Battery Kit", value: "4 batteries included" },
+    { label: "Modes", value: "Max Power, Mid Power, Snug" },
+    { label: "Handle", value: "360° adjustable D-handle" },
+    { label: "Motor", value: "Brushless" },
+    { label: "Bolts Per Charge", value: "250" }
+  ]
+},
       {
-        id: 13,
-        name: "Professional Scan Tool",
-        category: "Diagnostic Tools",
-        price: 1999.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "All-system diagnostic tool with bidirectional controls, programming capability, and online updates.",
-        specs: [
-          { label: "Coverage", value: "All systems" },
-          { label: "Display", value: "10-inch touchscreen" },
-          { label: "Connectivity", value: "Wi-Fi, USB" },
-          { label: "Bidirectional", value: "Yes" },
-          { label: "Updates", value: "Lifetime" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      },
-      {
-        id: 14,
-        name: "Tire Inflator with Gauge",
-        category: "Tire Service",
-        price: 299.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Heavy-duty digital tire inflator with 200 PSI capacity and automatic shutoff for precise inflation.",
-        specs: [
-          { label: "Max PSI", value: "200" },
-          { label: "Gauge Type", value: "Digital" },
-          { label: "Hose Length", value: "24 inches" },
-          { label: "Power", value: "12V DC" },
-          { label: "Auto Shutoff", value: "Yes" },
-          { label: "Warranty", value: "1 year" }
-        ]
-      },
-      {
-        id: 15,
-        name: "Shop Crane with Stand",
-        category: "Shop Equipment",
-        price: 1499.99,
-        image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        description: "Adjustable engine stand with 1000 lb capacity and 360-degree rotation for engine rebuilding.",
-        specs: [
-          { label: "Capacity", value: "1000 lbs" },
-          { label: "Rotation", value: "360 degrees" },
-          { label: "Mounting Arms", value: "4 adjustable" },
-          { label: "Base", value: "Tripod design" },
-          { label: "Wheels", value: "4 locking casters" },
-          { label: "Warranty", value: "3 years" }
-        ]
-      }
+  id: 16,
+  name: "22 Ton Under Axle Jack",
+  category: "Shop Equipment",
+  price: 229.99,
+  image: "shop/tools/22 Ton Under Axle Jack.jpg",
+  description: "Heavy-duty 22-ton hydraulic under axle jack with durable welded construction, chrome-plated ram, and multiple saddle options for lifting heavy-duty vehicles. Ideal for trucks and buses with long overhangs. Meets ASME PASE-2019 standards.",
+  specs: [
+    { label: "Capacity", value: "22 tons" },
+    { label: "Lift Range", value: "8.27\" to 20-2/3\"" },
+    { label: "Frame Height", value: "8.27\"" },
+    { label: "Reach", value: "69.87\"" },
+    { label: "Saddle Diameter", value: "3\", round with center notch" },
+    { label: "Max Height (¾” saddle)", value: "17-3/4\"" },
+    { label: "Max Height (1-15/16” saddle)", value: "18-15/16\"" },
+    { label: "Max Height (3-7/8” saddle)", value: "20-2/3\"" },
+    { label: "Handle Length", value: "47.24\" T-handle with lowering lever and air-chuck hook" },
+    { label: "Footprint", value: "22.63\" x 11.73\"" },
+    { label: "Wheels", value: "2 fixed; 7.88\" rubberized steel large rear wheels" },
+    { label: "Pump", value: "Welded hydraulic with double spring return" },
+    { label: "Air Pressure", value: "90 - 145 PSI" },
+    { label: "Safety", value: "Meets ASME PASE-2019" },
+    { label: "Warranty", value: "Limited Lifetime" }
+  ]
+},
+{
+  id: 17,
+  name: "22-TON JACK STANDS HD (PAIR)",
+  category: "Shop Equipment",
+  price: 99.95,
+  image: "shop/tools/22-TON JACK STANDS HD (PAIR).jpg",
+  description: "Pair of 22 Ton capacity pin-type jack stands with V-shaped saddle and steel tubing construction for added strength and stability.",
+  specs: [
+    { label: "Capacity", value: "22 tons (pair)" },
+    { label: "Support Range", value: "11.825\" to 19.75\"" },
+    { label: "Saddle", value: "V-shaped to cradle axles" },
+    { label: "Construction", value: "Steel plate and structural tubing" },
+    { label: "Height Pin", value: "Lanyard-attached to prevent loss" },
+    { label: "Usage", value: "Sold and used in pairs" }
+  ]
+},
+{
+  "id": 18,
+  "name": "BATTERY CHARGER",
+  "category": "Tools",
+  "price": 1899.00,
+  "image": "shop/tools/BATTERY CHARGER.jpg",
+  "description": "Heavy-duty battery charger with molded plastic cap and voltage selector. Ideal for professional charging applications.",
+  "specs": [
+    { "label": "Supported Voltages", "value": "6V / 12V / 18V / 24V" },
+    { "label": "Charging Current", "value": "100A / 75A / 50A / 40A" },
+    { "label": "Power", "value": "110V" },
+    { "label": "Air Requirement", "value": "120 psi" },
+    { "label": "Clamp Type", "value": "Pneumatic" },
+    { "label": "Bead Breaker", "value": "Included" },
+    { "label": "Material", "value": "Molded plastic with holder" },
+    { "label": "Warranty", "value": "2 years" }
+  ]
+},
+{
+  "id": 19,
+  "name": "Clore Automotive Jump-N-Carry JNC770R 1700",
+  "category": "Tools",
+  "price": 159.99,
+  "image": "shop/tools/Clore Automotive Jump-N-Carry JNC770R 1700.jpg",
+  "description": "12V jump starter with 1700 peak amps, long cables, and USB outlets. Designed for reliable, portable power.",
+  "specs": [
+    { "label": "Peak Amps", "value": "1,700" },
+    { "label": "Cranking Amps", "value": "425" },
+    { "label": "Battery Technology", "value": "Clore PROFORMER" },
+    { "label": "Cable Length", "value": "68 inches" },
+    { "label": "Cable Type", "value": "#2 AWG welding cable leads" },
+    { "label": "Charger", "value": "Built-in 3 Amp automatic charger" },
+    { "label": "USB Outlets", "value": "Dual (2.1A and 1.1A)" },
+    { "label": "DC Outlet", "value": "12V accessory power" },
+    { "label": "Master Switch", "value": "ON/OFF included" },
+    { "label": "Warranty", "value": "1 year" }
+  ]
+},
+{
+  "id": 20,
+  "name": "COAST HX5 LED Pocket Flashlight",
+  "category": "Tools",
+  "price": 349.99,
+  "image": "shop/tools/COAST PRODUCTS GIDDS2-2496544 Hx5 Led Pocket Flashlight with Pure Beam Focusing, Black.jpg",
+  "description": "Compact LED flashlight with one-handed beam control and slide focus system. Built for work area lighting.",
+  "specs": [
+    { "label": "Beam Control", "value": "One-handed slide focus system" },
+    { "label": "Beam Type", "value": "Spot and flood beam" },
+    { "label": "Indicator", "value": "Visual LED bar for voltage detection" },
+    { "label": "Brightness", "value": "Bright flashlight for work areas" },
+    { "label": "Function", "value": "Flashlight can be used independently" }
+  ]
+},
+{
+  "id": 21,
+  "name": "Graco 239888 Grease Pump",
+  "category": "Tools",
+  "price": 124.50,
+  "image": "shop/tools/Graco 239888 Grease Pump.jpg",
+  "description": "Reliable 3\" air motor pump with extended seal life and corrosion-resistant design. Built to reduce downtime and maintenance.",
+  "specs": [
+    { "label": "Air Motor", "value": "3 inch (76.2 mm) differential" },
+    { "label": "Pump Design", "value": "Double-acting for reliable flow" },
+    { "label": "Durability", "value": "Thick cast aluminum air motor housing" },
+    { "label": "Seal Life", "value": "In-line pump design for max seal life" },
+    { "label": "Repair Needs", "value": "Fewer moving parts, low maintenance" },
+    { "label": "Rod Wear", "value": "Minimal due to Graco process" },
+    { "label": "Sealing", "value": "Non-metallic poppet valves" },
+    { "label": "Icing", "value": "Large air ports reduce icing" },
+    { "label": "Corrosion Resistance", "value": "Salt nitriding, nickel, SS, aluminum, chrome" }
+  ]
+},
+{
+  "id": 22,
+  "name": "Graco 203876 Universal Oil Pump",
+  "category": "Tools",
+  "price": 199.99,
+  "image": "shop/tools/graco_oil_pump__95525.jpg",
+  "description": "5:1 oil pump for high-pressure oil transfer. Built for durability, low maintenance, and continuous performance.",
+  "specs": [
+    { "label": "Pump Ratio", "value": "5:1" },
+    { "label": "Air Motor", "value": "3 inch (76.2 mm) differential" },
+    { "label": "Pump Design", "value": "Double-acting for reliable flow" },
+    { "label": "Durability", "value": "Thick cast aluminum air motor housing" },
+    { "label": "Seal Life", "value": "In-line pump design for max seal life" },
+    { "label": "Repair Needs", "value": "Fewer moving parts, low maintenance" },
+    { "label": "Rod Wear", "value": "Minimal due to Graco process" },
+    { "label": "Sealing", "value": "Non-metallic poppet valves" },
+    { "label": "Icing", "value": "Large air ports reduce icing" },
+    { "label": "Corrosion Resistance", "value": "Salt nitriding, nickel, SS, aluminum, chrome" },
+    { "label": "Application", "value": "Petroleum- and synthetic-based oils" },
+    { "label": "Air Inlet Size", "value": "3/8\" FNPT" },
+    { "label": "Fluid Inlet Size", "value": "1-1/2\" FNPT" },
+    { "label": "Fluid Outlet Size", "value": "1/2\" FNPT" },
+    { "label": "Max Air Inlet Pressure", "value": "180 PSI" },
+    { "label": "Max Fluid Working Pressure", "value": "900 PSI" }
+  ]
+},
+{
+  "id": 23,
+  "name": "HD 2000A 12V Lithium Jump Starter",
+  "category": "Tools",
+  "price": 79.99,
+  "image": "shop/tools/HD 2000A 12V LITHIUM JUMP STARTER.jpg",
+  "description": "2000A lithium jump starter for 12V vehicles. Compact, high-power design for quick and reliable starts.",
+  "specs": [
+    { "label": "Warranty", "value": "Repair only up to 1 year" }
+  ]
+},
+{
+  "id": 24,
+  "name": "Hopkins 14015 Avalanche Pivoting Snowbroom",
+  "category": "Tools",
+  "price": 299.00,
+  "image": "shop/tools/Hopkins 14015 Avalanche Pivoting Snowbroom.jpg",
+  "description": "54\" snowbroom with pivoting head, scraper, squeegee, and foam grips. Designed for heavy snow and thick ice removal.",
+  "specs": [
+    { "label": "Brush Head", "value": "Heavy-duty, full-size" },
+    { "label": "Ice Scraper", "value": "Durable with reinforced blade" },
+    { "label": "Squeegee", "value": "Integrated for thorough cleaning" },
+    { "label": "Foam Grips", "value": "Two soft comfort grips" },
+    { "label": "Leverage Zones", "value": "Added pressure for scraping" },
+    { "label": "Side Chippers", "value": "Break up thick ice" },
+    { "label": "Pole Style", "value": "May vary slightly" }
+  ]
+},
+{
+  "id": 25,
+  "name": "IMPACT WRENCH 3/4 DRIVE 1100FT/LBS 5500RPM",
+  "category": "Tools",
+  "price": 69.95,
+  "image": "shop/tools/IMPACT WRENCH.jpg",
+  "description": "Compact 3/4\" impact wrench with 1,100 ft/lbs torque and jumbo hammer mechanism. Ideal for heavy-duty shop tasks.",
+  "specs": [
+    { "label": "Torque", "value": "Up to 1,100 ft/lbs" },
+    { "label": "RPM", "value": "5,500" },
+    { "label": "Mechanism", "value": "Jumbo hammer" },
+    { "label": "Lubrication", "value": "Pressure-feed lube system" },
+    { "label": "Length", "value": "8.8 inches" },
+    { "label": "Exhaust", "value": "Handle exhaust" },
+    { "label": "Model", "value": "IRT261" }
+  ]
+},
+{
+  "id": 26,
+  "name": "JUMP-N-CARY JUMP STARTER 3400 PEAK AMPS",
+  "category": "Tools",
+  "price": 109.00,
+  "image": "shop/tools/JUMP-N-CARY  JUMP STARTER 3400 PEAK AMPS.jpg",
+  "description": "Portable jump starter with 3400 peak amps (12V) and 1700 peak amps (24V). Features built-in charger and voltmeter.",
+  "specs": [
+    { "label": "12V Peak Amps", "value": "3400" },
+    { "label": "12V Cranking Amps", "value": "850" },
+    { "label": "24V Peak Amps", "value": "1700" },
+    { "label": "24V Cranking Amps", "value": "425" },
+    { "label": "Battery Technology", "value": "Clore PROFORMER" },
+    { "label": "Cable Leads", "value": "46\" #2 AWG welding cable" },
+    { "label": "Clamps", "value": "Industrial-grade Hot Jaw" },
+    { "label": "Charger", "value": "Built-in automatic" },
+    { "label": "Voltmeter", "value": "Indicates charge status" },
+    { "label": "DC Outlet", "value": "12V accessory power" },
+    { "label": "Warranty", "value": "1 year limited" }
+  ]
+},
+{
+  "id": 27,
+  "name": "M18 FUEL HIGH TRQ 1/2 IMP WRNCH FRCTN RING (Tool Only)",
+  "category": "Tools",
+  "price": 179.99,
+  "image": "shop/tools/M18 FUEL HIGH TRQ.webp",
+  "description": "Cordless 1/2\" high torque impact wrench with 1400 ft-lbs nut-busting power. Compact design and 4-mode control for precision.",
+  "specs": [
+    { "label": "Fastening Torque", "value": "1,000 ft-lbs" },
+    { "label": "Nut-Busting Torque", "value": "1,400 ft-lbs" },
+    { "label": "Length", "value": "8.39 inches" },
+    { "label": "Drive Control", "value": "4-Mode with Bolt Removal mode" },
+    { "label": "Speed Reduction", "value": "Slows to 750 RPM after breakaway" },
+    { "label": "Socket Change", "value": "1/2\" friction ring, tool-free" },
+    { "label": "Grip Material", "value": "Premium rubber overmold" }
+  ]
+},
+{
+  "id": 28,
+  "name": "Microflex MK-296-M MidKnight Black, Powder-Free Exam Gloves, Medium, Nitrile (Pack of 100)",
+  "category": "Tools",
+  "price": 54.95,
+  "image": "shop/tools/Microflex MK-296-M MidKnight Black, Powder-Free Exam Gloves.jpg",
+  "description": "Durable black nitrile gloves with textured grip for daily protection. Comfortable and conceals stains and oils.",
+  "specs": [
+    { "label": "Material", "value": "Nitrile" },
+    { "label": "Color", "value": "Black" },
+    { "label": "Size", "value": "Medium" },
+    { "label": "Texture", "value": "Fully textured for grip" },
+    { "label": "Powder-Free", "value": "Yes" },
+    { "label": "Quantity", "value": "100 gloves per pack" },
+    { "label": "Use Case", "value": "QA/QC, protection from hazards" }
+  ]
+},
+{
+  "id": 29,
+  "name": "Microflex MK-296-XXL MidKnight Exam Gloves, PF Nitrile, Textured, Black, XXL (Pack of 100)",
+  "category": "Tools",
+  "price": 89.99,
+  "image": "shop/tools/Microflex MK-296-XXL-Box Midknight Exam Gloves,.jpg",
+  "description": "Textured black nitrile gloves for superior protection and comfort. Trusted by professionals across industries.",
+  "specs": [
+    { "label": "Material", "value": "Nitrile" },
+    { "label": "Color", "value": "Black" },
+    { "label": "Size", "value": "XXL" },
+    { "label": "Texture", "value": "Textured for enhanced grip" },
+    { "label": "Powder-Free", "value": "Yes" },
+    { "label": "Quantity", "value": "100 gloves per pack" },
+    { "label": "Use Case", "value": "Multi-industry protection and safety" }
+  ]
+},
+{
+  "id": 30,
+  "name": "NECK WORK LIGHT, RECHARGEABLE FLEXIBLE, 300/150 LU",
+  "category": "Tools",
+  "price": 169.00,
+  "image": "shop/tools/NECK WORK LIGHT, RECHARGEABLE FLEXIBLE.jpg",
+  "description": "Durable, dimmable neck work light with dual brightness and magnetic base. Lightweight, flexible, and USB rechargeable.",
+  "specs": [
+    { "label": "Brightness", "value": "300 lumens (full), 150 lumens (half)" },
+    { "label": "Dimmable", "value": "Yes, via long-press buttons" },
+    { "label": "Runtime", "value": "3 hours (full), 6 hours (half)" },
+    { "label": "Charging Time", "value": "3.5 hours" },
+    { "label": "Battery", "value": "3.7V 2200mAh Li-ion rechargeable" },
+    { "label": "Mounting", "value": "Magnetic bottom and back" },
+    { "label": "Flexibility", "value": "Gooseneck design with dual heads" },
+    { "label": "Resistance", "value": "Water, oil, grease (IP54 rated)" },
+    { "label": "Weight", "value": "0.4 lbs" },
+    { "label": "Charging Cable", "value": "Includes Type-C USB" }
+  ]
+},
+{
+  "id": 31,
+  "name": "POWER PROBE III Clamshell - Red (PP3CSRED)",
+  "category": "Tools",
+  "price": 275.00,
+  "image": "shop/tools/POWER PROBE III Clamshell - Red (PP3CSRED) [Car Automotive Diagnostic Test Tool.jpg",
+  "description": "Automotive diagnostic tool for testing circuits, voltage, and components. Features LED lights, voltmeter, and audio alerts.",
+  "specs": [
+    { "label": "Voltage Range", "value": "12–24 VDC" },
+    { "label": "Power/Ground Supply", "value": "Yes, with indicator tone" },
+    { "label": "Lighting", "value": "Bright-white LED headlamps" },
+    { "label": "Voltmeter", "value": "Digital with Min/Max" },
+    { "label": "Circuit Monitoring", "value": "Audible tone and LED" },
+    { "label": "Continuity Test", "value": "Yes" },
+    { "label": "Short Circuit Detection", "value": "Yes" },
+    { "label": "Component Testing", "value": "Relay and auxiliary ground" },
+    { "label": "Jumper Leads", "value": "20 ft. jumper lead set" },
+    { "label": "Connector", "value": "4mm banana jack" }
+  ]
+},
+{
+  "id": 32,
+  "name": "Robinair 13203 Premium High Vacuum Pump Oil",
+  "category": "Tools",
+  "price": 134.99,
+  "image": "shop/tools/Robinair 13203 Premium High Vacuum Pump Oil.jpg",
+  "description": "Premium vacuum pump oil with low moisture content and high thermal stability. Ensures deep vacuum and optimal pump performance.",
+  "specs": [
+    { "label": "Viscosity", "value": "Stable at high temperatures" },
+    { "label": "Cold Start", "value": "Improved performance in cold weather" },
+    { "label": "Moisture Content", "value": "Low due to special packaging" },
+    { "label": "Purity", "value": "Maintained for deep vacuum efficiency" },
+    { "label": "Volume", "value": "1 quart (32 oz.)" },
+    { "label": "Recommended Use", "value": "Change after each evacuation" }
+  ]
+},
+{
+  "id": 33,
+  "name": "STINGER AIR-HYDRAULIC PUMP",
+  "category": "Tools",
+  "price": 59.99,
+  "image": "shop/tools/STINGER AIR-HYDRAULIC PUMP.jpg",
+  "description": "Air-hydraulic pump generating up to 10,000 PSI at 100 PSI air. Features pedal control and internal relief valve.",
+  "specs": [
+    { "label": "Max Output Pressure", "value": "10,000 PSI" },
+    { "label": "Air Input Pressure", "value": "100 PSI" },
+    { "label": "Control", "value": "Pedal (pump, hold, release)" },
+    { "label": "Relief Valve", "value": "Internal" },
+    { "label": "Oil Capacity", "value": "98 cu. in. usable" },
+    { "label": "Release Mechanism", "value": "Two-stage" }
+  ]
+},
+{
+  "id": 34,
+  "name": "TORQ WR 3/4\" DR SPLIT-BEAM CLICK STYLE 600FT LBS",
+  "category": "Tools",
+  "price": 92.00,
+  "image": "shop/tools/TORQ WR R SPLIT-BEAM CLICK STYLE 600FT LBS.jpg",
+  "description": "Split-beam torque wrench with fingertip adjustment and no reset needed. Durable all-steel design with 4% accuracy.",
+  "specs": [
+    { "label": "Drive Size", "value": "3/4 inch" },
+    { "label": "Torque Range", "value": "Up to 600 ft-lbs" },
+    { "label": "Accuracy", "value": "±4% clockwise" },
+    { "label": "Construction", "value": "All steel" },
+    { "label": "Length", "value": "48 inches" },
+    { "label": "Adjustment", "value": "Split-beam, fingertip force" },
+    { "label": "Reset Required", "value": "No" },
+    { "label": "Included", "value": "Storage case, calibration certificate" },
+    { "label": "Warranty", "value": "1 year" },
+    { "label": "Made In", "value": "USA" }
+  ]
+},
+{
+  "id": 35,
+  "name": "Power Probe TEK Maestro (PPTM01AS)",
+  "category": "Tools",
+  "price": 329.99,
+  "image": "shop/tools/Power Probe TEK Maestro.jpg",
+  "description": "Advanced automotive diagnostic tool designed with state-of-the-art technology. Globally recognized for precision and performance.",
+  "specs": [
+    { "label": "Manufacturer", "value": "Power Probe" },
+    { "label": "Model", "value": "TEK Maestro (PPTM01AS)" },
+    { "label": "Technology", "value": "State-of-the-art diagnostic system" },
+    { "label": "Recognition", "value": "Internationally awarded product line" },
+    { "label": "Use Case", "value": "Automotive diagnostics and circuit testing" }
+  ]
+},
+{
+  "id": 36,
+  "name": "WORKLIGHT RECHARGEABLE COB FOLDABLE & SWIVEL",
+  "category": "Tools",
+  "price": 45.95,
+  "image": "shop/tools/WORKLIGHT RECHARGEABLE COB FOLDABLE & SWIVEL.jpg",
+  "description": "Rechargeable COB LED worklight with 180° folding and 270° swivel. Magnetic base, USB charging, and dual brightness modes.",
+  "specs": [
+    { "label": "Brightness", "value": "600 lumens (high), 300 lumens (low)" },
+    { "label": "Rotation", "value": "180° foldable, 270° swivel" },
+    { "label": "Top Light", "value": "Yes" },
+    { "label": "Battery", "value": "4000mAh Li-ion 3.7V" },
+    { "label": "Run Time", "value": "4–8 hours" },
+    { "label": "Charge Time", "value": "4 hours" },
+    { "label": "Charging", "value": "Micro USB" },
+    { "label": "Mounting", "value": "Magnetic base" },
+    { "label": "Length", "value": "13.0\" open, 7.5\" folded" }
+  ]
+}
+
     ];
 
     // DOM Elements
@@ -1409,7 +1900,7 @@ color: var(--grey-clouds);
     const requestQuote = document.getElementById('requestQuote');
 
     // Configuration
-    const productsPerPage = 6;
+    const productsPerPage = 12;
     let currentPage = 1;
     let currentProducts = [...products];
     let filteredProducts = [...products];
@@ -1496,7 +1987,6 @@ color: var(--grey-clouds);
             <h3 class="product-name">${product.name}</h3>
             <p class="product-description">${product.description.substring(0, 100)}...</p>
             <div class="product-footer">
-              <span class="product-price">$${product.price.toFixed(2)}</span>
               <button class="view-btn" data-id="${product.id}">
                 <i class='bx bx-show'></i> View
               </button>
@@ -1560,25 +2050,28 @@ color: var(--grey-clouds);
       }
     }
 
-    // Show product modal
     function showProductModal(product) {
-      modalImage.style.backgroundImage = `url('${product.image}')`;
+      // Update modal content
+      modalImage.innerHTML = `<img src="${product.image}" alt="${product.name}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
       modalCategory.textContent = product.category;
       modalName.textContent = product.name;
-      modalPrice.textContent = `$${product.price.toFixed(2)}`;
       modalDescription.textContent = product.description;
       
       // Render specifications
       specsList.innerHTML = '';
-      product.specs.forEach(spec => {
-        const specItem = document.createElement('div');
-        specItem.className = 'spec-item';
-        specItem.innerHTML = `
-          <span class="spec-label">${spec.label}:</span>
-          <span>${spec.value}</span>
-        `;
-        specsList.appendChild(specItem);
-      });
+      if (product.specs && product.specs.length > 0) {
+        product.specs.forEach(spec => {
+          const specItem = document.createElement('div');
+          specItem.className = 'spec-item';
+          specItem.innerHTML = `
+            <span class="spec-label">${spec.label}:</span>
+            <span>${spec.value}</span>
+          `;
+          specsList.appendChild(specItem);
+        });
+      } else {
+        specsList.innerHTML = '<p>No specifications available.</p>';
+      }
       
       // Set quote button data
       requestQuote.setAttribute('data-id', product.id);
@@ -1586,12 +2079,6 @@ color: var(--grey-clouds);
       // Show modal
       productModal.classList.add('active');
       document.body.style.overflow = 'hidden';
-    }
-
-    // Close product modal
-    function closeProductModal() {
-      productModal.classList.remove('active');
-      document.body.style.overflow = '';
     }
 
     // Handle quote request
@@ -1736,3 +2223,4 @@ color: var(--grey-clouds);
   </script>
 </body>
 </html>
+
