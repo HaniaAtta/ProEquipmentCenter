@@ -1058,10 +1058,10 @@ color: var(--grey-clouds);
               </ul>
             </div>
             <div class="search-box">
-              <i class='bx bx-search'></i>
+              <!-- <i class='bx bx-search'></i>
               <div class="input-box">
                 <input type="text" placeholder="Search...">
-              </div>
+              </div> -->
             </div>
           </div>
         </nav>
@@ -1085,14 +1085,10 @@ color: var(--grey-clouds);
             <option value="Scissor Lifts">Scissor Lifts</option>
             <option value="Mobile Column Lifts">Mobile Column Lifts</option>
             <option value="ALI/ANSI Certified Lifts">ALI/ANSI Certified Lifts</option>
-            <option value="PARTS">PARTS</option>
           </select>
-          <select class="filter-select" id="sortFilter">
-            <option value="featured">Featured</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="newest">Newest</option>
-          </select>
+          <div class="filter-select1" id="sortFilter">
+       
+          </div>
         </div>
       </div>
 
@@ -3815,16 +3811,7 @@ color: var(--grey-clouds);
 
     // Existing navbar functionality
     // search-box open close js code
-    let navbar = document.querySelector(".navbar");
-    let searchBox = document.querySelector(".search-box .bx-search");
-    searchBox.addEventListener("click", ()=>{
-      navbar.classList.toggle("showInput");
-      if(navbar.classList.contains("showInput")){
-        searchBox.classList.replace("bx-search" ,"bx-x");
-      }else {
-        searchBox.classList.replace("bx-x" ,"bx-search");
-      }
-    });
+   
     
     // sidebar open close js code
     let navLinks = document.querySelector(".nav-links");

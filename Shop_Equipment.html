@@ -1062,10 +1062,10 @@ color: var(--grey-clouds);
               </ul>
             </div>
             <div class="search-box">
-              <i class='bx bx-search'></i>
+              <!-- <i class='bx bx-search'></i>
               <div class="input-box">
                 <input type="text" placeholder="Search...">
-              </div>
+              </div> -->
             </div>
           </div>
         </nav>
@@ -1088,12 +1088,9 @@ color: var(--grey-clouds);
             <option value="Tools">Tools</option>
       
           </select>
-          <select class="filter-select" id="sortFilter">
-            <option value="featured">Featured</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="newest">Newest</option>
-          </select>
+          <div class="filter-select1" id="sortFilter">
+            
+          </div>
         </div>
       </div>
 
@@ -1489,7 +1486,7 @@ color: var(--grey-clouds);
      {
   id: 15,
   name: "20V 1Dha Hi Torq Imp Wre Ext 6 anvil 4 batt kit",
-  category: "Shop Equipment",
+  category: "Tools",
   price: 1499.99,
   image: "shop/tools/20V 1Dha Hi Torq Imp Wre Ext 6 anvil 4 batt kit.jpg",
   description: "World's most powerful 1\" cordless impact wrench with best-in-class power-to-weight ratio. Brushless motor with IQv Power Control System. Great for roadside and industrial use.",
@@ -1507,7 +1504,7 @@ color: var(--grey-clouds);
       {
   id: 16,
   name: "22 Ton Under Axle Jack",
-  category: "Shop Equipment",
+  category: "Tools",
   price: 229.99,
   image: "shop/tools/22 Ton Under Axle Jack.jpg",
   description: "Heavy-duty 22-ton hydraulic under axle jack with durable welded construction, chrome-plated ram, and multiple saddle options for lifting heavy-duty vehicles. Ideal for trucks and buses with long overhangs. Meets ASME PASE-2019 standards.",
@@ -1532,7 +1529,7 @@ color: var(--grey-clouds);
 {
   id: 17,
   name: "22-TON JACK STANDS HD (PAIR)",
-  category: "Shop Equipment",
+  category: "Tools",
   price: 99.95,
   image: "shop/tools/22-TON JACK STANDS HD (PAIR).jpg",
   description: "Pair of 22 Ton capacity pin-type jack stands with V-shaped saddle and steel tubing construction for added strength and stability.",
@@ -2097,16 +2094,7 @@ color: var(--grey-clouds);
 
     // Existing navbar functionality
     // search-box open close js code
-    let navbar = document.querySelector(".navbar");
-    let searchBox = document.querySelector(".search-box .bx-search");
-    searchBox.addEventListener("click", ()=>{
-      navbar.classList.toggle("showInput");
-      if(navbar.classList.contains("showInput")){
-        searchBox.classList.replace("bx-search" ,"bx-x");
-      }else {
-        searchBox.classList.replace("bx-x" ,"bx-search");
-      }
-    });
+
     
     // sidebar open close js code
     let navLinks = document.querySelector(".nav-links");
